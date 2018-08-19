@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->string('num');
             $table->unsignedInteger('client_id');
             $table->unsignedInteger('agency_id')->default(1);
-            $table->boolean('resolved')->default(false);
+            $table->boolean('pending')->default(true);
             $table->boolean('delayed')->default(false);
             $table->timestamps();
         });
