@@ -16,6 +16,7 @@ class ClientsTableSeeder extends Seeder
             'cc' => 1127606049,
             'name' => 'Diego Viniegra',
             'gender' => 'male',
+            'phone' => '3507896384',
         ]);
     }
 }

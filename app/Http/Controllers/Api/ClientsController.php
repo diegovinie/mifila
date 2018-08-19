@@ -24,4 +24,12 @@ class ClientsController extends Controller
     {
         return Client::all();
     }
+
+    public function generateIdentity($cc)
+    {
+        $client = factory(Client::class)->make();
+        $client->cc = (int)$cc;
+
+        return $client;
+    }
 }

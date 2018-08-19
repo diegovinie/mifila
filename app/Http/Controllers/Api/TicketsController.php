@@ -24,13 +24,14 @@ class TicketsController extends Controller
                 'cc' => $cc,
                 'name' => $request->get('name'),
                 'gender' => $request->get('gender'),
+                'phone' => $request->get('phone'),
                 'priority' => $request->get('priority') || false,
             ]);
         }
 
         $ticket = new Ticket;
 
-        $agency = Agency::find($request->get('agency'));
+        $agency = Agency::find($request->get('agency_id'));
 
         $ticket->client()->associate($client);
         $ticket->agency()->associate($agency);
