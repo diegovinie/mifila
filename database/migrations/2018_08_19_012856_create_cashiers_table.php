@@ -17,6 +17,7 @@ class CreateCashiersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('agency_id');
+            $table->unsignedInteger('rate')->default(90);    // tiempo: seg/cliente
             $table->timestamps();
 
         });

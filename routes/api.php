@@ -24,4 +24,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('clients', 'Api\ClientsController@list');
     Route::get('clients/{cc}', 'Api\ClientsController@show');
     Route::get('clients/{cc}/generate', 'Api\ClientsController@generateIdentity');
+
+    Route::get('cashiers/{id}/next', 'Api\CashiersController@next');
 });

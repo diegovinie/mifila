@@ -11,4 +11,23 @@ class Cashier extends Model
     {
         return $this->belongsTo('App\Agency');
     }
+
+    public function services()
+    {
+        return $this->hasMany('App\TicketService');
+    }
+
+    public function nextTicket()
+    {
+        $ticket = $this->agency->tickets()->isPending()->first();
+
+        if (!$ticket) {
+            return null;
+        }
+
+        $ticket->pending = false;
+        $ticket->save();
+
+        return $ticket;
+    }
 }

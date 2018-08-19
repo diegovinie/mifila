@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         \App\Client::observe(\App\Observers\ClientObserver::class);
+        \App\TicketService::observe(\App\Observers\TicketServiceObserver::class);
     }
 
     /**
