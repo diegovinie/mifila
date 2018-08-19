@@ -15,7 +15,7 @@ class CashiersTableSeeder extends Seeder
         Cashier::create([
             'name' => 'Pedro Perez',
             'agency_id' => 1,
-            'rate' => 150,
+            'rate' => 70,
         ]);
     }
 }
