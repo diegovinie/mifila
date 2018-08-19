@@ -30,4 +30,11 @@ class Cashier extends Model
 
         return $ticket;
     }
+
+    public function getIdleAttribute()
+    {
+        $busy = $this->services()->notFinished()->first();
+
+        return !$busy ? true : false;
+    }
 }

@@ -16,4 +16,11 @@ class TicketService extends Model
     {
         return $this->belongsTo('App\Ticket');
     }
+
+    public function scopeNotFinished($query)
+    {
+        $now = new \DateTime;
+
+        return $query->where('due', '>', $now);
+    }
 }

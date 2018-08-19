@@ -27,4 +27,20 @@ class CashiersController extends Controller
 
         return $service->fresh()->load('ticket');
     }
+
+    public static function check(\App\Agency $agency)
+    {
+
+        $cashiers = $agency->cashiers()->get();
+
+        foreach ($cashiers as $cashier) {
+            // code...
+            if ($cashier->idle) {
+                $res = $this->next($cashier->id);
+                var_dump($res);
+            } else {
+                var_dump($cashier);
+            }
+        }
+    }
 }
