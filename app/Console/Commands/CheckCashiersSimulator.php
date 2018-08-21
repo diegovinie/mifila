@@ -7,7 +7,7 @@ use App\Cashier;
 
 class CheckCashiersSimulator extends Command
 {
-    use TimeSimulatorTrait;
+    use TimeSimulatorTrait, LogsSimulatorTrait;
 
     /**
      * The name and signature of the console command.
@@ -51,7 +51,7 @@ class CheckCashiersSimulator extends Command
                 try {
                     $this->timedOutput("$cashier->name libre, llamando a: {$service->ticket->num}\n");
                 } catch (\Exception $e) {
-                    new \Exception('No se puede recuperar datos del servicio.');
+                    throw new \Exception('No se puede recuperar datos del servicio.');
                 }
             } else {
                 // echo "$cashier->name Ocupado.\n";

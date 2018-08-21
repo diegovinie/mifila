@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class NewTicketSimulator extends Command
 {
-    use TimeSimulatorTrait;
+    use TimeSimulatorTrait, LogsSimulatorTrait;
 
     /**
      * The name and signature of the console command.
@@ -48,12 +48,18 @@ class NewTicketSimulator extends Command
 
         if (!isset($client->name)) {
 
-            $getIdentUrl = route('api.sim.gen.client', $cc);
+            $client = $this->getIdentity($cc);
 
-            $clientJson = shell_exec("curl $getIdentUrl -s");
-            $client = json_decode($clientJson);
+            if (!$client) {
+                return;
+            }
 
-            throw_unless(isset($client->name), new \Exception("No se pudo recuperar la identidad.\n"));
+            // $getIdentUrl = route('api.sim.gen.client', $cc);
+            //
+            // $clientJson = shell_exec("curl $getIdentUrl -s");
+            // $client = json_decode($clientJson);
+            //
+            // throw_unless(isset($client->name), new \Exception("No se pudo recuperar la identidad.\n"));
         }
         $client->agency_id = 1;
         $data = http_build_query($client);
@@ -62,7 +68,7 @@ class NewTicketSimulator extends Command
         $ticket = json_decode($ticketJson);
 
         if (!isset($ticket->num)) {
-            var_dump($ticketJson);
+            $this->saveLog('newTicket', $ticketJson);
             throw new \Exception('Nuevo ticket no recuperado.');
         }
 
@@ -76,5 +82,24 @@ class NewTicketSimulator extends Command
         $fixed = 80 * 1000 * 1000;
 
         return $fixed + $variable;
+    }
+
+    protected function getIdentity($cc, $times=0)
+    {
+        $getIdentUrl = route('api.sim.gen.client', $cc);
+
+        $clientJson = shell_exec("curl $getIdentUrl -s");
+        $client = json_decode($clientJson);
+
+        if (!isset($client->name)) {
+            if ($times > 2) {
+                $this->timedOutput("No se pudo recuperar la identidad de $cc en $times intentos.");
+                $this->saveLog('getIdentity', $clientJson);
+                return null;
+            }
+            $this->getIdentity($cc, ++$times);
+        }
+
+        return $client;
     }
 }
