@@ -17,5 +17,11 @@ class CashiersTableSeeder extends Seeder
             'agency_id' => 1,
             'rate' => 70,
         ]);
+
+        Cashier::create([
+            'name' => 'Ana Jiménez',
+            'agency_id' => 1,
+            'rate' => 105,
+        ]);
     }
 }
