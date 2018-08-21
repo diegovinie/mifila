@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () {
     Route::name('api.tickets.list')->get('tickets', 'Api\TicketsController@list');
     Route::name('api.tickets.store')->post('tickets/create', 'Api\TicketsController@store');
 
