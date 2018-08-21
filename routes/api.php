@@ -26,4 +26,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('clients/{cc}/generate', 'Api\ClientsController@generateIdentity');
 
     Route::get('cashiers/{id}/next', 'Api\CashiersController@next');
+
+    Route::get('ping', function() { return response()->json(1, 200); });
 });

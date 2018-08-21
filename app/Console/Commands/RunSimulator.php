@@ -24,6 +24,8 @@ class RunSimulator extends Command
 
     protected $top = 1000;
 
+    protected $host = 'http://localhost:8000';
+
     protected $acc;
 
     protected $vel;
@@ -54,7 +56,6 @@ class RunSimulator extends Command
         $this->dailyVel[15] = 20;
         $this->dailyVel[16] = 30;
         $this->dailyVel[17] = 5;
-
     }
 
     /**
@@ -64,9 +65,10 @@ class RunSimulator extends Command
      */
     public function handle()
     {
+        $this->checkConnection();
+
         $titleSwitch = true;
         $this->acc = $this->argument('acc');
-
 
         while (true) {
 
@@ -79,11 +81,20 @@ class RunSimulator extends Command
             }
 
             if(mt_rand(0, $this->top) < $probNewTicket) {
-                \Artisan::call('simulator:ticket');
+                $this->call('simulator:ticket');
             }
-            \Artisan::call('simulator:check');
+            $this->call('simulator:check');
 
             sleep(1);
+        }
+    }
+
+    protected function checkConnection()
+    {
+        $out = shell_exec("curl {$this->host}/api/v1/ping -i -s");
+        $hostup = preg_match("/200 OK/", $out);
+        if (!$hostup) {
+            throw new \Exception('No se puede contactar con el servidor');
         }
     }
 
