@@ -13,7 +13,7 @@ class TicketObserver
 
            if ((new \DateTime)->format('Ymd') == $day->format('Ymd')) {
                $group = preg_replace('/^([A-Z]).+/', '$1', $lastTicket->num);
-               $numeral = (integer)preg_replace('/.+(\d+)$/', '$1', $lastTicket->num);
+               $numeral = (integer)preg_replace('/[A-Z]+(\d+)$/', '$1', $lastTicket->num);
                ++$numeral;
                $ticket->num = $group . (string)$numeral;
            } else {
