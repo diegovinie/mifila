@@ -41,13 +41,12 @@ class CheckCashiersSimulator extends Command
     public function handle()
     {
         $cashiers = Cashier::all();
-        $host = "http://localhost:8000/api/v1";
 
         foreach ($cashiers as $cashier) {
             // code...
             if ($cashier->idle) {
-                $cmd = "curl $host/cashiers/{$cashier->id}/next -s";
-                $output = shell_exec($cmd);
+                $url = route('api.cashiers.next', $cashier->id);
+                $output = shell_exec("curl $url -s");
                 $service = json_decode($output);
                 try {
                     $this->timedOutput("$cashier->name libre, llamando a: {$service->ticket->num}\n");

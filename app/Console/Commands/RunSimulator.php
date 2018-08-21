@@ -24,8 +24,6 @@ class RunSimulator extends Command
 
     protected $top = 1000;
 
-    protected $host = 'http://localhost:8000';
-
     protected $acc;
 
     protected $vel;
@@ -91,7 +89,8 @@ class RunSimulator extends Command
 
     protected function checkConnection()
     {
-        $out = shell_exec("curl {$this->host}/api/v1/ping -i -s");
+        $url = route('api.ping');
+        $out = shell_exec("curl $url -i -s");
         $hostup = preg_match("/200 OK/", $out);
         if (!$hostup) {
             throw new \Exception('No se puede contactar con el servidor');

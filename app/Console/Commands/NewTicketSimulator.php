@@ -40,34 +40,28 @@ class NewTicketSimulator extends Command
     public function handle()
     {
         $cc = $this->genCC();
-        $host = "http://localhost:8000/api/v1";
-        $clientUrl = "clients/$cc";
-        $ticketUrl = "tickets/create";
+        $clientUrl = route('api.clients.show', $cc);
+        $ticketUrl = route('api.tickets.store');
 
-        $cmd1 = "curl $host/$clientUrl -s";
-        // echo "$cmd1\n";
-        $clientJson = shell_exec($cmd1);
+        $clientJson = shell_exec("curl $clientUrl -s");
         $client = json_decode($clientJson);
 
         if (!isset($client->name)) {
 
-            $cmd2 = "curl $host/$clientUrl/generate -s";
+            $getIdentUrl = route('api.sim.gen.client', $cc);
 
-            // echo "$cmd2\n";
-            $clientJson = shell_exec($cmd2);
+            $clientJson = shell_exec("curl $getIdentUrl -s");
             $client = json_decode($clientJson);
 
             throw_unless(isset($client->name), new \Exception("No se pudo recuperar la identidad.\n"));
         }
         $client->agency_id = 1;
         $data = http_build_query($client);
-        $cmd3 = "curl -d '$data' -X POST $host/$ticketUrl -s";
-        // echo "$cmd3\n";
-        $ticketJson = shell_exec($cmd3);
+
+        $ticketJson = shell_exec("curl -d '$data' -X POST $ticketUrl -s");
         $ticket = json_decode($ticketJson);
 
         if (!isset($ticket->num)) {
-            var_dump($cmd3);
             var_dump($ticketJson);
             throw new \Exception('Nuevo ticket no recuperado.');
         }
