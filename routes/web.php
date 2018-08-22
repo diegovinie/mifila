@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 Route::get('tickets', 'TicketsController@list');
 Route::post('tickets/create', 'TicketsController@store');
