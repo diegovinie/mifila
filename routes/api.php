@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () {
     Route::name('api.tickets.list')->get('tickets', 'Api\TicketsController@list');
-    Route::name('api.tickets.store')->post('tickets/create', 'Api\TicketsController@store');
+    Route::name('api.tickets.store')->post('agencies/{id}/tickets/create', 'Api\TicketsController@store');
 
     Route::name('api.clients.list')->get('clients', 'Api\ClientsController@list');
     Route::name('api.clients.show')->get('clients/{cc}', 'Api\ClientsController@show');
