@@ -11,6 +11,15 @@ use App\TicketService as Service;
 
 class GlobalsController extends Controller
 {
+    public function all()
+    {
+        $queue = $this->queue();
+        $cashiers = $this->cashiers();
+        $finished = $this->finished();
+
+        return response()->json(compact('queue', 'cashiers', 'finished'));
+    }
+
     public function queue()
     {
         return Ticket::isPending()->count();

@@ -27,6 +27,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () 
 
     Route::name('api.cashiers.next')->get('cashiers/{id}/next', 'Api\CashiersController@next');
 
+    Route::name('api.globals.all')->get('globals', 'Api\GlobalsController@all');
     Route::name('api.globals.queue')
         ->get('globals/queue', 'Api\GlobalsController@queue');
     Route::name('api.globals.finished')
