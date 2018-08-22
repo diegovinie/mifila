@@ -37,4 +37,9 @@ class Cashier extends Model
 
         return !$busy ? true : false;
     }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('active', true);
+    }
 }

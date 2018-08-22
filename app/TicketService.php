@@ -23,4 +23,12 @@ class TicketService extends Model
 
         return $query->where('due', '>', $now);
     }
+
+    public function scopeFinishedToday($query)
+    {
+        $now = (new \DateTime)->format('Y-m-d');
+        $today = new \DateTime($now);
+
+        return $query->where('created_at', '>', $today);
+    }
 }

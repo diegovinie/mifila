@@ -27,5 +27,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () 
 
     Route::name('api.cashiers.next')->get('cashiers/{id}/next', 'Api\CashiersController@next');
 
+    Route::name('api.globals.queue')
+        ->get('globals/queue', 'Api\GlobalsController@queue');
+    Route::name('api.globals.finished')
+        ->get('globals/finished', 'Api\GlobalsController@finished');
+    Route::name('api.globals.activeCashier')
+        ->get('globals/cashiers/active', 'Api\GlobalsController@cashiers');
+
     Route::name('api.ping')->get('ping', function() { return response()->json(1, 200); });
 });
