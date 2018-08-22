@@ -23,4 +23,15 @@ class TicketObserver
            $ticket->num = 'T1';
        }
    }
+
+   public function updating(Ticket $ticket)
+   {
+       if ($ticket->pending == false) {
+
+           $now = (new \DateTime)->getTimestamp();
+           $created = (new \DateTime($ticket->created_at))->getTimestamp();
+
+           $ticket->waited = $now - $created;
+       }
+   }
 }
