@@ -17,7 +17,7 @@ class CashiersController extends Controller
         $ticket = $cashier->nextTicket();
 
         if (!$ticket) {
-            return response()->json(null, 404);
+            return response()->json(['status' => 'empty'], 404);
         }
 
         $service = new Service;

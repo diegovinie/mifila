@@ -48,10 +48,19 @@ class CheckCashiersSimulator extends Command
                 $url = route('api.cashiers.next', $cashier->id);
                 $output = shell_exec("curl $url -s");
                 $service = json_decode($output);
+
+
+
                 try {
+                    if (isset($service->status) && $service->status == 'empty') {
+                        continue;
+                    }
+
                     $this->timedOutput("$cashier->name libre, llamando a: {$service->ticket->num}\n");
+                    
                 } catch (\Exception $e) {
-                    throw new \Exception('No se puede recuperar datos del servicio.');
+                    // var_dump($output);
+                    echo "$cashier->name no se puede recuperar datos del servicio.\n";
                 }
             } else {
                 // echo "$cashier->name Ocupado.\n";
