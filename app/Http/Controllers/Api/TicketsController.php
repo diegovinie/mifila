@@ -16,8 +16,10 @@ class TicketsController extends Controller
         return Ticket::all();
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $agency = Agency::findOrFail($id);
+
         $cc = $request->get('cc');
         if (!$client = Client::find($cc)) {
             $client = Client::create([
@@ -31,7 +33,7 @@ class TicketsController extends Controller
 
         $ticket = new Ticket;
 
-        $agency = Agency::find($request->get('agency_id'));
+        // $agency = Agency::find($request->get('agency_id'));
 
         $ticket->client()->associate($client);
         $ticket->agency()->associate($agency);

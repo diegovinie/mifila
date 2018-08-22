@@ -41,7 +41,7 @@ class NewTicketSimulator extends Command
     {
         $cc = $this->genCC();
         $clientUrl = route('api.clients.show', $cc);
-        $ticketUrl = route('api.tickets.store');
+        // $ticketUrl = route('api.tickets.store');
 
         $clientJson = shell_exec("curl $clientUrl -s");
         $client = json_decode($clientJson);
@@ -53,15 +53,19 @@ class NewTicketSimulator extends Command
             if (!$client) {
                 return;
             }
-
-            // $getIdentUrl = route('api.sim.gen.client', $cc);
-            //
-            // $clientJson = shell_exec("curl $getIdentUrl -s");
-            // $client = json_decode($clientJson);
-            //
-            // throw_unless(isset($client->name), new \Exception("No se pudo recuperar la identidad.\n"));
         }
-        $client->agency_id = 1;
+
+        $agencies = \App\Agency::all();
+        $agency = $agencies[mt_rand(0, count($agencies) - 1)];
+
+        if (!($agency instanceof \App\Agency)) {
+            echo "Problemas con la agencia.\n";
+            return;
+        }
+
+        $ticketUrl = route('api.tickets.store', $agency->id);
+
+        // $client->agency_id = 1;
         $data = http_build_query($client);
 
         $ticketJson = shell_exec("curl -d '$data' -X POST $ticketUrl -s");
@@ -72,7 +76,7 @@ class NewTicketSimulator extends Command
             throw new \Exception('Nuevo ticket no recuperado.');
         }
 
-        $this->timedOutput("Ticket {$ticket->num}: {$ticket->client->name} C.C. {$ticket->client->cc}");
+        $this->timedOutput("En {$agency->name} Ticket {$ticket->num}: {$ticket->client->name} C.C. {$ticket->client->cc}");
     }
 
     protected function genCC()
