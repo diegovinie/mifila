@@ -7,9 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Ticket;
 use App\Client;
 use App\Agency;
+use App\Http\Resources\ClientResourse;
+use App\Library\QueueManager;
 
 class TicketsController extends Controller
 {
+
     //
     public function list()
     {
@@ -19,26 +22,35 @@ class TicketsController extends Controller
     public function store(Request $request, $id)
     {
         $agency = Agency::findOrFail($id);
-
-        $cc = $request->get('cc');
-        if (!$client = Client::find($cc)) {
-            $client = Client::create([
-                'cc' => $cc,
-                'name' => $request->get('name'),
-                'gender' => $request->get('gender'),
-                'phone' => $request->get('phone'),
-                'priority' => $request->get('priority') || false,
-            ]);
-        }
-
-        $ticket = new Ticket;
-
-        // $agency = Agency::find($request->get('agency_id'));
-
-        $ticket->client()->associate($client);
-        $ticket->agency()->associate($agency);
-        $ticket->save();
+        $client = $this->queue->clientFromRequest($request);
+        $ticket = $this->queue->newTicket($client, $agency);
 
         return $ticket;
     }
+
+    // public function storebk(Request $request, $id)
+    // {
+    //     $agency = Agency::findOrFail($id);
+    //
+    //     $cc = $request->get('cc');
+    //     if (!$client = Client::find($cc)) {
+    //         $client = Client::create([
+    //             'cc' => $cc,
+    //             'name' => $request->get('name'),
+    //             'gender' => $request->get('gender'),
+    //             'phone' => $request->get('phone'),
+    //             'priority' => $request->get('priority') || false,
+    //         ]);
+    //     }
+    //
+    //     $ticket = new Ticket;
+    //
+    //     // $agency = Agency::find($request->get('agency_id'));
+    //
+    //     $ticket->client()->associate($client);
+    //     $ticket->agency()->associate($agency);
+    //     $ticket->save();
+    //
+    //     return $ticket;
+    // }
 }

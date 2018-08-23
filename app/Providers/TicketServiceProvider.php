@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
+use App\Library\QueueManager;
+use App\Library\Simulator;
 
 class TicketServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,12 @@ class TicketServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(QueueManager::class, function ($app) {
+            return new QueueManager();
+        });
+
+        $this->app->bind(Simulator::class, function ($app) {
+            return new Simulator();
+        });
     }
 }

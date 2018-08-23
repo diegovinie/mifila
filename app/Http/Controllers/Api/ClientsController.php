@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Client;
+use App\Library\Simulator;
 
 class ClientsController extends Controller
 {
@@ -27,9 +28,14 @@ class ClientsController extends Controller
 
     public function generateIdentity($cc)
     {
-        $client = factory(Client::class)->make();
-        $client->cc = (int)$cc;
-
-        return $client;
+        return Simulator::generateIdentity($cc);
     }
+
+    // public function generateIdentitybk($cc)
+    // {
+    //     $client = factory(Client::class)->make();
+    //     $client->cc = (int)$cc;
+    //
+    //     return $client;
+    // }
 }
