@@ -12,7 +12,7 @@ class ClientsController extends Controller
     //
     public function show($cc)
     {
-        $client = Client::find($cc);
+        $client = $this->queue->clientFromCC($cc);
 
         if (!$client) {
             return response()->json(null, 404);

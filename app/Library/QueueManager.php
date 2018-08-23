@@ -56,6 +56,10 @@ class QueueManager
         return $client;
     }
 
+    public function clientFromCC($cc)
+    {
+        return Client::find($cc);
+    }
 
     public function clientFromRequest(Request $request)
     {
@@ -68,6 +72,11 @@ class QueueManager
         ];
 
         return $this->getClient($metadata);
+    }
+
+    public function currentTicket(Agency $agency)
+    {
+        return $agency->services()->latest()->first()->ticket->num;
     }
 
 }
