@@ -8,7 +8,7 @@ class TicketObserver
    public function creating(Ticket $ticket)
    {
        try {
-           $lastTicket = \DB::table('tickets')->find(\DB::table('tickets')->max('id'));
+           $lastTicket = $ticket->agency->tickets()->latest()->first();
            $day = new \DateTime($lastTicket->created_at);
 
            if ((new \DateTime)->format('Ymd') == $day->format('Ymd')) {
