@@ -40,52 +40,56 @@ class CronSimulator extends Command
     public function handle(QueueManager $queue, Simulator $sim)
     {
         //
+        for ($i=0; $i < 59; $i++) {
 
-        $agencies = \App\Agency::all();
+            $agencies = \App\Agency::all();
 
-        foreach ($agencies as $agency) {
+            foreach ($agencies as $agency) {
 
-            $cashiers = $agency->cashiers()->get();
+                $cashiers = $agency->cashiers()->get();
 
-            foreach ($cashiers as $cashier) {
+                foreach ($cashiers as $cashier) {
 
-                if ($cashier->idle) {
+                    if ($cashier->idle) {
 
-                    $service = $queue->cashierCalls($cashier);
-                    // var_dump($service);
-                    if (!$service) {
-                        continue;
+                        $service = $queue->cashierCalls($cashier);
+                        // var_dump($service);
+                        if (!$service) {
+                            continue;
+                        }
                     }
                 }
             }
-        }
 
-        $probNewTicket = $sim->probability(true);
+            $probNewTicket = $sim->probability(true);
 
-    if(mt_rand(0, $sim->top) < $probNewTicket) {
+            if(mt_rand(0, $sim->top) < $probNewTicket) {
 
-            $cc = Simulator::genCC();
+                $cc = Simulator::genCC();
 
-            $client = $queue->clientFromCC($cc);
+                $client = $queue->clientFromCC($cc);
 
-            if (!isset($client->name)) {
+                if (!isset($client->name)) {
 
-                $client = Simulator::generateIdentity($cc);
-                $client->save();
+                    $client = Simulator::generateIdentity($cc);
+                    $client->save();
 
-                if (!$client) {
+                    if (!$client) {
+                        return;
+                    }
+                }
+
+                $agency = $agencies[mt_rand(0, count($agencies) - 1)];
+
+                if (!($agency instanceof \App\Agency)) {
+                    echo "Problemas con la agencia.\n";
                     return;
                 }
+
+                $ticket = $queue->newTicket($client, $agency);
             }
 
-            $agency = $agencies[mt_rand(0, count($agencies) - 1)];
-
-            if (!($agency instanceof \App\Agency)) {
-                echo "Problemas con la agencia.\n";
-                return;
-            }
-
-            $ticket = $queue->newTicket($client, $agency);
+            sleep(1);
         }
     }
 }

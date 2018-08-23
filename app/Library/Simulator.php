@@ -8,7 +8,7 @@ class Simulator
 {
     public $top = 1000;
 
-    public $acc;
+    public $acc = 30;
 
     public $vel;
 
