@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Agency;
+use App\Library\QueueManager;
 
 class AgenciesController extends Controller
 {
     //
-    public function all($id)
+    public function all(QueueManager $qm, $id)
     {
         $agency = Agency::findOrFail($id);
         $name = $agency->name;
@@ -18,12 +19,15 @@ class AgenciesController extends Controller
         $finished = $this->finished($id);
         $avg = $this->avg($id);
 
+        $lastCalled = $qm->currentTicket($agency);
+
         return response()->json(compact(
             'queue',
             'cashiers',
             'finished',
             'avg',
-            'name'
+            'name',
+            'lastCalled'
         ));
     }
 
