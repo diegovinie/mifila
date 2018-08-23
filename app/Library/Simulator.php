@@ -53,7 +53,7 @@ class Simulator
 
     public function probability($constRate=false)
     {
-        $rates = $constRate ? $this->dailyVel : $this->constVel;
+        $rates = !$constRate ? $this->dailyVel : $this->constVel;
 
         $this->now = new \DateTime;
         $this->vel = $rates[(int)$this->now->format('H')];
