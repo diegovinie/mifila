@@ -43949,7 +43949,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43974,6 +43974,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -43982,7 +43984,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             cashiers: null,
             queue: null,
             finished: null,
-            avg: null
+            avg: null,
+            lastCalled: null
         };
     },
 
@@ -44000,6 +44003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.queue = data.queue;
                 _this.finished = data.finished;
                 _this.avg = data.avg;
+                _this.lastCalled = data.lastCalled;
             }).catch(function (err) {
                 console.log('error fetch de Agency ' + _this.id, err);
             });
@@ -44031,6 +44035,10 @@ var render = function() {
     _c("br"),
     _vm._v(" "),
     _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.cashiers))]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("span", [_vm._v("Atendiendo a: " + _vm._s(_vm.lastCalled))]),
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),

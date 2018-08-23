@@ -4,6 +4,8 @@
       <br />
       <span>Cajeros: {{ cashiers }}</span>
       <br />
+      <span>Atendiendo a: {{ lastCalled }}</span>
+      <br />
       <span>Clientes en espera: {{ queue }}</span>
       <br />
       <span>Total atendidos: {{ finished }}</span>
@@ -19,7 +21,8 @@ export default {
         cashiers: null,
         queue: null,
         finished: null,
-        avg: null
+        avg: null,
+        lastCalled: null
     }),
 
     props: [
@@ -35,6 +38,7 @@ export default {
                     this.queue     = data.queue
                     this.finished  = data.finished
                     this.avg       = data.avg
+                    this.lastCalled = data.lastCalled
                 })
                 .catch(err => {
                     console.log('error fetch de Agency '+this.id, err)
