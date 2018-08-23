@@ -16,8 +16,9 @@ class GlobalsController extends Controller
         $queue = $this->queue();
         $cashiers = $this->cashiers();
         $finished = $this->finished();
+        $avg = $this->avg();
 
-        return response()->json(compact('queue', 'cashiers', 'finished'));
+        return response()->json(compact('queue', 'cashiers', 'finished', 'avg'));
     }
 
     public function queue()
@@ -33,5 +34,10 @@ class GlobalsController extends Controller
     public function finished()
     {
         return Service::finishedToday()->count();
+    }
+
+    public function avg()
+    {
+        return (int)Ticket::avgWait();
     }
 }
