@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Ticket;
 use App\Cashier;
+use App\Agency;
 use App\TicketService as Service;
 
 class GlobalsController extends Controller
@@ -17,8 +18,15 @@ class GlobalsController extends Controller
         $cashiers = $this->cashiers();
         $finished = $this->finished();
         $avg = $this->avg();
+        $agencies = $this->agencies();
 
-        return response()->json(compact('queue', 'cashiers', 'finished', 'avg'));
+        return response()->json(compact(
+            'queue',
+            'cashiers',
+            'finished',
+            'avg',
+            'agencies'
+        ));
     }
 
     public function queue()
@@ -38,6 +46,17 @@ class GlobalsController extends Controller
 
     public function avg()
     {
-        return (int)Ticket::avgWait();
+        try {
+            return (int)Ticket::avgWait();
+
+        } catch (\Exception $e) {
+            return 0;
+        }
+
+    }
+
+    public function agencies()
+    {
+        return Agency::all();
     }
 }
