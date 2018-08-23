@@ -36,5 +36,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () 
         ->get('globals/cashiers/active', 'Api\GlobalsController@cashiers');
     Route::name('api.globals.avg')->get('globals/avg', 'Api\GlobalsController@avg');
 
+    Route::name('api.agencies.info')->get('agencies/{id}/info', 'Api\AgenciesController@all');
+
     Route::name('api.ping')->get('ping', function() { return response()->json(1, 200); });
 });
