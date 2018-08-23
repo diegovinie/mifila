@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="col-xs-4">
+  <div class="col-xs-12 col-sm-6 col-lg-4">
       <div class="panel panel-default">
           <div class="panel-heading">
               <h4>{{ name }}</h4>

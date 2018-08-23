@@ -10,7 +10,8 @@
       </div>
       <div class="row">
           <template v-for="agency in agencies" >
-              <Agency class="col-xl-8" :id="agency.id" />
+              <Agency
+                :id="agency.id" />
           </template>
       </div>
       <div class="row">

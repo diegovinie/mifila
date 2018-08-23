@@ -43573,7 +43573,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43621,6 +43621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Summary___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Summary__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Agency__);
+//
 //
 //
 //
@@ -44069,7 +44070,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-xs-4" }, [
+  return _c("div", { staticClass: "col-xs-12 col-sm-6 col-lg-4" }, [
     _c("div", { staticClass: "panel panel-default" }, [
       _c("div", { staticClass: "panel-heading" }, [
         _c("h4", [_vm._v(_vm._s(_vm.name))])
@@ -44138,9 +44139,7 @@ var render = function() {
       { staticClass: "row" },
       [
         _vm._l(_vm.agencies, function(agency) {
-          return [
-            _c("Agency", { staticClass: "col-xl-8", attrs: { id: agency.id } })
-          ]
+          return [_c("Agency", { attrs: { id: agency.id } })]
         })
       ],
       2
