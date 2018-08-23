@@ -43573,7 +43573,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43621,9 +43621,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Summary___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Summary__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Agency__);
-//
-//
-//
 //
 //
 //
@@ -43783,7 +43780,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43794,6 +43791,16 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43821,39 +43828,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticStyle: { "font-size": "20px" } }, [
-    _c("h3", [_vm._v("Conteo Global")]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [
-      _vm._v("Total fila: "),
-      _c("strong", [_vm._v(_vm._s(_vm.globals.queue))])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [
-      _vm._v("Total Cajeros: "),
-      _c("strong", [_vm._v(_vm._s(_vm.globals.cashiers))])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [
-      _vm._v("Atendidos hoy: "),
-      _c("strong", [_vm._v(_vm._s(_vm.globals.finished))])
-    ]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [
-      _vm._v("Promedio de espera: "),
-      _c("strong", [_vm._v(_vm._s(_vm.globals.avg) + " seg.")])
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "panel panel-default",
+      staticStyle: { "font-size": "20px" }
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("ul", { staticClass: "list-group" }, [
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Total fila: "),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.queue))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Total Cajeros: "),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.cashiers))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Atendidos hoy: "),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.finished))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Promedio de espera: "),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.avg) + " seg.")])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading" }, [
+      _c("h3", [_vm._v("Conteo Global")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -43949,7 +43976,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43960,6 +43987,19 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -44029,28 +44069,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("span", [_vm._v(_vm._s(_vm.name))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.cashiers))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v("Atendiendo a: " + _vm._s(_vm.lastCalled))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v("Clientes en espera: " + _vm._s(_vm.queue))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v("Total atendidos: " + _vm._s(_vm.finished))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("span", [_vm._v("Tiempo de espera: " + _vm._s(_vm.avg) + " seg.")])
+  return _c("div", { staticClass: "col-xs-4" }, [
+    _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", { staticClass: "panel-heading" }, [
+        _c("h4", [_vm._v(_vm._s(_vm.name))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("ul", { staticClass: "list-group" }, [
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.cashiers))])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [_vm._v("Clientes en espera: " + _vm._s(_vm.queue))])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [_vm._v("Total atendidos: " + _vm._s(_vm.finished))])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Tiempo de espera: " + _vm._s(_vm.avg) + " seg.")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [_vm._v("Atendiendo a: " + _vm._s(_vm.lastCalled))])
+          ])
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -44072,34 +44122,42 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {}, [
-    _c("div", { staticClass: "title" }),
+    _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row align-items-center" }, [
       _c(
         "div",
-        { staticClass: "col-xs-4" },
-        [
-          _vm._l(_vm.agencies, function(agency) {
-            return [_c("Agency", { attrs: { id: agency.id } })]
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-xs-4" },
+        { staticClass: "col-xl-8 col-lg-7" },
         [_c("Summary", { attrs: { globals: _vm.globals } })],
         1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-xs-4" })
+      )
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _vm._l(_vm.agencies, function(agency) {
+          return [
+            _c("Agency", { staticClass: "col-xl-8", attrs: { id: agency.id } })
+          ]
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("h2", [_vm._v("Simulador de cola")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

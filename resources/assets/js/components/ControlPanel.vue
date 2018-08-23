@@ -1,20 +1,17 @@
 <template lang="html">
   <div class="">
-      <div class="title">
-
-      </div>
       <div class="row">
-          <div class="col-xs-4">
-              <template v-for="agency in agencies" >
-                <Agency :id="agency.id" />
-              </template>
-          </div>
-          <div class="col-xs-4">
+          <h2>Simulador de cola</h2>
+      </div>
+      <div class="row align-items-center">
+          <div class="col-xl-8 col-lg-7">
               <Summary :globals="globals"></Summary>
           </div>
-          <div class="col-xs-4">
-
-          </div>
+      </div>
+      <div class="row">
+          <template v-for="agency in agencies" >
+              <Agency class="col-xl-8" :id="agency.id" />
+          </template>
       </div>
       <div class="row">
           <div class="center">

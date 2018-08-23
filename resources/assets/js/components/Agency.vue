@@ -1,16 +1,29 @@
 <template lang="html">
-  <div class="row">
-      <span>{{ name }}</span>
-      <br />
-      <span>Cajeros: {{ cashiers }}</span>
-      <br />
-      <span>Atendiendo a: {{ lastCalled }}</span>
-      <br />
-      <span>Clientes en espera: {{ queue }}</span>
-      <br />
-      <span>Total atendidos: {{ finished }}</span>
-      <br />
-      <span>Tiempo de espera: {{ avg }} seg.</span>
+  <div class="col-xs-4">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h4>{{ name }}</h4>
+          </div>
+          <div class="panel-body">
+              <ul class="list-group">
+                  <li class="list-group-item">
+                      <span>Cajeros: {{ cashiers }}</span>
+                  </li>
+                  <li class="list-group-item">
+                      <span>Clientes en espera: {{ queue }}</span>
+                  </li>
+                  <li class="list-group-item">
+                      <span>Total atendidos: {{ finished }}</span>
+                  </li>
+                  <li class="list-group-item">
+                      <span>Tiempo de espera: {{ avg }} seg.</span>
+                  </li>
+                  <li class="list-group-item">
+                      <span>Atendiendo a: {{ lastCalled }}</span>
+                  </li>
+              </ul>
+          </div>
+      </div>
   </div>
 </template>
 
