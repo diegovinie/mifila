@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Cashier;
 use App\Agency;
+use App\Library\QueueManager;
 
 class CheckCashiersSimulator extends Command
 {
@@ -39,7 +40,41 @@ class CheckCashiersSimulator extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(QueueManager $queue)
+    {
+        $agencies = Agency::all();
+
+        foreach ($agencies as $agency) {
+
+            $cashiers = $agency->cashiers()->get();
+
+            foreach ($cashiers as $cashier) {
+
+                if ($cashier->idle) {
+
+                    try {
+                        $service = $queue->cashierCalls($cashier);
+
+                        if (!$service) {
+                            continue;
+                        }
+
+                        $this->timedOutput("En $agency->name el cajero $cashier->name libre, llamando a: {$service->ticket->num}\n");
+
+                    }
+                    catch (\Exception $e) {
+                        // var_dump($output);
+                        echo "$cashier->name de $agency->name no se puede recuperar datos del servicio.\n";
+                    }
+                }
+                else {
+                    // echo "$cashier->name Ocupado.\n";
+                }
+            }
+        }
+    }
+
+    public function handlebk()
     {
         $agencies = Agency::all();
         // $cashiers = Cashier::all();
