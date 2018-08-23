@@ -4,13 +4,15 @@
 
       </div>
       <div class="row">
-          <div class="left">
-
+          <div class="col-xs-4">
+              <template v-for="agency in agencies" >
+                <Agency :id="agency.id" />
+              </template>
           </div>
-          <div class="center">
+          <div class="col-xs-4">
               <Summary :globals="globals"></Summary>
           </div>
-          <div class="right">
+          <div class="col-xs-4">
 
           </div>
       </div>
@@ -24,18 +26,22 @@
 
 <script>
 import Summary from './Summary'
+import Agency from './Agency'
 
 export default {
     data: () => ({
         globals: {
             queue: null,
             cashiers: null,
-            finished: null
-        }
+            finished: null,
+            avg: null
+        },
+        agencies: []
     }),
 
     components: {
-        Summary
+        Summary,
+        Agency
     },
 
     methods: {
@@ -45,6 +51,7 @@ export default {
                 .then(({data}) => {
                     console.log(data)
                     this.globals = data
+                    this.agencies = data.agencies
                 })
                 .catch(err => {
                     console.log('error en fetch: ', err)

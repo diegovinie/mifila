@@ -77,8 +77,8 @@
                 </div>
             @endif
 
-            <div class="content" id="app">
-                <div class="title m-b-md">
+            <div class="content">
+                <div id="app">
                     @yield('content')
                 </div>
 

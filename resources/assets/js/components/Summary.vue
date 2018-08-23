@@ -1,11 +1,14 @@
 <template lang="html">
   <div class="" style="font-size:20px;">
-      <span>Total fila: <strong>{{ globals.queue }}</strong> </span>
+      <h3>Conteo Global</h3>
       <br />
-      <span>Total Cajeros: <strong>{{ globals.cashiers }}</strong> </span>
+      <span>Total fila: <strong>{{ globals.queue }}</strong></span>
       <br />
-      <span>Atendidos hoy: <strong>{{ globals.finished }}</strong> </span>
+      <span>Total Cajeros: <strong>{{ globals.cashiers }}</strong></span>
       <br />
+      <span>Atendidos hoy: <strong>{{ globals.finished }}</strong></span>
+      <br />
+      <span>Promedio de espera: <strong>{{ globals.avg }} seg.</strong></span>
   </div>
 </template>
 
