@@ -19,6 +19,7 @@ class CreateTicketServicesTable extends Migration
             $table->DateTime('due');                // fecha de cierre
             $table->unsignedInteger('ticket_id');
             $table->unsignedInteger('cashier_id');
+            $table->unsignedInteger('agency_id');
             $table->unsignedInteger('quality')->nullable();
             $table->timestamps();
 
@@ -27,6 +28,9 @@ class CreateTicketServicesTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('cashier_id')
                 ->references('id')->on('cashiers')
+                ->onDelete('cascade');
+            $table->foreign('agency_id')
+                ->references('id')->on('agencies')
                 ->onDelete('cascade');
         });
     }

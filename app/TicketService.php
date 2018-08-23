@@ -17,6 +17,11 @@ class TicketService extends Model
         return $this->belongsTo('App\Ticket');
     }
 
+    public function agency()
+    {
+        return $this->belongsTo('App\Agency');
+    }
+
     public function scopeNotFinished($query)
     {
         $now = new \DateTime;

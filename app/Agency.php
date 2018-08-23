@@ -16,4 +16,9 @@ class Agency extends Model
     {
         return $this->hasMany('App\Ticket');
     }
+
+    public function services()
+    {
+        return $this->hasMany('App\TicketService');
+    }
 }

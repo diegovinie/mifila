@@ -13,7 +13,7 @@ class CashiersController extends Controller
     public function next($id)
     {
         $cashier = Cashier::findOrFail($id);
-
+        $agency = $cashier->agency()->get();
         $ticket = $cashier->nextTicket();
 
         if (!$ticket) {
@@ -23,6 +23,7 @@ class CashiersController extends Controller
         $service = new Service;
         $service->cashier()->associate($cashier);
         $service->ticket()->associate($ticket);
+        $service->agency()->associate($agency);
         $service->save();
 
         return $service->fresh()->load('ticket');
