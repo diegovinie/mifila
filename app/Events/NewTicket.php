@@ -34,6 +34,6 @@ class NewTicket implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('ticket');
+        return new Channel('ticket');
     }
 }

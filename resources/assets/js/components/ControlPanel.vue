@@ -61,9 +61,9 @@ export default {
 
         this.fetch()
 
-        setInterval(() => {
-            this.fetch()
-        }, 5000)
+        // setInterval(() => {
+        //     this.fetch()
+        // }, 5000)
     }
 }
 </script>
