@@ -8,6 +8,7 @@ use App\Client;
 use App\Agency;
 use App\Ticket;
 use App\TicketService as Service;
+use App\Events\NewTicket;
 
 class QueueManager
 {
@@ -42,6 +43,8 @@ class QueueManager
         $ticket->client()->associate($client);
         $ticket->agency()->associate($agency);
         $ticket->save();
+
+        event(new NewTicket($ticket));
 
         return $ticket;
     }
