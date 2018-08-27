@@ -9,10 +9,11 @@ use App\Agency;
 use App\Ticket;
 use App\TicketService as Service;
 use App\Events\NewTicket;
+use App\Events\NewService;
 
 class QueueManager
 {
-    protected $request;
+    protected $request; // borrar
 
     // public function __construct(Request $request)
     // {
@@ -32,6 +33,8 @@ class QueueManager
         $service->ticket()->associate($ticket);
         $service->agency()->associate($cashier->agency);
         $service->save();
+
+        event(new NewService($service));
 
         return $service->fresh()->load('ticket');
     }
