@@ -9,23 +9,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\TicketService as Service;
 
-class NewService
+class UpdateAgency
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $service;
+    public $agencyInfo;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Service $service)
+    public function __construct($info)
     {
         //
-        $this->service = $service;
+        $this->agencyInfo = $info;
     }
 
     /**

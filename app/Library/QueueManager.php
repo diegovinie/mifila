@@ -10,6 +10,7 @@ use App\Ticket;
 use App\TicketService as Service;
 use App\Events\NewTicket;
 use App\Events\NewService;
+use App\Events\UpdateGlobals;
 
 class QueueManager
 {
@@ -47,7 +48,11 @@ class QueueManager
         $ticket->agency()->associate($agency);
         $ticket->save();
 
-        event(new NewTicket($ticket));
+        $info = QueueManager::globalInfo();
+
+        event(new UpdateGlobals($info));
+
+        // event(new NewTicket($ticket));
 
         return $ticket;
     }
@@ -83,6 +88,29 @@ class QueueManager
     public function currentTicket(Agency $agency)
     {
         return $agency->services()->latest()->first()->ticket->num;
+    }
+
+    public static function globalInfo()
+    {
+        $queue = Ticket::isPending()->count();
+        $cashiers = Cashier::isActive()->count();
+        $finished = Service::finishedToday()->count();
+        try {
+            $avg = (int)Ticket::avgWait();
+
+        } catch (\Exception $e) {
+            $avg = 0;
+        }
+        $agencies = Agency::all();
+
+        return compact(
+            'queue',
+            'cashiers',
+            'finished',
+            'avg',
+            'agencies'
+        );
+
     }
 
 }

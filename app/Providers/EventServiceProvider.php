@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\NewService' => [
             'App\Listeners\NewServiceListener'
+        ],
+        'App\Events\UpdateGlobals' => [
+
+        ],
+        'App\Events\UpdateAgency' => [
+            
         ]
     ];
 

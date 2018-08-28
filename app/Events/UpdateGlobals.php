@@ -9,23 +9,21 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\TicketService as Service;
 
-class NewService
+class UpdateGlobals implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $service;
+    public $globals;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Service $service)
+    public function __construct($globals)
     {
-        //
-        $this->service = $service;
+        $this->globals = $globals;
     }
 
     /**
