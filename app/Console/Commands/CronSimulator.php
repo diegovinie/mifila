@@ -39,7 +39,11 @@ class CronSimulator extends Command
      */
     public function handle(QueueManager $queue, Simulator $sim)
     {
-        //
+        $active = env('APP_SIM', false);
+        if (!$active) {
+            return;
+        }
+        
         for ($i=0; $i < 59; $i++) {
 
             $agencies = \App\Agency::all();
