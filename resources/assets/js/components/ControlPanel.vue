@@ -25,17 +25,24 @@
 <script>
 import Summary from './Summary'
 import Agency from './Agency'
+import store from '../store'
 
 export default {
     data: () => ({
-        globals: {
-            queue: null,
-            cashiers: null,
-            finished: null,
-            avg: null
-        },
+        // globals: {
+        //     queue: store.state.globals.queue,
+        //     cashiers: store.state.globals.cashiers,
+        //     finished: store.state.globals.finished,
+        //     avg: store.state.globals.avg
+        // },
+
+        // globals: store.state.globals,
         agencies: []
     }),
+
+    computed: {
+        globals: () => store.state.globals
+    },
 
     components: {
         Summary,
@@ -59,7 +66,7 @@ export default {
 
     created () {
 
-        this.fetch()
+        // this.fetch()
 
         // setInterval(() => {
         //     this.fetch()

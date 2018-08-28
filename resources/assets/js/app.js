@@ -9,6 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import store from './store'
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -18,11 +20,14 @@ window.Vue = require('vue');
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('ControlPanel', require('./components/ControlPanel.vue'));
 
-Echo.channel('ticket')
-    .listen('NewTicket', (e) => {
-        console.log(e.ticket)
-    })
+// import Echo from './ws'
+require('./ws')
+// Echo.channel('ticket')
+//     .listen('UpdateGlobals', (e) => {
+//         console.log(e.globals)
+//     })
 
 const app = new Vue({
+    store,
     el: '#app'
 });
