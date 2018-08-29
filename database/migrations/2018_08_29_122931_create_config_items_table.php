@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfTypesTable extends Migration
+class CreateConfigItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,17 @@ class CreateConfTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('conf_types', function (Blueprint $table) {
+        Schema::create('config_items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('ref');
+            $table->unsignedInteger('config_id');
+            $table->json('data');
             $table->longText('description')->nullable();
+            $table->timestamps();
+
+            $table->foreign('config_id')
+                ->references('id')->on('configs')
+                ->onDelete('cascade');
         });
     }
 
@@ -28,6 +34,6 @@ class CreateConfTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conf_types');
+        Schema::dropIfExists('config_items');
     }
 }

@@ -39,4 +39,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () 
     Route::name('api.agencies.info')->get('agencies/{id}/info', 'Api\AgenciesController@all');
 
     Route::name('api.ping')->get('ping', function() { return response()->json(1, 200); });
+
+    Route::get('configs', 'Api\ConfigController@index');
+    Route::get('configs/{config}', 'Api\ConfigController@show');
+    Route::put('configs/{config}', 'Api\ConfigController@update');
+    Route::get('configs/{config}/items', 'Api\ConfigController@items');
 });

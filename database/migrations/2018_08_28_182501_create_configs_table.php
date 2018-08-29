@@ -16,14 +16,9 @@ class CreateConfigsTable extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('type_id');
-            $table->json('data');
             $table->longText('description')->nullable();
+            $table->unsignedInteger('current_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('type_id')
-                ->references('id')->on('conf_types')
-                ->onDelete('cascade');
         });
     }
 

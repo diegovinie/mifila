@@ -14,5 +14,7 @@
 Route::get('/', function () {
     return view('app');
 });
-Route::get('tickets', 'TicketsController@list');
-Route::post('tickets/create', 'TicketsController@store');
+// Route::get('tickets', 'TicketsController@list');
+// Route::post('tickets/create', 'TicketsController@store');
+
+// Route::resource('config', 'ConfigController');
