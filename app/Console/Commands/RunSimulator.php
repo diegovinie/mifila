@@ -59,7 +59,7 @@ class RunSimulator extends Command
         // $this->checkConnection();
 
         $titleSwitch = true;
-        $sim->acc = $this->argument('acc');
+        // $sim->acc = $this->argument('acc');
 
         while (true) {
 

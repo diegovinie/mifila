@@ -3,35 +3,31 @@
 namespace App\Library;
 
 use App\Client;
+use App\Config;
 
 class Simulator
 {
     public $top = 1000;
 
-    public $acc = 60;
+    public $acc;
 
     public $vel;
 
-    protected $dailyVel;
-
-    protected $constVel;
+    public $clients_rate;
 
     public function __construct()
     {
-        $this->dailyVel = array_fill(0, 24, 0);
-        $this->constVel = array_fill(0, 24, 30);
+        $this->loadConfig();
+    }
 
-        $this->dailyVel[7] =  15;
-        $this->dailyVel[8] =  80;
-        $this->dailyVel[9] =  55;
-        $this->dailyVel[10] = 30;
-        $this->dailyVel[11] = 25;
-        $this->dailyVel[12] = 70;
-        $this->dailyVel[13] = 85;
-        $this->dailyVel[14] = 60;
-        $this->dailyVel[15] = 20;
-        $this->dailyVel[16] = 30;
-        $this->dailyVel[17] = 5;
+    public function loadConfig()
+    {
+        $configs = Config::configsArray();
+
+        foreach ($configs as $key => $value) {
+            // code...
+            $this->$key = json_decode($value, true);
+        }
     }
 
     public static function generateIdentity($cc)
@@ -53,7 +49,8 @@ class Simulator
 
     public function probability($constRate=false)
     {
-        $rates = !$constRate ? $this->dailyVel : $this->constVel;
+        // $rates = !$constRate ? $this->dailyVel : $this->constVel;
+        $rates = $this->clients_rate;
 
         $this->now = new \DateTime;
         $this->vel = $rates[(int)$this->now->format('H')];
