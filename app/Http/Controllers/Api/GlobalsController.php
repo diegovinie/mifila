@@ -9,54 +9,41 @@ use App\Ticket;
 use App\Cashier;
 use App\Agency;
 use App\TicketService as Service;
+use App\Config;
+use App\Library\InfoQueueTrait;
+use App\Library\QueueManager;
 
 class GlobalsController extends Controller
 {
-    public function all()
-    {
-        $queue = $this->queue();
-        $cashiers = $this->cashiers();
-        $finished = $this->finished();
-        $avg = $this->avg();
-        $agencies = $this->agencies();
+    use InfoQueueTrait;
 
-        return response()->json(compact(
-            'queue',
-            'cashiers',
-            'finished',
-            'avg',
-            'agencies'
-        ));
+    public function all(QueueManager $qm)
+    {
+        return $this->infoAll($qm);
     }
 
     public function queue()
     {
-        return Ticket::isPending()->count();
+        return $this->infoQueue();
     }
 
     public function cashiers()
     {
-        return Cashier::isActive()->count();
+        return $this->infoCashiers();
     }
 
     public function finished()
     {
-        return Service::finishedToday()->count();
+        return $this->infoFinished();
     }
 
     public function avg()
     {
-        try {
-            return (int)Ticket::avgWait();
-
-        } catch (\Exception $e) {
-            return 0;
-        }
-
+        return $this->infoAvg();
     }
 
-    public function agencies()
+    public function agencies($qm)
     {
-        return Agency::all();
+        return $this->infoAgencies($qm);
     }
 }

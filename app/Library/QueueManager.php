@@ -7,6 +7,7 @@ use App\Cashier;
 use App\Client;
 use App\Agency;
 use App\Ticket;
+use App\Config;
 use App\TicketService as Service;
 use App\Events\NewTicket;
 use App\Events\NewService;
@@ -14,13 +15,8 @@ use App\Events\UpdateGlobals;
 
 class QueueManager
 {
-    protected $request; // borrar
+    use InfoQueueTrait;
 
-    // public function __construct(Request $request)
-    // {
-    //     parent::__construct();
-    //     $this->request = $request;
-    // }
     public function cashierCalls(Cashier $cashier)
     {
         $ticket = $cashier->nextTicket();
@@ -35,7 +31,8 @@ class QueueManager
         $service->agency()->associate($cashier->agency);
         $service->save();
 
-        event(new NewService($service));
+        $info = $this->infoAll($this);
+        event(new UpdateGlobals($info));
 
         return $service->fresh()->load('ticket');
     }
@@ -48,11 +45,8 @@ class QueueManager
         $ticket->agency()->associate($agency);
         $ticket->save();
 
-        $info = QueueManager::globalInfo();
-
+        $info = $this->infoAll($this);
         event(new UpdateGlobals($info));
-
-        // event(new NewTicket($ticket));
 
         return $ticket;
     }
@@ -89,28 +83,4 @@ class QueueManager
     {
         return $agency->services()->latest()->first()->ticket->num;
     }
-
-    public static function globalInfo()
-    {
-        $queue = Ticket::isPending()->count();
-        $cashiers = Cashier::isActive()->count();
-        $finished = Service::finishedToday()->count();
-        try {
-            $avg = (int)Ticket::avgWait();
-
-        } catch (\Exception $e) {
-            $avg = 0;
-        }
-        $agencies = Agency::all();
-
-        return compact(
-            'queue',
-            'cashiers',
-            'finished',
-            'avg',
-            'agencies'
-        );
-
-    }
-
 }
