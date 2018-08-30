@@ -15,9 +15,9 @@ class ClientsController extends Controller
         $client = $this->queue->clientFromCC($cc);
 
         if (!$client) {
-            return response()->json(null, 404);
+            return response()->json(null, 204);
         }
-
+        $client->priority = (int)$client->priority;
         return $client;
     }
 
