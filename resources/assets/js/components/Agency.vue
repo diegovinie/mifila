@@ -4,7 +4,7 @@
           <div class="panel-heading">
               <h4>{{ agency.name }}</h4>
           </div>
-          <div class="panel-body">
+          <div v-if="agency.info" class="panel-body">
               <ul class="list-group">
                   <li class="list-group-item">
                       <span>Cajeros: {{ agency.info.cashiers }}</span>
@@ -30,42 +30,12 @@
 <script>
 export default {
     data: () => ({
-        name: null,
-        cashiers: null,
-        queue: null,
-        finished: null,
-        avg: null,
-        lastCalled: null
+
     }),
 
     props: [
         'agency'
-    ],
-
-    methods: {
-        // fetch () {
-        //     axios.get('/api/v1/agencies/' + this.id + '/info')
-        //         .then(({data}) => {
-        //             this.name      = data.name
-        //             this.cashiers  = data.cashiers
-        //             this.queue     = data.queue
-        //             this.finished  = data.finished
-        //             this.avg       = data.avg
-        //             this.lastCalled = data.lastCalled
-        //         })
-        //         .catch(err => {
-        //             console.log('error fetch de Agency '+this.id, err)
-        //         })
-        // }
-    },
-
-    created () {
-        // this.fetch()
-
-        // setInterval(() => {
-        //     this.fetch()
-        // }, 5000)
-    }
+    ]
 }
 </script>
 

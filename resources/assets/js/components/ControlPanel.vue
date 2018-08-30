@@ -29,15 +29,7 @@ import store from '../store'
 
 export default {
     data: () => ({
-        // globals: {
-        //     queue: store.state.globals.queue,
-        //     cashiers: store.state.globals.cashiers,
-        //     finished: store.state.globals.finished,
-        //     avg: store.state.globals.avg
-        // },
 
-        // globals: store.state.globals,
-        agencies: []
     }),
 
     computed: {
@@ -51,12 +43,10 @@ export default {
 
     methods: {
         fetch () {
-            console.log('en fetch')
-            axios.get('/api/v1/globals')
+            axios.get('globals')
                 .then(({data}) => {
-                    console.log(data)
-                    this.globals = data
-                    this.agencies = data.agencies
+                    // console.log(data)
+                    store.commit('UPDATE_GLOBALS', data)
                 })
                 .catch(err => {
                     console.log('error en fetch: ', err)
@@ -65,12 +55,7 @@ export default {
     },
 
     created () {
-
-        // this.fetch()
-
-        // setInterval(() => {
-        //     this.fetch()
-        // }, 5000)
+        this.fetch()
     }
 }
 </script>

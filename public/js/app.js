@@ -527,98 +527,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             clientsRate: {
                 name: null
             }
-
         }
-        // agency: {
-        //     id: null,
-        //     name: null,
-        //     cashiers: [],
-        //     queue: null,
-        //     finished: null,
-        //     avg: null,
-        //     lastCalled: null
-        // },
-        // cashier: {
-        //     id: null,
-        //     name: null,
-        //     finished: null,
-        //     avg: null,
-        //     lastCalled: null
-        // }
     },
 
-    actions: {
-        // NEW_TICKET ({commit}, ticket) {
-        //     commit('QUEUE_UP', ticket)
-        //     commit('UPDATE_QUEUES')
-        //     // cola sube en uno
-        //     // sube la cola de la agencia
-        //     // sube la cola total
-        //
-        // },
-        //
-        // NEW_SERVICE ({commit}, service) {
-        //     commit('FINISHED_UP', service)
-        //     commit('SET_LAST_CALLED', service)
-        //
-        //     commit('UPDATE_FINISHED')
-        //     commit('UPDATE_LASTS_CALLED')
-        //     // cola baja en uno
-        //     // baja la cola de la agencia
-        //     // baja la cola total
-        //     // cajero termina
-        //     // agencia termina
-        //     // global termina
-        //     // numero de ticket
-        //     // numero agencia
-
-        // }
-
-    },
+    actions: {},
 
     mutations: {
         UPDATE_GLOBALS: function UPDATE_GLOBALS(state, data) {
             state.globals = data;
         }
-        // QUEUE_UP (state, data) {
-        //     const agency = state.globals.agencies.find(agency => agency.id === data.agency.id)
-        //     agency.queue += 1
-        // },
-        //
-        // UPDATE_QUEUES (state) {
-        //     const queue = state.globals.agencies.reduce((agency, total) => {
-        //         agency.queue = agency.cashiers.reduce((cashier, sum) => {
-        //             return total + cashier.queue
-        //         })
-        //
-        //         return total + agency.queue
-        //     })
-        //
-        //     state.globals.queue = queue
-        //
-        // },
-        //
-        // QUEUE_DOWN (state, data) {
-        //
-        // },
-        //
-        // FINISHED_UP (state, data) {
-        //     const cashier = agency.cashiers.find(cashier => cashier.id === data.cashier.id)
-        //
-        // },
-        //
-        // UPDATE_FINISHED (state) {
-        //
-        // },
-        //
-        // SET_LAST_CALLED (state, data) {
-        //
-        // },
-        //
-        // UPDATE_LASTS_CALLED (state) {
-        //
-        // }
-
     }
 }));
 
@@ -12532,10 +12449,12 @@ window._ = __webpack_require__(17);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(19);
+    window.$ = window.jQuery = __webpack_require__(19);
 
-  __webpack_require__(20);
-} catch (e) {}
+    __webpack_require__(20);
+} catch (e) {
+    console.log('Juery no encontrado.');
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -12547,6 +12466,8 @@ window.axios = __webpack_require__(21);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.axios.defaults.baseURL = window.APP_URL + '/api/v1/';
+
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -12556,9 +12477,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -12572,10 +12493,10 @@ if (token) {
 window.Pusher = __webpack_require__(41);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
-  broadcaster: 'pusher',
-  key: '46a827fa581eabc51e69',
-  cluster: 'us2',
-  encrypted: true
+    broadcaster: 'pusher',
+    key: '46a827fa581eabc51e69',
+    cluster: 'us2',
+    encrypted: true
 });
 
 // import Echo from "laravel-echo"
@@ -54448,7 +54369,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54528,17 +54449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            // globals: {
-            //     queue: store.state.globals.queue,
-            //     cashiers: store.state.globals.cashiers,
-            //     finished: store.state.globals.finished,
-            //     avg: store.state.globals.avg
-            // },
-
-            // globals: store.state.globals,
-            agencies: []
-        };
+        return {};
     },
 
     computed: {
@@ -54554,15 +54465,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         fetch: function fetch() {
-            var _this = this;
-
-            console.log('en fetch');
-            axios.get('/api/v1/globals').then(function (_ref) {
+            axios.get('globals').then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
-                _this.globals = data;
-                _this.agencies = data.agencies;
+                // console.log(data)
+                __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('UPDATE_GLOBALS', data);
             }).catch(function (err) {
                 console.log('error en fetch: ', err);
             });
@@ -54570,12 +54477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     created: function created() {
-
-        // this.fetch()
-
-        // setInterval(() => {
-        //     this.fetch()
-        // }, 5000)
+        this.fetch();
     }
 });
 
@@ -54886,7 +54788,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54929,42 +54831,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            name: null,
-            cashiers: null,
-            queue: null,
-            finished: null,
-            avg: null,
-            lastCalled: null
-        };
+        return {};
     },
 
-    props: ['agency'],
-
-    methods: {
-        // fetch () {
-        //     axios.get('/api/v1/agencies/' + this.id + '/info')
-        //         .then(({data}) => {
-        //             this.name      = data.name
-        //             this.cashiers  = data.cashiers
-        //             this.queue     = data.queue
-        //             this.finished  = data.finished
-        //             this.avg       = data.avg
-        //             this.lastCalled = data.lastCalled
-        //         })
-        //         .catch(err => {
-        //             console.log('error fetch de Agency '+this.id, err)
-        //         })
-        // }
-    },
-
-    created: function created() {
-        // this.fetch()
-
-        // setInterval(() => {
-        //     this.fetch()
-        // }, 5000)
-    }
+    props: ['agency']
 });
 
 /***/ }),
@@ -54981,39 +54851,43 @@ var render = function() {
         _c("h4", [_vm._v(_vm._s(_vm.agency.name))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _c("ul", { staticClass: "list-group" }, [
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.agency.info.cashiers))])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [
-              _vm._v("Clientes en espera: " + _vm._s(_vm.agency.info.queue))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [
-              _vm._v("Total atendidos: " + _vm._s(_vm.agency.info.finished))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [
-              _vm._v(
-                "Tiempo de espera: " + _vm._s(_vm.agency.info.avg) + " seg."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [
-              _vm._v("Atendiendo a: " + _vm._s(_vm.agency.info.lastCalled))
+      _vm.agency.info
+        ? _c("div", { staticClass: "panel-body" }, [
+            _c("ul", { staticClass: "list-group" }, [
+              _c("li", { staticClass: "list-group-item" }, [
+                _c("span", [
+                  _vm._v("Cajeros: " + _vm._s(_vm.agency.info.cashiers))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _c("span", [
+                  _vm._v("Clientes en espera: " + _vm._s(_vm.agency.info.queue))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _c("span", [
+                  _vm._v("Total atendidos: " + _vm._s(_vm.agency.info.finished))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _c("span", [
+                  _vm._v(
+                    "Tiempo de espera: " + _vm._s(_vm.agency.info.avg) + " seg."
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "list-group-item" }, [
+                _c("span", [
+                  _vm._v("Atendiendo a: " + _vm._s(_vm.agency.info.lastCalled))
+                ])
+              ])
             ])
           ])
-        ])
-      ])
+        : _vm._e()
     ])
   ])
 }
@@ -55098,11 +54972,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window.Echo.channel('ticket').listen('UpdateGlobals', function (e) {
-    console.log(e.globals);
+    // console.log(e.globals)
     __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_GLOBALS', e.globals);
 });
-
-// export default Echo
 
 /***/ }),
 /* 62 */
