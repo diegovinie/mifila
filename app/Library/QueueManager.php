@@ -31,7 +31,7 @@ class QueueManager
         $service->agency()->associate($cashier->agency);
         $service->save();
 
-        $info = $this->infoAll($this);
+        $info = $this->infoAll();
         event(new UpdateGlobals($info));
 
         return $service->fresh()->load('ticket');
@@ -45,7 +45,7 @@ class QueueManager
         $ticket->agency()->associate($agency);
         $ticket->save();
 
-        $info = $this->infoAll($this);
+        $info = $this->infoAll();
         event(new UpdateGlobals($info));
 
         return $ticket;
@@ -77,10 +77,5 @@ class QueueManager
         ];
 
         return $this->getClient($metadata);
-    }
-
-    public function currentTicket(Agency $agency)
-    {
-        return $agency->services()->latest()->first()->ticket->num;
     }
 }

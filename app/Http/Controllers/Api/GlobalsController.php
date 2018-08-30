@@ -17,9 +17,9 @@ class GlobalsController extends Controller
 {
     use InfoQueueTrait;
 
-    public function all(QueueManager $qm)
+    public function all()
     {
-        return $this->infoAll($qm);
+        return $this->infoAll();
     }
 
     public function queue()

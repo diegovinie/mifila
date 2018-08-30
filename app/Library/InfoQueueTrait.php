@@ -10,7 +10,7 @@ use App\TicketService as Service;
 
 trait InfoQueueTrait
 {
-    public function infoAll(QueueManager $qm)
+    public function infoAll()
     {
         $acc = $this->infoAcc();
         $clientsRate = $this->infoClientsRate();
@@ -18,7 +18,7 @@ trait InfoQueueTrait
         $cashiers = $this->infoCashiers();
         $finished = $this->infoFinished();
         $avg = $this->infoAvg();
-        $agencies = $this->infoAgencies($qm);
+        $agencies = $this->infoAgencies();
 
         return compact(
             'queue',
@@ -67,28 +67,26 @@ trait InfoQueueTrait
 
     }
 
-    public function infoAgencies(QueueManager $qm)
+    public function infoAgencies()
     {
         $agencies = Agency::all();
 
         foreach ($agencies as $agency) {
             // code...
-            $agency->info = $this->infoAgencyAll($qm, $agency);
+            $agency->info = $this->infoAgencyAll($agency);
         }
 
         return $agencies;
     }
 
-    public function infoAgencyAll(QueueManager $qm, Agency $agency)
+    public function infoAgencyAll(Agency $agency)
     {
-        // $agency = Agency::findOrFail($id);
-
         $queue = $this->infoAgencyQueue($agency);
         $cashiers = $this->infoAgencyCashiers($agency);
         $finished = $this->infoAgencyFinished($agency);
         $avg = $this->infoAgencyAvg($agency);
 
-        $lastCalled = $qm->currentTicket($agency);
+        $lastCalled = $this->currentTicket($agency);
 
         return compact(
             'queue',
@@ -101,34 +99,37 @@ trait InfoQueueTrait
 
     public function infoAgencyQueue(Agency $agency)
     {
-        // $agency = Agency::findOrFail($id);
-
         return $agency->tickets()->isPending()->count();
     }
 
     public function infoAgencyCashiers(Agency $agency)
     {
-        // $agency = Agency::findOrFail($id);
-
         return $agency->cashiers()->isActive()->count();
     }
 
     public function infoAgencyFinished(Agency $agency)
     {
-        // $agency = Agency::findOrFail($id);
-
         return $agency->services()->finishedToday()->count();
     }
 
     public function infoAgencyAvg(Agency $agency)
     {
-        // $agency = Agency::findOrFail($id);
-
         try {
             return (int)$agency->tickets()->avgWait();
 
         } catch (\Exception $e) {
             return 0;
         }
+    }
+
+    public function currentTicket(Agency $agency)
+    {
+        $service = $agency->services()->latest()->first();
+
+        if (!$service) {
+            return;
+        }
+
+        return $service->ticket->num;
     }
 }
