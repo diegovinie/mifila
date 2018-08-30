@@ -14,6 +14,11 @@
 Route::get('/', function () {
     return view('app');
 });
+
+Route::get('welcome', function () {
+    return view('welcome');
+});
+
 // Route::get('tickets', 'TicketsController@list');
 // Route::post('tickets/create', 'TicketsController@store');
 

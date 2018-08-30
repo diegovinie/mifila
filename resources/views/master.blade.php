@@ -11,8 +11,11 @@
         <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> --}}
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/grayscale.css">
+        <link rel="stylesheet" href="/css/app.css">
+
+        <script type="text/javascript">
+          window.APP_URL = '{{ env('APP_URL') }}';
+        </script>
     </head>
     <body id="page-top">
         <div class="flex-center position-ref full-height">
@@ -33,9 +36,7 @@
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="/js/grayscale.js" charset="utf-8"></script>
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
         <script src="/js/app.js" charset="utf-8" defer async></script>
     </body>
 </html>
