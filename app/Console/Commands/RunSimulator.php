@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Library\Simulator;
+use App\Library\QueueManager;
 
 class RunSimulator extends Command
 {
@@ -54,7 +55,7 @@ class RunSimulator extends Command
      *
      * @return mixed
      */
-    public function handle(Simulator $sim)
+    public function handle(QueueManager $queue, Simulator $sim)
     {
         // $this->checkConnection();
 
@@ -63,18 +64,65 @@ class RunSimulator extends Command
 
         while (true) {
 
-            $probNewTicket = $sim->probability(true);
-            $prob = number_format($probNewTicket / $sim->top, 4);
+            $agencies = \App\Agency::all();
 
-            if ($titleSwitch) {
-                echo "[{$this->timeFormated()}] Vel: $sim->vel p/h, acc: $sim->acc veces, prob: $prob\n\n";
-                $titleSwitch = false;
+            foreach ($agencies as $agency) {
+
+                $cashiers = $agency->cashiers()->get();
+
+                foreach ($cashiers as $cashier) {
+
+                    if ($cashier->idle) {
+
+                        $service = $queue->cashierCalls($cashier);
+                        // var_dump($service);
+                        if (!$service) {
+                            continue;
+                        }
+                    }
+                }
             }
+
+            $probNewTicket = $sim->probability(true);
 
             if(mt_rand(0, $sim->top) < $probNewTicket) {
-                $this->call('simulator:ticket');
+
+                $cc = Simulator::genCC();
+
+                $client = $queue->clientFromCC($cc);
+
+                if (!isset($client->name)) {
+
+                    $client = Simulator::generateIdentity($cc);
+                    $client->save();
+
+                    if (!$client) {
+                        return;
+                    }
+                }
+
+                $agency = $agencies[mt_rand(0, count($agencies) - 1)];
+
+                if (!($agency instanceof \App\Agency)) {
+                    echo "Problemas con la agencia.\n";
+                    return;
+                }
+
+                $ticket = $queue->newTicket($client, $agency);
             }
-            $this->call('simulator:check');
+
+            // $probNewTicket = $sim->probability(true);
+            // $prob = number_format($probNewTicket / $sim->top, 4);
+            //
+            // if ($titleSwitch) {
+            //     echo "[{$this->timeFormated()}] Vel: $sim->vel p/h, acc: $sim->acc veces, prob: $prob\n\n";
+            //     $titleSwitch = false;
+            // }
+            //
+            // if(mt_rand(0, $sim->top) < $probNewTicket) {
+            //     $this->call('simulator:ticket');
+            // }
+            // $this->call('simulator:check');
 
             sleep(1);
         }
