@@ -9,9 +9,9 @@
           </div>
       </div>
       <div class="row">
-          <template v-for="agency in agencies" >
+          <template v-for="agency in globals.agencies" >
               <Agency
-                :id="agency.id" />
+                :agency="agency" />
           </template>
       </div>
       <div class="row">

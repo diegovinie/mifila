@@ -11,6 +11,12 @@ export default new Vuex.Store({
             finished: null,
             avg: null,
             agencies: [],
+            acc: {
+                name: null
+            },
+            clientsRate: {
+                name: null
+            }
 
         },
         // agency: {

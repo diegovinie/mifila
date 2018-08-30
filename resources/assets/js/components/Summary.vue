@@ -17,6 +17,15 @@
               <li class="list-group-item">
                   <span>Promedio de espera: <strong>{{ globals.avg }} seg.</strong></span>
               </li>
+              <li class="list-group-item">
+                  <span>Aceleración: <strong>{{ globals.acc.name }}</strong> </span>
+              </li>
+              <li class="list-group-item">
+                  <span>
+                      Promedio de Clientes:
+                      <strong>{{ globals.clientsRate.name }}</strong>
+                  </span>
+              </li>
           </ul>
       </div>
   </div>

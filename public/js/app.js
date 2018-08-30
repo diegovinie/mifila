@@ -520,7 +520,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             cashiers: null,
             finished: null,
             avg: null,
-            agencies: []
+            agencies: [],
+            acc: {
+                name: null
+            },
+            clientsRate: {
+                name: null
+            }
 
         }
         // agency: {
@@ -12567,7 +12573,7 @@ window.Pusher = __webpack_require__(41);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: 'f191e7abb4601e424ce7',
+  key: '46a827fa581eabc51e69',
   cluster: 'us2',
   encrypted: true
 });
@@ -54659,7 +54665,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54670,6 +54676,15 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -54743,6 +54758,22 @@ var render = function() {
             _c("span", [
               _vm._v("Promedio de espera: "),
               _c("strong", [_vm._v(_vm._s(_vm.globals.avg) + " seg.")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Aceleración: "),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.acc.name))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v(
+                "\n                    Promedio de Clientes:\n                    "
+              ),
+              _c("strong", [_vm._v(_vm._s(_vm.globals.clientsRate.name))])
             ])
           ])
         ])
@@ -54908,29 +54939,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    props: ['id'],
+    props: ['agency'],
 
     methods: {
-        fetch: function fetch() {
-            var _this = this;
-
-            axios.get('/api/v1/agencies/' + this.id + '/info').then(function (_ref) {
-                var data = _ref.data;
-
-                _this.name = data.name;
-                _this.cashiers = data.cashiers;
-                _this.queue = data.queue;
-                _this.finished = data.finished;
-                _this.avg = data.avg;
-                _this.lastCalled = data.lastCalled;
-            }).catch(function (err) {
-                console.log('error fetch de Agency ' + _this.id, err);
-            });
-        }
+        // fetch () {
+        //     axios.get('/api/v1/agencies/' + this.id + '/info')
+        //         .then(({data}) => {
+        //             this.name      = data.name
+        //             this.cashiers  = data.cashiers
+        //             this.queue     = data.queue
+        //             this.finished  = data.finished
+        //             this.avg       = data.avg
+        //             this.lastCalled = data.lastCalled
+        //         })
+        //         .catch(err => {
+        //             console.log('error fetch de Agency '+this.id, err)
+        //         })
+        // }
     },
 
     created: function created() {
-        this.fetch();
+        // this.fetch()
 
         // setInterval(() => {
         //     this.fetch()
@@ -54949,31 +54978,39 @@ var render = function() {
   return _c("div", { staticClass: "col-xs-12 col-sm-6 col-lg-4" }, [
     _c("div", { staticClass: "panel panel-default" }, [
       _c("div", { staticClass: "panel-heading" }, [
-        _c("h4", [_vm._v(_vm._s(_vm.name))])
+        _c("h4", [_vm._v(_vm._s(_vm.agency.name))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "panel-body" }, [
         _c("ul", { staticClass: "list-group" }, [
           _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.cashiers))])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [_vm._v("Clientes en espera: " + _vm._s(_vm.queue))])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [_vm._v("Total atendidos: " + _vm._s(_vm.finished))])
+            _c("span", [_vm._v("Cajeros: " + _vm._s(_vm.agency.info.cashiers))])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
             _c("span", [
-              _vm._v("Tiempo de espera: " + _vm._s(_vm.avg) + " seg.")
+              _vm._v("Clientes en espera: " + _vm._s(_vm.agency.info.queue))
             ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _c("span", [_vm._v("Atendiendo a: " + _vm._s(_vm.lastCalled))])
+            _c("span", [
+              _vm._v("Total atendidos: " + _vm._s(_vm.agency.info.finished))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v(
+                "Tiempo de espera: " + _vm._s(_vm.agency.info.avg) + " seg."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item" }, [
+            _c("span", [
+              _vm._v("Atendiendo a: " + _vm._s(_vm.agency.info.lastCalled))
+            ])
           ])
         ])
       ])
@@ -55014,8 +55051,8 @@ var render = function() {
       "div",
       { staticClass: "row" },
       [
-        _vm._l(_vm.agencies, function(agency) {
-          return [_c("Agency", { attrs: { id: agency.id } })]
+        _vm._l(_vm.globals.agencies, function(agency) {
+          return [_c("Agency", { attrs: { agency: agency } })]
         })
       ],
       2
