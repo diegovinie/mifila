@@ -23,11 +23,14 @@
                   </li>
               </ul>
           </div>
+          <PickTicket :agency="agency" />
       </div>
   </div>
 </template>
 
 <script>
+import PickTicket from './PickTicket'
+
 export default {
     data: () => ({
 
@@ -35,7 +38,11 @@ export default {
 
     props: [
         'agency'
-    ]
+    ],
+
+    components: {
+        PickTicket
+    }
 }
 </script>
 
