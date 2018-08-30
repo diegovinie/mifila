@@ -31,11 +31,15 @@ class ClientsController extends Controller
         return Simulator::generateIdentity($cc);
     }
 
-    // public function generateIdentitybk($cc)
-    // {
-    //     $client = factory(Client::class)->make();
-    //     $client->cc = (int)$cc;
-    //
-    //     return $client;
-    // }
+    public function check($clientid)
+    {
+        $client = Client::findOrFail($clientid);
+        $ticket = $this->queue->checkClientQueue($client);
+
+        if (!$ticket) {
+            return response()->json(null, 204);
+        }
+
+        return $ticket->load('client', 'agency');
+    }
 }

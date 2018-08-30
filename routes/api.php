@@ -23,6 +23,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'throttle:1000,1'], function () 
 
     Route::name('api.clients.list')->get('clients', 'Api\ClientsController@list');
     Route::name('api.clients.show')->get('clients/{cc}', 'Api\ClientsController@show');
+    Route::name('api.clients.checkTicket')->get('clients/{cc}/check', 'Api\ClientsController@check');
     Route::name('api.sim.gen.client')->get('clients/{cc}/generate', 'Api\ClientsController@generateIdentity');
 
     Route::name('api.cashiers.next')->get('cashiers/{id}/next', 'Api\CashiersController@next');

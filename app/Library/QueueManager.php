@@ -78,4 +78,14 @@ class QueueManager
 
         return $this->getClient($metadata);
     }
+
+    public function checkClientQueue(Client $client)
+    {
+        $ticket = $client->tickets()->isPending()->first();
+        if (!$ticket) {
+            return;
+        }
+        
+        return $ticket;
+    }
 }

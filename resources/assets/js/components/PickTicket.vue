@@ -2,7 +2,7 @@
   <div class="">
       <div v-if="active">
           <div v-show="!form.active && !ticket.active">
-              Nro. Documento: 
+              Nro. Documento:
               <input type="text" name="doc" v-model="doc" />
               <br />
               <button
@@ -75,16 +75,19 @@
 
           </form>
           <div v-if="ticket.active">
+              <span><strong>Su ticket:</strong></span>
+              <br />
               <span>{{ ticket.name }}</span>
               <br />
-              <span>Su ticket es: {{ ticket.num }}</span>
+              <span>Turno: {{ ticket.num }}</span>
               <br />
               <span>En la agencia: {{ ticket.agency }}</span>
               <br />
               <button
                 type="button"
                 name="button"
-                @click="shuwDown()">Aceptar</button>
+                @click="shuwDown()">Aceptar
+              </button>
           </div>
       </div>
       <div v-else>
@@ -128,24 +131,45 @@ export default {
                     if (status === 204) {
                         this.form.data.cc = this.doc
                         this.form.editable = true
+                        this.form.active = true
                     } else {
                         this.form.data = data
                         this.form.editable = false
+                        this.checkTicket()
                     }
-                    this.form.active = true
                 })
                 .catch(err => {
                     console.log('Error getIdentity: ', err)
                 })
         },
 
+        checkTicket () {
+            axios.get(`clients/${this.doc}/check`)
+                .then(({data, status}) => {
+                    if (status === 204) {
+                        this.form.active = true
+                    } else {
+                        console.log(data)
+                        this.setTicketValues(data)
+                        this.ticket.active = true
+                    }
+                })
+                .catch(err => {
+                    console.log('Error checkTicket: ', err)
+                })
+        },
+
+        setTicketValues (data) {
+            this.ticket.name = data.client.name
+            this.ticket.num = data.num
+            this.ticket.agency = data.agency.name
+        },
+
         createTicket () {
             axios.post(`agencies/${this.agency.id}/tickets/create`, this.form.data)
             .then(({data}) => {
                 console.log(data)
-                this.ticket.name = data.client.name
-                this.ticket.num = data.num
-                this.ticket.agency = data.agency.name
+                this.setTicketValues(data)
                 this.ticket.active = true
 
                 this.resetForm()

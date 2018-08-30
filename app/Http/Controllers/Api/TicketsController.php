@@ -27,30 +27,4 @@ class TicketsController extends Controller
 
         return $ticket;
     }
-
-    // public function storebk(Request $request, $id)
-    // {
-    //     $agency = Agency::findOrFail($id);
-    //
-    //     $cc = $request->get('cc');
-    //     if (!$client = Client::find($cc)) {
-    //         $client = Client::create([
-    //             'cc' => $cc,
-    //             'name' => $request->get('name'),
-    //             'gender' => $request->get('gender'),
-    //             'phone' => $request->get('phone'),
-    //             'priority' => $request->get('priority') || false,
-    //         ]);
-    //     }
-    //
-    //     $ticket = new Ticket;
-    //
-    //     // $agency = Agency::find($request->get('agency_id'));
-    //
-    //     $ticket->client()->associate($client);
-    //     $ticket->agency()->associate($agency);
-    //     $ticket->save();
-    //
-    //     return $ticket;
-    // }
 }

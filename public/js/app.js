@@ -54932,7 +54932,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54943,6 +54943,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -55077,28 +55080,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (status === 204) {
                     _this.form.data.cc = _this.doc;
                     _this.form.editable = true;
+                    _this.form.active = true;
                 } else {
                     _this.form.data = data;
                     _this.form.editable = false;
+                    _this.checkTicket();
                 }
-                _this.form.active = true;
             }).catch(function (err) {
                 console.log('Error getIdentity: ', err);
             });
         },
-        createTicket: function createTicket() {
+        checkTicket: function checkTicket() {
             var _this2 = this;
 
-            axios.post('agencies/' + this.agency.id + '/tickets/create', this.form.data).then(function (_ref2) {
-                var data = _ref2.data;
+            axios.get('clients/' + this.doc + '/check').then(function (_ref2) {
+                var data = _ref2.data,
+                    status = _ref2.status;
+
+                if (status === 204) {
+                    _this2.form.active = true;
+                } else {
+                    console.log(data);
+                    _this2.setTicketValues(data);
+                    _this2.ticket.active = true;
+                }
+            }).catch(function (err) {
+                console.log('Error checkTicket: ', err);
+            });
+        },
+        setTicketValues: function setTicketValues(data) {
+            this.ticket.name = data.client.name;
+            this.ticket.num = data.num;
+            this.ticket.agency = data.agency.name;
+        },
+        createTicket: function createTicket() {
+            var _this3 = this;
+
+            axios.post('agencies/' + this.agency.id + '/tickets/create', this.form.data).then(function (_ref3) {
+                var data = _ref3.data;
 
                 console.log(data);
-                _this2.ticket.name = data.client.name;
-                _this2.ticket.num = data.num;
-                _this2.ticket.agency = data.agency.name;
-                _this2.ticket.active = true;
+                _this3.setTicketValues(data);
+                _this3.ticket.active = true;
 
-                _this2.resetForm();
+                _this3.resetForm();
             }).catch(function (err) {
                 console.log('Error createTicket ', err);
             });
@@ -55148,7 +55173,7 @@ var render = function() {
               ]
             },
             [
-              _vm._v("\n            Nro. Documento: \n            "),
+              _vm._v("\n            Nro. Documento:\n            "),
               _c("input", {
                 directives: [
                   {
@@ -55415,11 +55440,15 @@ var render = function() {
           _vm._v(" "),
           _vm.ticket.active
             ? _c("div", [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(_vm.ticket.name))]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", [_vm._v("Su ticket es: " + _vm._s(_vm.ticket.num))]),
+                _c("span", [_vm._v("Turno: " + _vm._s(_vm.ticket.num))]),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
@@ -55439,7 +55468,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Aceptar")]
+                  [_vm._v("Aceptar\n            ")]
                 )
               ])
             : _vm._e()
@@ -55460,7 +55489,14 @@ var render = function() {
         ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Su ticket:")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
