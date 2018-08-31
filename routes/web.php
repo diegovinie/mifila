@@ -19,6 +19,10 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
+Route::get('charts', function () {
+    return view('charts');
+});
+
 // Route::get('tickets', 'TicketsController@list');
 // Route::post('tickets/create', 'TicketsController@store');
 

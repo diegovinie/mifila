@@ -19,6 +19,7 @@ import store from './store'
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('ControlPanel', require('./components/ControlPanel.vue'));
+Vue.component('Charts', require('./components/Charts'));
 
 // import Echo from './ws'
 require('./ws')
