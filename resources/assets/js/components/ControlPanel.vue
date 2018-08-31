@@ -4,20 +4,20 @@
           <h2>Simulador de cola</h2>
       </div>
       <div class="row align-items-center">
-          <div class="col-xl-8 col-lg-7">
+          <div class="col-lg-4 col-md-6 col-xs-12">
               <Summary :globals="globals"></Summary>
+          </div>
+          <div class="col-lg-4 col-md-6 col-xs-12">
+              <SimControls />
           </div>
       </div>
       <div class="row">
           <template v-for="agency in globals.agencies" >
-              <Agency
-                :agency="agency" />
+              <div class="col-lg-3 col-md-4 col-xs-12" >
+                <Agency
+                    :agency="agency" />
+              </div>
           </template>
-      </div>
-      <div class="row">
-          <div class="center">
-
-          </div>
       </div>
   </div>
 </template>
@@ -25,6 +25,7 @@
 <script>
 import Summary from './Summary'
 import Agency from './Agency'
+import SimControls from './SimControls'
 import store from '../store'
 
 export default {
@@ -38,7 +39,8 @@ export default {
 
     components: {
         Summary,
-        Agency
+        Agency,
+        SimControls
     },
 
     methods: {

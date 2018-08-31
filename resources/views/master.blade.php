@@ -18,22 +18,11 @@
         </script>
     </head>
     <body id="page-top">
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+        @include('partials.menu')
 
-            <div class="container bg-light">
-                <div id="app">
-                    @yield('content')
-                </div>
+        <div class="container-fluid">
+            <div id="app">
+                @yield('content')
             </div>
         </div>
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}

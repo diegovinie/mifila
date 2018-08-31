@@ -74,21 +74,10 @@
               </button>
 
           </form>
-          <div v-if="ticket.active">
-              <span><strong>Su ticket:</strong></span>
-              <br />
-              <span>{{ ticket.name }}</span>
-              <br />
-              <span>Turno: {{ ticket.num }}</span>
-              <br />
-              <span>En la agencia: {{ ticket.agency }}</span>
-              <br />
-              <button
-                type="button"
-                name="button"
-                @click="shuwDown()">Aceptar
-              </button>
-          </div>
+          <Ticket 
+            :ticket="ticket"
+            @closeTicket="shutDown()"
+            v-if="ticket.active" />
       </div>
       <div v-else>
           <button @click="active = true" type="button" name="button">Pedir Turno</button>
@@ -97,6 +86,8 @@
 </template>
 
 <script>
+import Ticket from './Ticket'
+
 export default {
     data: () => ({
         active: false,
@@ -123,6 +114,10 @@ export default {
     props: [
         'agency'
     ],
+
+    components: {
+        Ticket
+    },
 
     methods: {
         getIdentity () {
@@ -194,8 +189,8 @@ export default {
             this.doc = null
         },
 
-        shuwDown () {
-            this.ticket = false
+        shutDown () {
+            this.ticket.active = false
             this.active = false
         }
     }
