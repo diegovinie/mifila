@@ -8,7 +8,11 @@
               <Summary :globals="globals"></Summary>
           </div>
           <div class="col-lg-4 col-md-6 col-xs-12">
-              <SimControls />
+            <SimControls />
+            <template v-for="agency in globals.agencies" >
+                <AgencySim
+                :agency="agency" />
+            </template>
           </div>
       </div>
       <div class="row">
@@ -26,6 +30,7 @@
 import Summary from './Summary'
 import Agency from './Agency'
 import SimControls from './SimControls'
+import AgencySim from './AgencySim'
 import store from '../store'
 
 export default {
@@ -40,7 +45,8 @@ export default {
     components: {
         Summary,
         Agency,
-        SimControls
+        SimControls,
+        AgencySim
     },
 
     methods: {

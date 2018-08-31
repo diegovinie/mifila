@@ -69,7 +69,7 @@ trait InfoQueueTrait
 
     public function infoAgencies()
     {
-        $agencies = Agency::all();
+        $agencies = Agency::with('cashiers')->get();
 
         foreach ($agencies as $agency) {
             // code...

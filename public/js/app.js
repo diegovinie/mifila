@@ -12387,7 +12387,7 @@ module.exports = Vue;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(73);
+module.exports = __webpack_require__(76);
 
 
 /***/ }),
@@ -12421,7 +12421,7 @@ Vue.component('ControlPanel', __webpack_require__(45));
 // Vue.component('Charts', require('./components/Charts'));
 
 // import Echo from './ws'
-__webpack_require__(72);
+__webpack_require__(75);
 // Echo.channel('ticket')
 //     .listen('UpdateGlobals', (e) => {
 //         console.log(e.globals)
@@ -54297,7 +54297,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(71)
+var __vue_template__ = __webpack_require__(74)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54370,7 +54370,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54420,7 +54420,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Agency__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SimControls__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SimControls___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SimControls__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AgencySim__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AgencySim___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AgencySim__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(6);
 //
 //
 //
@@ -54445,6 +54447,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -54458,14 +54465,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         globals: function globals() {
-            return __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */].state.globals;
+            return __WEBPACK_IMPORTED_MODULE_4__store__["a" /* default */].state.globals;
         }
     },
 
     components: {
         Summary: __WEBPACK_IMPORTED_MODULE_0__Summary___default.a,
         Agency: __WEBPACK_IMPORTED_MODULE_1__Agency___default.a,
-        SimControls: __WEBPACK_IMPORTED_MODULE_2__SimControls___default.a
+        SimControls: __WEBPACK_IMPORTED_MODULE_2__SimControls___default.a,
+        AgencySim: __WEBPACK_IMPORTED_MODULE_3__AgencySim___default.a
     },
 
     methods: {
@@ -54474,7 +54482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref.data;
 
                 // console.log(data)
-                __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */].commit('UPDATE_GLOBALS', data);
+                __WEBPACK_IMPORTED_MODULE_4__store__["a" /* default */].commit('UPDATE_GLOBALS', data);
             }).catch(function (err) {
                 console.log('error en fetch: ', err);
             });
@@ -56021,6 +56029,210 @@ if (false) {
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(72)
+/* template */
+var __vue_template__ = __webpack_require__(73)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/AgencySim.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-724dd52a", Component.options)
+  } else {
+    hotAPI.reload("data-v-724dd52a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['agency']
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "panel panel-primary" }, [
+    _c("div", { staticClass: "panel-heading" }, [
+      _c("h3", { staticClass: "panel-title" }, [
+        _vm._v(_vm._s(_vm.agency.name))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel-body" }, [
+      _c("ul", { staticClass: "nav nav-tabs" }, [
+        _c("li", { staticClass: "active", attrs: { role: "presentation" } }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#status_" + _vm.agency.id, "data-toggle": "tab" }
+            },
+            [_vm._v("Estatus")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { attrs: { role: "presentation" } }, [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "#cashiers_" + _vm.agency.id,
+                "data-toggle": "tab"
+              }
+            },
+            [_vm._v("Cajas")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane active",
+            attrs: { id: "status_" + _vm.agency.id }
+          },
+          [
+            _vm._v(
+              "\n                cola: " +
+                _vm._s(_vm.agency.info.queue) +
+                "\n                "
+            ),
+            _c("br"),
+            _vm._v(
+              "\n                finalizados: " +
+                _vm._s(_vm.agency.info.finished) +
+                "\n                "
+            ),
+            _c("br"),
+            _vm._v(
+              "\n                Atendiendo a: " +
+                _vm._s(_vm.agency.info.lastCalled) +
+                "    \n            "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane",
+            attrs: { id: "cashiers_" + _vm.agency.id }
+          },
+          [
+            _c(
+              "ul",
+              [
+                _vm._l(_vm.agency.cashiers, function(cashier) {
+                  return [
+                    _c("li", { key: cashier.id }, [
+                      _vm._v(
+                        "\n                          Nombre: " +
+                          _vm._s(cashier.name) +
+                          "\n                      "
+                      )
+                    ])
+                  ]
+                })
+              ],
+              2
+            )
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-724dd52a", module.exports)
+  }
+}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -56039,8 +56251,14 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-lg-4 col-md-6 col-xs-12" },
-        [_c("SimControls")],
-        1
+        [
+          _c("SimControls"),
+          _vm._v(" "),
+          _vm._l(_vm.globals.agencies, function(agency) {
+            return [_c("AgencySim", { attrs: { agency: agency } })]
+          })
+        ],
+        2
       )
     ]),
     _vm._v(" "),
@@ -56083,7 +56301,7 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56097,7 +56315,7 @@ window.Echo.channel('ticket').listen('UpdateGlobals', function (e) {
 });
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
