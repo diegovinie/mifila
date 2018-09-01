@@ -55950,6 +55950,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -56552,7 +56562,54 @@ var render = function() {
                                 staticClass: "tab-pane",
                                 attrs: { id: "clients_" + agency.id }
                               },
-                              [_c("PickTicket", { attrs: { agency: agency } })],
+                              [
+                                _c(
+                                  "ul",
+                                  { staticClass: "list-group" },
+                                  [
+                                    _vm._l(
+                                      agency.info.queuedClientsList,
+                                      function(ticket) {
+                                        return [
+                                          _c(
+                                            "li",
+                                            {
+                                              key: ticket.id,
+                                              staticClass: "list-group-item"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                              Doc: " +
+                                                  _vm._s(ticket.client.cc) +
+                                                  " " +
+                                                  _vm._s(ticket.client.name) +
+                                                  "\n                              "
+                                              ),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "label label-info"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                " +
+                                                      _vm._s(ticket.num) +
+                                                      "\n                              "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    )
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c("PickTicket", { attrs: { agency: agency } })
+                              ],
                               1
                             )
                           ])

@@ -94,13 +94,15 @@ trait InfoQueueTrait
         $avg = $this->infoAgencyAvg($agency);
 
         $lastCalled = $this->currentTicket($agency);
+        $queuedClientsList = $this->queuedClientsList($agency);
 
         return compact(
             'queue',
             'cashiers',
             'finished',
             'avg',
-            'lastCalled'
+            'lastCalled',
+            'queuedClientsList'
         );
     }
 
@@ -138,5 +140,10 @@ trait InfoQueueTrait
         }
 
         return $service->ticket->num;
+    }
+
+    public function queuedClientsList(Agency $agency)
+    {
+        return $agency->tickets()->with('client')->isPending()->get();
     }
 }

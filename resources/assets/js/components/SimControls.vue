@@ -111,7 +111,7 @@
                       <div class="tab-pane" :id="`cashiers_${agency.id}`">
                           <ul class="list-group">
                             <template v-for="cashier in agency.cashiers" >
-                                <li :key="cashier.id"  class="list-group-item">
+                                <li :key="cashier.id" class="list-group-item">
                                   Caja {{ cashier.id }}
                                   Nombre: {{ cashier.name }}
                                   <br />
@@ -138,6 +138,16 @@
                           </button>
                       </div>
                       <div class="tab-pane" :id="`clients_${agency.id}`">
+                        <ul class="list-group">
+                          <template v-for="ticket in agency.info.queuedClientsList" >
+                            <li :key="ticket.id" class="list-group-item">
+                              Doc: {{ ticket.client.cc }} {{ ticket.client.name }}
+                              <span class="label label-info">
+                                {{ ticket.num }}
+                              </span>
+                            </li>
+                          </template>
+                        </ul>
                         <PickTicket :agency="agency" />
                       </div>
                   </div>
