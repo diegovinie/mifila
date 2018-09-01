@@ -3,16 +3,22 @@
       <div v-if="active">
           <div v-show="!form.active && !ticket.active">
               Nro. Documento:
-              <input type="text" name="doc" v-model="doc" />
+              <input
+                type="text"
+                class="form-control"
+                name="doc"
+                v-model="doc" />
               <br />
               <button
                 type="button"
+                class="btn btn-info"
                 @click="getIdentity()"
                 name="button">
                   Enviar
               </button>
               <button
                 type="button"
+                class="btn btn-default"
                 @click="active = false"
                 name="button">
                   Regresar
@@ -26,6 +32,7 @@
               Documento:
               <input
                 type="text"
+                class="form-control"
                 name="cc"
                 v-model="form.data.cc"
                 :readonly="!form.editable"/>
@@ -33,13 +40,14 @@
               Nombre:
               <input
                 type="text"
+                class="form-control"
                 name="name"
                 v-model="form.data.name"
                 :readonly="!form.editable"/>
               <br />
               Género
               <select
-                class=""
+                class="form-control"
                 name="gender"
                 v-model="form.data.gender"
                 :readonly="!form.editable">
@@ -50,6 +58,7 @@
               Celular:
               <input
                 type="text"
+                class="form-control"
                 name="phone"
                 v-model="form.data.phone"
                 :readonly="!form.editable"/>
@@ -57,30 +66,39 @@
               Atención Preferencial
               <input
                 type="checkbox"
+                class="form-control"
                 name="priority"
                 v-model="form.data.priority"
                 :readonly="!form.editable"/>
               <br />
               <button
                 type="submit"
+                class="btn btn-primary"
                 name="button">
                   Pedir Turno
               </button>
               <button
                 @click="resetForm()"
                 type="button"
+                class="btn btn-default"
                 name="button">
                   Regresar
               </button>
 
           </form>
-          <Ticket 
+          <Ticket
             :ticket="ticket"
             @closeTicket="shutDown()"
             v-if="ticket.active" />
       </div>
       <div v-else>
-          <button @click="active = true" type="button" name="button">Pedir Turno</button>
+          <button
+            @click="active = true"
+            type="button"
+            class="btn btn-primary"
+            name="button">
+            Pedir Turno
+          </button>
       </div>
   </div>
 </template>

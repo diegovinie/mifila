@@ -10,6 +10,7 @@
         <br />
         <button
             type="button"
+            class="btn btn-default"
             name="button"
             @click="$emit('closeTicket')">Aceptar
         </button>
@@ -23,4 +24,3 @@ export default {
   ]
 }
 </script>
-

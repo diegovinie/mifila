@@ -4,11 +4,11 @@
           <h2>Simulador de cola</h2>
       </div>
       <div class="row align-items-center">
-          <div class="col-lg-4 col-md-6 col-xs-12">
+          <div class="col-lg-offset-1 col-lg-3 col-md-4 col-xs-12">
               <Summary :globals="globals"></Summary>
           </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <SimControls />
+          <div class="col-lg-6 col-md-8 col-xs-12">
+            <SimControls :globals="globals"/>
             <template v-for="agency in globals.agencies" >
                 <AgencySim
                 :agency="agency" />

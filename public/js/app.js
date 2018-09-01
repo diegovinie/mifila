@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(7);
-var isBuffer = __webpack_require__(23);
+var isBuffer = __webpack_require__(24);
 
 /*global toString:true*/
 
@@ -611,7 +611,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(48)
+var listToStyles = __webpack_require__(49)
 
 /*
 type StyleObject = {
@@ -827,7 +827,7 @@ function applyToTag (styleElement, obj) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(25);
+var normalizeHeaderName = __webpack_require__(26);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -926,7 +926,7 @@ module.exports = defaults;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(45);
 
 
 
@@ -1174,12 +1174,12 @@ process.umask = function() { return 0; };
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(26);
-var buildURL = __webpack_require__(28);
-var parseHeaders = __webpack_require__(29);
-var isURLSameOrigin = __webpack_require__(30);
+var settle = __webpack_require__(27);
+var buildURL = __webpack_require__(29);
+var parseHeaders = __webpack_require__(30);
+var isURLSameOrigin = __webpack_require__(31);
 var createError = __webpack_require__(10);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(31);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(32);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1276,7 +1276,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(32);
+      var cookies = __webpack_require__(33);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -1360,7 +1360,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(27);
+var enhanceError = __webpack_require__(28);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -12380,18 +12380,69 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(42).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(43).setImmediate))
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
-module.exports = __webpack_require__(76);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/PickTicket.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aeca8cf8", Component.options)
+  } else {
+    hotAPI.reload("data-v-aeca8cf8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(16);
+module.exports = __webpack_require__(76);
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12404,7 +12455,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(16);
+__webpack_require__(17);
 
 window.Vue = __webpack_require__(13);
 
@@ -12417,7 +12468,7 @@ window.Vue = __webpack_require__(13);
  */
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('ControlPanel', __webpack_require__(45));
+Vue.component('ControlPanel', __webpack_require__(46));
 // Vue.component('Charts', require('./components/Charts'));
 
 // import Echo from './ws'
@@ -12433,15 +12484,15 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_echo__);
 
-window._ = __webpack_require__(17);
+window._ = __webpack_require__(18);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12450,9 +12501,9 @@ window._ = __webpack_require__(17);
  */
 
 try {
-    window.$ = window.jQuery = __webpack_require__(19);
+    window.$ = window.jQuery = __webpack_require__(20);
 
-    __webpack_require__(20);
+    __webpack_require__(21);
 } catch (e) {
     console.log('Juery no encontrado.');
 }
@@ -12463,7 +12514,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(21);
+window.axios = __webpack_require__(22);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -12491,7 +12542,7 @@ if (token) {
 
 
 
-window.Pusher = __webpack_require__(41);
+window.Pusher = __webpack_require__(42);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
     broadcaster: 'pusher',
@@ -12508,7 +12559,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
 // });
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -29618,10 +29669,10 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(19)(module)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29649,7 +29700,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -40020,7 +40071,7 @@ return jQuery;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /*!
@@ -42403,13 +42454,13 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22);
+module.exports = __webpack_require__(23);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42417,7 +42468,7 @@ module.exports = __webpack_require__(22);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(7);
-var Axios = __webpack_require__(24);
+var Axios = __webpack_require__(25);
 var defaults = __webpack_require__(5);
 
 /**
@@ -42452,14 +42503,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(12);
-axios.CancelToken = __webpack_require__(38);
+axios.CancelToken = __webpack_require__(39);
 axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(39);
+axios.spread = __webpack_require__(40);
 
 module.exports = axios;
 
@@ -42468,7 +42519,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /*!
@@ -42495,7 +42546,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42503,8 +42554,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(5);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(33);
-var dispatchRequest = __webpack_require__(34);
+var InterceptorManager = __webpack_require__(34);
+var dispatchRequest = __webpack_require__(35);
 
 /**
  * Create a new instance of Axios
@@ -42581,7 +42632,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42600,7 +42651,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42633,7 +42684,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42661,7 +42712,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42736,7 +42787,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42796,7 +42847,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42871,7 +42922,7 @@ module.exports = (
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42914,7 +42965,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42974,7 +43025,7 @@ module.exports = (
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43033,18 +43084,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(35);
+var transformData = __webpack_require__(36);
 var isCancel = __webpack_require__(11);
 var defaults = __webpack_require__(5);
-var isAbsoluteURL = __webpack_require__(36);
-var combineURLs = __webpack_require__(37);
+var isAbsoluteURL = __webpack_require__(37);
+var combineURLs = __webpack_require__(38);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -43126,7 +43177,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43153,7 +43204,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43174,7 +43225,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43195,7 +43246,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43259,7 +43310,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43293,7 +43344,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 var asyncGenerator = function () {
@@ -44231,7 +44282,7 @@ var Echo = function () {
 module.exports = Echo;
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -53077,7 +53128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -53133,7 +53184,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(43);
+__webpack_require__(44);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -53147,7 +53198,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -53340,7 +53391,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(8)))
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54285,17 +54336,17 @@ var index_esm = {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(47)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(50)
 /* template */
 var __vue_template__ = __webpack_require__(74)
 /* template functional */
@@ -54336,13 +54387,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(47);
+var content = __webpack_require__(48);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -54362,7 +54413,7 @@ if(false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -54376,7 +54427,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 /**
@@ -54409,14 +54460,14 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Summary__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Summary__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Summary___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Summary__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Agency___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Agency__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SimControls__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SimControls___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SimControls__);
@@ -54495,19 +54546,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(51)
+  __webpack_require__(52)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(53)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54546,13 +54597,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -54572,7 +54623,7 @@ if(false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -54586,7 +54637,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54630,7 +54681,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54716,17 +54767,17 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(57)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(58)
+var __vue_script__ = __webpack_require__(59)
 /* template */
 var __vue_template__ = __webpack_require__(67)
 /* template functional */
@@ -54767,13 +54818,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -54793,7 +54844,7 @@ if(false) {
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -54807,12 +54858,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PickTicket__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PickTicket__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PickTicket___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PickTicket__);
 //
 //
@@ -54860,57 +54911,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(60)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(62)
-/* template */
-var __vue_template__ = __webpack_require__(66)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/PickTicket.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-aeca8cf8", Component.options)
-  } else {
-    hotAPI.reload("data-v-aeca8cf8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54945,7 +54945,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54958,6 +54958,24 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Ticket__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Ticket___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Ticket__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55230,6 +55248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['ticket']
@@ -55263,6 +55282,7 @@ var render = function() {
     _c(
       "button",
       {
+        staticClass: "btn btn-default",
         attrs: { type: "button", name: "button" },
         on: {
           click: function($event) {
@@ -55327,6 +55347,7 @@ var render = function() {
                       expression: "doc"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: { type: "text", name: "doc" },
                   domProps: { value: _vm.doc },
                   on: {
@@ -55344,6 +55365,7 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "btn btn-info",
                     attrs: { type: "button", name: "button" },
                     on: {
                       click: function($event) {
@@ -55357,6 +55379,7 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "btn btn-default",
                     attrs: { type: "button", name: "button" },
                     on: {
                       click: function($event) {
@@ -55399,6 +55422,7 @@ var render = function() {
                       expression: "form.data.cc"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "cc",
@@ -55426,6 +55450,7 @@ var render = function() {
                       expression: "form.data.name"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "name",
@@ -55455,6 +55480,7 @@ var render = function() {
                         expression: "form.data.gender"
                       }
                     ],
+                    staticClass: "form-control",
                     attrs: { name: "gender", readonly: !_vm.form.editable },
                     on: {
                       change: function($event) {
@@ -55498,6 +55524,7 @@ var render = function() {
                       expression: "form.data.phone"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "phone",
@@ -55525,6 +55552,7 @@ var render = function() {
                       expression: "form.data.priority"
                     }
                   ],
+                  staticClass: "form-control",
                   attrs: {
                     type: "checkbox",
                     name: "priority",
@@ -55567,13 +55595,19 @@ var render = function() {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _c("button", { attrs: { type: "submit", name: "button" } }, [
-                  _vm._v("\n                Pedir Turno\n            ")
-                ]),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "submit", name: "button" }
+                  },
+                  [_vm._v("\n                Pedir Turno\n            ")]
+                ),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
+                    staticClass: "btn btn-default",
                     attrs: { type: "button", name: "button" },
                     on: {
                       click: function($event) {
@@ -55603,6 +55637,7 @@ var render = function() {
           _c(
             "button",
             {
+              staticClass: "btn btn-primary",
               attrs: { type: "button", name: "button" },
               on: {
                 click: function($event) {
@@ -55610,7 +55645,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Pedir Turno")]
+            [_vm._v("\n          Pedir Turno\n        ")]
           )
         ])
   ])
@@ -55757,6 +55792,103 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PickTicket__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PickTicket___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PickTicket__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55799,6 +55931,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
@@ -55807,6 +55941,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			accs: [],
 			clientsRates: []
 		};
+	},
+
+	props: ['globals'],
+
+	components: {
+		PickTicket: __WEBPACK_IMPORTED_MODULE_0__PickTicket___default.a
 	},
 
 	methods: {
@@ -55898,106 +56038,440 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "panel-body" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "acc" } }, [_vm._v("Acceleración:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newAcc,
-                expression: "newAcc"
-              }
-            ],
-            staticClass: "form-input",
-            attrs: { id: "acc", name: "acc" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.newAcc = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                function($event) {
-                  _vm.updateAcc()
-                }
-              ]
-            }
-          },
-          [
-            _vm._l(_vm.accs, function(acc) {
-              return [
-                _c("option", { key: acc.id, domProps: { value: acc.id } }, [
-                  _vm._v(_vm._s(acc.name) + " ")
-                ])
-              ]
-            })
-          ],
-          2
-        )
-      ]),
+      _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "clients_rate" } }, [
-          _vm._v("Promedio de Clientes:")
-        ]),
-        _vm._v(" "),
+      _c("div", { staticClass: "tab-content" }, [
         _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newClientsRate,
-                expression: "newClientsRate"
-              }
-            ],
-            staticClass: "form-input",
-            attrs: { id: "clients_rate", name: "clients_rate" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.newClientsRate = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                function($event) {
-                  _vm.updateClientsRate()
-                }
-              ]
-            }
-          },
+          "div",
+          { staticClass: "tab-pane active", attrs: { id: "globals" } },
           [
-            _vm._l(_vm.clientsRates, function(rate) {
-              return [
-                _c("option", { key: rate.id, domProps: { value: rate.id } }, [
-                  _vm._v(_vm._s(rate.name))
-                ])
-              ]
-            })
-          ],
-          2
-        )
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "acc" } }, [_vm._v("Acceleración:")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newAcc,
+                      expression: "newAcc"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "acc", name: "acc" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.newAcc = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        _vm.updateAcc()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _vm._l(_vm.accs, function(acc) {
+                    return [
+                      _c(
+                        "option",
+                        { key: acc.id, domProps: { value: acc.id } },
+                        [_vm._v(_vm._s(acc.name) + " ")]
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "clients_rate" } }, [
+                _vm._v("Promedio de Clientes:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newClientsRate,
+                      expression: "newClientsRate"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "clients_rate", name: "clients_rate" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.newClientsRate = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        _vm.updateClientsRate()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _vm._l(_vm.clientsRates, function(rate) {
+                    return [
+                      _c(
+                        "option",
+                        { key: rate.id, domProps: { value: rate.id } },
+                        [_vm._v(_vm._s(rate.name))]
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-pane", attrs: { id: "agencies" } }, [
+          _c(
+            "div",
+            { staticClass: "panel-group", attrs: { id: "accordion" } },
+            [
+              _vm._l(_vm.globals.agencies, function(agency) {
+                return [
+                  _c(
+                    "div",
+                    { key: agency.id, staticClass: "panel panel-primary" },
+                    [
+                      _c("div", { staticClass: "panel-heading" }, [
+                        _c("h3", { staticClass: "panel-title" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "#ag_" + agency.id,
+                                "data-toggle": "collapse",
+                                "data-parent": "#accordion"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      " +
+                                  _vm._s(agency.name) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "panel-body panel-collapse collapse",
+                          attrs: { id: "ag_" + agency.id }
+                        },
+                        [
+                          _c("ul", { staticClass: "nav nav-tabs" }, [
+                            _c(
+                              "li",
+                              {
+                                staticClass: "active",
+                                attrs: { role: "presentation" }
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "#status_" + agency.id,
+                                      "data-toggle": "tab"
+                                    }
+                                  },
+                                  [_vm._v("Estatus")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("li", { attrs: { role: "presentation" } }, [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "#cashiers_" + agency.id,
+                                    "data-toggle": "tab"
+                                  }
+                                },
+                                [_vm._v("Cajas")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: "#clients_" + agency.id,
+                                    "data-toggle": "tab"
+                                  }
+                                },
+                                [_vm._v("Clientes en espera")]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "tab-content" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "tab-pane active",
+                                attrs: { id: "status_" + agency.id }
+                              },
+                              [
+                                agency.info
+                                  ? _c("div", [
+                                      _c("ul", { staticClass: "list-group" }, [
+                                        _c(
+                                          "li",
+                                          { staticClass: "list-group-item" },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                "Cajeros: " +
+                                                  _vm._s(agency.info.cashiers)
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "li",
+                                          { staticClass: "list-group-item" },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                "Clientes en espera: " +
+                                                  _vm._s(agency.info.queue)
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "li",
+                                          { staticClass: "list-group-item" },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                "Total atendidos: " +
+                                                  _vm._s(agency.info.finished)
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "li",
+                                          { staticClass: "list-group-item" },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                "Tiempo de espera: " +
+                                                  _vm._s(agency.info.avg) +
+                                                  " seg."
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "li",
+                                          { staticClass: "list-group-item" },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                "Atendiendo a: " +
+                                                  _vm._s(agency.info.lastCalled)
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "tab-pane",
+                                attrs: { id: "cashiers_" + agency.id }
+                              },
+                              [
+                                _c(
+                                  "ul",
+                                  { staticClass: "list-group" },
+                                  [
+                                    _vm._l(agency.cashiers, function(cashier) {
+                                      return [
+                                        _c(
+                                          "li",
+                                          {
+                                            key: cashier.id,
+                                            staticClass: "list-group-item"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                  Caja " +
+                                                _vm._s(cashier.id) +
+                                                "\n                                  Nombre: " +
+                                                _vm._s(cashier.name) +
+                                                "\n                                  "
+                                            ),
+                                            _c("br"),
+                                            _vm._v(
+                                              "\n                                  Promedio: " +
+                                                _vm._s(cashier.rate) +
+                                                " s\n                                  "
+                                            ),
+                                            _c("br"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "checkbox" },
+                                              [
+                                                _c("label", [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: cashier.active,
+                                                        expression:
+                                                          "cashier.active"
+                                                      }
+                                                    ],
+                                                    attrs: {
+                                                      type: "checkbox",
+                                                      name: ""
+                                                    },
+                                                    domProps: {
+                                                      checked: Array.isArray(
+                                                        cashier.active
+                                                      )
+                                                        ? _vm._i(
+                                                            cashier.active,
+                                                            null
+                                                          ) > -1
+                                                        : cashier.active
+                                                    },
+                                                    on: {
+                                                      change: function($event) {
+                                                        var $$a =
+                                                            cashier.active,
+                                                          $$el = $event.target,
+                                                          $$c = $$el.checked
+                                                            ? true
+                                                            : false
+                                                        if (
+                                                          Array.isArray($$a)
+                                                        ) {
+                                                          var $$v = null,
+                                                            $$i = _vm._i(
+                                                              $$a,
+                                                              $$v
+                                                            )
+                                                          if ($$el.checked) {
+                                                            $$i < 0 &&
+                                                              _vm.$set(
+                                                                cashier,
+                                                                "active",
+                                                                $$a.concat([
+                                                                  $$v
+                                                                ])
+                                                              )
+                                                          } else {
+                                                            $$i > -1 &&
+                                                              _vm.$set(
+                                                                cashier,
+                                                                "active",
+                                                                $$a
+                                                                  .slice(0, $$i)
+                                                                  .concat(
+                                                                    $$a.slice(
+                                                                      $$i + 1
+                                                                    )
+                                                                  )
+                                                              )
+                                                          }
+                                                        } else {
+                                                          _vm.$set(
+                                                            cashier,
+                                                            "active",
+                                                            $$c
+                                                          )
+                                                        }
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(
+                                                    "\n                                      Activo\n                                    "
+                                                  )
+                                                ])
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "tab-pane",
+                                attrs: { id: "clients_" + agency.id }
+                              },
+                              [_c("PickTicket", { attrs: { agency: agency } })],
+                              1
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              })
+            ],
+            2
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("br"),
@@ -56012,7 +56486,25 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "panel-heading" }, [
-      _c("h3", { staticClass: "panel-title" }, [_vm._v("Configuraciones")])
+      _c("h3", { staticClass: "panel-title" }, [_vm._v("Controles Simulador")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "nav nav-tabs" }, [
+      _c("li", { staticClass: "active", attrs: { role: "presentation" } }, [
+        _c("a", { attrs: { href: "#globals", "data-toggle": "tab" } }, [
+          _vm._v("Conf. globales")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { attrs: { role: "presentation" } }, [
+        _c("a", { attrs: { href: "#agencies", "data-toggle": "tab" } }, [
+          _vm._v("Agencias")
+        ])
+      ])
     ])
   }
 ]
@@ -56243,16 +56735,16 @@ var render = function() {
     _c("div", { staticClass: "row align-items-center" }, [
       _c(
         "div",
-        { staticClass: "col-lg-4 col-md-6 col-xs-12" },
+        { staticClass: "col-lg-offset-1 col-lg-3 col-md-4 col-xs-12" },
         [_c("Summary", { attrs: { globals: _vm.globals } })],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-lg-4 col-md-6 col-xs-12" },
+        { staticClass: "col-lg-6 col-md-8 col-xs-12" },
         [
-          _c("SimControls"),
+          _c("SimControls", { attrs: { globals: _vm.globals } }),
           _vm._v(" "),
           _vm._l(_vm.globals.agencies, function(agency) {
             return [_c("AgencySim", { attrs: { agency: agency } })]
