@@ -1,5 +1,5 @@
 @extends('master')
 
 @section('content')
-    <Control-Panel></Control-Panel>
+    <Admin-Panel></Admin-Panel>
 @endsection
