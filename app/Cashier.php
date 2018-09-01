@@ -42,4 +42,9 @@ class Cashier extends Model
     {
         return $query->where('active', true);
     }
+
+    public function getActiveAttribute($value)
+    {
+        return (int)$value;
+    }
 }

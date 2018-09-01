@@ -74139,7 +74139,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74170,9 +74170,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['cashier']
+    props: ['cashier'],
+
+    methods: {
+        swapActive: function swapActive(cashier) {
+            axios.put('cashiers/' + cashier.id, { active: cashier.active }).then(function (_ref) {
+                var data = _ref.data;
+
+                console.log(data);
+            }).catch(function (err) {
+                console.log('Error en swapActive ', err);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -74209,27 +74222,33 @@ var render = function() {
               : _vm.cashier.active
           },
           on: {
-            change: function($event) {
-              var $$a = _vm.cashier.active,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(_vm.cashier, "active", $$a.concat([$$v]))
+            change: [
+              function($event) {
+                var $$a = _vm.cashier.active,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.cashier, "active", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.cashier,
+                        "active",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
                 } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      _vm.cashier,
-                      "active",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
+                  _vm.$set(_vm.cashier, "active", $$c)
                 }
-              } else {
-                _vm.$set(_vm.cashier, "active", $$c)
+              },
+              function($event) {
+                _vm.swapActive(_vm.cashier)
               }
-            }
+            ]
           }
         }),
         _vm._v("\n      Activo\n    ")

@@ -10,6 +10,7 @@
       <label>
         <input
         type="checkbox"
+        @change="swapActive(cashier)"
         name=""
         v-model="cashier.active" />
         Activo
@@ -20,7 +21,19 @@
 
 <script>
 export default {
-  props: ['cashier']
+  props: ['cashier'],
+
+  methods: {
+      swapActive (cashier) {
+          axios.put(`cashiers/${cashier.id}`, {active: cashier.active})
+            .then(({data}) => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.log('Error en swapActive ', err)
+            })
+      }
+  }
 }
 </script>
 
