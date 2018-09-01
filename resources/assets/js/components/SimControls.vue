@@ -14,6 +14,16 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="globals">
+          <div class="checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  readonly
+                  v-model="globals.simActive"
+                  >
+                  Simulador Activo
+              </label>
+          </div>
           <div class="form-group">
             <label for="acc">Acceleración:</label>
             <select
@@ -55,6 +65,9 @@
                       data-parent="#accordion"
                       >
                       {{ agency.name }}
+                      <span class="label label-default">
+                        {{ agency.info.queue }} en cola
+                      </span>
                     </a>
                   </h3>
                 </div>

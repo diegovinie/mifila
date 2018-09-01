@@ -19,6 +19,7 @@ trait InfoQueueTrait
         $finished = $this->infoFinished();
         $avg = $this->infoAvg();
         $agencies = $this->infoAgencies();
+        $simActive = $this->simActive();
 
         return compact(
             'queue',
@@ -27,8 +28,14 @@ trait InfoQueueTrait
             'avg',
             'agencies',
             'acc',
-            'clientsRate'
+            'clientsRate',
+            'simActive'
         );
+    }
+
+    public function simActive()
+    {
+        return env('APP_SIM', false);
     }
 
     public function infoAcc()
