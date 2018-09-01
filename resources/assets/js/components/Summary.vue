@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="panel panel-default" style="font-size:20px;">
+  <div class="panel panel-info" style="font-size:20px;">
       <div class="panel-heading">
-          <h3>Conteo Global</h3>
+          <h3 class="panel-title">Conteo Global</h3>
       </div>
       <div class="panel-body">
           <ul class="list-group">

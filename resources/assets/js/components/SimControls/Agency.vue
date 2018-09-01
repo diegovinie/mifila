@@ -55,20 +55,7 @@
               <ul class="list-group">
                 <template v-for="cashier in agency.cashiers" >
                     <li :key="cashier.id" class="list-group-item">
-                      Caja {{ cashier.id }}
-                      Nombre: {{ cashier.name }}
-                      <br />
-                      Promedio: {{ cashier.rate}} s
-                      <br />
-                      <div class="checkbox">
-                        <label>
-                          <input
-                          type="checkbox"
-                          name=""
-                          v-model="cashier.active" />
-                          Activo
-                        </label>
-                      </div>
+                      <Cashier :cashier="cashier"/>
                     </li>
                 </template>
               </ul>
@@ -99,13 +86,15 @@
 </template>
 
 <script>
+import Cashier from './Cashier'
 import PickTicket from '../PickTicket'
 
 export default {
   props: ['agency'],
 
   components: {
-    PickTicket
+    PickTicket,
+    Cashier
   }
 }
 </script>

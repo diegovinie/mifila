@@ -57,11 +57,3 @@ window.Echo = new Echo({
     cluster: 'us2',
     encrypted: true
 });
-
-
-// import Echo from "laravel-echo"
-//
-// window.Echo = new Echo({
-//     broadcaster: 'socket.io',
-//     host: window.location.hostname + ':6001'
-// });

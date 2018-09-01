@@ -1,70 +1,52 @@
 <template lang="html">
   <div class="">
-      <div class="row">
-          <h2>Simulador de cola</h2>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Simulador de cola</h2>
       </div>
-      <div class="row align-items-center">
-          <div class="col-lg-offset-1 col-lg-3 col-md-4 col-xs-12">
-              <Summary :globals="globals"></Summary>
-          </div>
-          <div class="col-lg-6 col-md-8 col-xs-12">
-            <SimControls :globals="globals"/>
-            <template v-for="agency in globals.agencies" >
-                <AgencySim
-                :agency="agency" />
-            </template>
-          </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-offset-1 col-lg-6 col-md-8 col-xs-12">
+        <SimControls :globals="globals" />
       </div>
-      <div class="row">
-          <template v-for="agency in globals.agencies" >
-              <div class="col-lg-3 col-md-4 col-xs-12" >
-                <Agency
-                    :agency="agency" />
-              </div>
-          </template>
+      <div class="col-lg-3 col-md-4 col-xs-12">
+        <Summary :globals="globals" />
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Summary from './Summary'
-import Agency from './Agency'
 import SimControls from './SimControls'
-import AgencySim from './AgencySim'
 import store from '../store'
 
 export default {
-    data: () => ({
+  computed: {
+    globals: () => store.state.globals
+  },
 
-    }),
+  components: {
+    Summary,
+    SimControls
+  },
 
-    computed: {
-        globals: () => store.state.globals
-    },
-
-    components: {
-        Summary,
-        Agency,
-        SimControls,
-        AgencySim
-    },
-
-    methods: {
-        fetch () {
-            axios.get('globals')
-                .then(({data}) => {
-                    // console.log(data)
-                    store.commit('UPDATE_GLOBALS', data)
-                })
-                .catch(err => {
-                    console.log('error en fetch: ', err)
-                })
-        }
-    },
-
-    created () {
-        this.fetch()
+  methods: {
+    fetch () {
+      axios.get('globals')
+        .then(({data}) => {
+          // console.log(data)
+          store.commit('UPDATE_GLOBALS', data)
+        })
+        .catch(err => {
+          console.log('error en fetch: ', err)
+        })
     }
+  },
+
+  created () {
+    this.fetch()
+  }
 }
 </script>
 
