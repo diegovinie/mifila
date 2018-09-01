@@ -10,16 +10,19 @@ use App\TicketService as Service;
 
 trait InfoQueueTrait
 {
-    public function infoAll()
+    public function infoAll($withAgencies=false)
     {
+        $agencies = [];
         $acc = $this->infoAcc();
         $clientsRate = $this->infoClientsRate();
         $queue = $this->infoQueue();
         $cashiers = $this->infoCashiers();
         $finished = $this->infoFinished();
         $avg = $this->infoAvg();
-        $agencies = $this->infoAgencies();
         $simActive = $this->simActive();
+        if ($withAgencies) {
+            $agencies = $this->infoAgencies();
+        }
 
         return compact(
             'queue',
@@ -84,6 +87,15 @@ trait InfoQueueTrait
         }
 
         return $agencies;
+    }
+
+    public function infoAgency(Agency $agency)
+    {
+        $agency->load('cashiers');
+        // $agency->fresh();
+        $agency->info = $this->infoAgencyAll($agency);
+
+        return compact('agency');
     }
 
     public function infoAgencyAll(Agency $agency)

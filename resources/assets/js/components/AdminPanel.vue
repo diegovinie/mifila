@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="row align-items-center">
-      <div class="col-lg-offset-1 col-lg-6 col-md-8 col-xs-12">
-        <SimControls :globals="globals" />
+      <div class="col-md-offset-1 col-md-6 col-xs-12">
+        <SimControls :globals="globals" :agencies="agencies" />
       </div>
-      <div class="col-lg-3 col-md-4 col-xs-12">
+      <div class=" col-md-4 col-xs-12">
         <Summary :globals="globals" />
       </div>
     </div>
@@ -23,7 +23,8 @@ import store from '../store'
 
 export default {
   computed: {
-    globals: () => store.state.globals
+    globals: () => store.state.globals,
+    agencies: () => store.state.agencies
   },
 
   components: {
@@ -41,11 +42,21 @@ export default {
         .catch(err => {
           console.log('error en fetch: ', err)
         })
+    },
+    fetchAgencies () {
+      axios.get('globals/agencies')
+        .then(({data}) => {
+          store.commit('SET_AGENCIES', data)
+        })
+        .catch(err => {
+          console.log('Error en fetchAgencies ', err)
+        })
     }
   },
 
   created () {
     this.fetch()
+    this.fetchAgencies()
   }
 }
 </script>

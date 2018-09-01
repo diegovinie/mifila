@@ -42,6 +42,7 @@ Route::group([
     Route::name('globals.activeCashier')
         ->get('globals/cashiers/active', 'Api\GlobalsController@cashiers');
     Route::name('globals.avg')->get('globals/avg', 'Api\GlobalsController@avg');
+    Route::name('globals.agencies')->get('globals/agencies', 'Api\GlobalsController@agencies');
 
     Route::name('agencies.info')->get('agencies/{id}/info', 'Api\AgenciesController@all');
 

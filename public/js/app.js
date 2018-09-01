@@ -6469,14 +6469,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             cashiers: null,
             finished: null,
             avg: null,
-            agencies: [],
             acc: {
                 name: null
             },
             clientsRate: {
                 name: null
             }
-        }
+        },
+        agencies: []
     },
 
     actions: {},
@@ -6484,6 +6484,24 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
     mutations: {
         UPDATE_GLOBALS: function UPDATE_GLOBALS(state, data) {
             state.globals = data;
+        },
+        UPDATE_AGENCY: function UPDATE_AGENCY(state, data) {
+            state.agencies.forEach(function (agency, pos) {
+                if (agency.id === data.id) {
+                    state.agencies[pos] = data;
+                }
+            });
+
+            // let agency = state.agencies
+            //     .find(a => a.id === data.id)
+            // agency = data
+            //
+            // console.log('data: ',data.id)
+            // console.log('agency: ', state.agencies[data.id])
+            // state.agencies[data.id] = data
+        },
+        SET_AGENCIES: function SET_AGENCIES(state, data) {
+            state.agencies = data;
         }
     }
 }));
@@ -73032,7 +73050,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -73108,6 +73126,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     globals: function globals() {
       return __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.globals;
+    },
+    agencies: function agencies() {
+      return __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.agencies;
     }
   },
 
@@ -73126,11 +73147,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {
         console.log('error en fetch: ', err);
       });
+    },
+    fetchAgencies: function fetchAgencies() {
+      axios.get('globals/agencies').then(function (_ref2) {
+        var data = _ref2.data;
+
+        __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].commit('SET_AGENCIES', data);
+      }).catch(function (err) {
+        console.log('Error en fetchAgencies ', err);
+      });
     }
   },
 
   created: function created() {
     this.fetch();
+    this.fetchAgencies();
   }
 });
 
@@ -73453,7 +73484,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {};
   },
 
-  props: ['globals'],
+  props: ['globals', 'agencies'],
 
   components: {
     GlobalConfig: __WEBPACK_IMPORTED_MODULE_0__GlobalConfig___default.a,
@@ -75330,7 +75361,7 @@ var render = function() {
               "div",
               { staticClass: "panel-group", attrs: { id: "accordion" } },
               [
-                _vm._l(_vm.globals.agencies, function(agency) {
+                _vm._l(_vm.agencies, function(agency) {
                   return [
                     _c("Agency", {
                       key: agency.id,
@@ -75400,14 +75431,18 @@ var render = function() {
     _c("div", { staticClass: "row align-items-center" }, [
       _c(
         "div",
-        { staticClass: "col-lg-offset-1 col-lg-6 col-md-8 col-xs-12" },
-        [_c("SimControls", { attrs: { globals: _vm.globals } })],
+        { staticClass: "col-md-offset-1 col-md-6 col-xs-12" },
+        [
+          _c("SimControls", {
+            attrs: { globals: _vm.globals, agencies: _vm.agencies }
+          })
+        ],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-lg-3 col-md-4 col-xs-12" },
+        { staticClass: " col-md-4 col-xs-12" },
         [_c("Summary", { attrs: { globals: _vm.globals } })],
         1
       )
@@ -89081,6 +89116,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 window.Echo.channel('ticket').listen('UpdateGlobals', function (e) {
     // console.log(e.globals)
     __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_GLOBALS', e.globals);
+}).listen('UpdateAgency', function (e) {
+    __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_AGENCY', e.data.agency);
 });
 
 /***/ }),

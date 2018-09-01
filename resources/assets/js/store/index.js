@@ -10,14 +10,14 @@ export default new Vuex.Store({
             cashiers: null,
             finished: null,
             avg: null,
-            agencies: [],
             acc: {
                 name: null
             },
             clientsRate: {
                 name: null
             }
-        }
+        },
+        agencies: []
     },
 
     actions: {
@@ -26,7 +26,19 @@ export default new Vuex.Store({
 
     mutations: {
         UPDATE_GLOBALS (state, data) {
-            state.globals = data
+          state.globals = data
+        },
+
+        UPDATE_AGENCY (state, data) {
+          state.agencies.forEach((agency, pos) => {
+            if (agency.id === data.id) {
+              state.agencies[pos] = data
+            }
+          })
+        },
+
+        SET_AGENCIES (state, data) {
+          state.agencies = data
         }
     }
 })

@@ -20,7 +20,7 @@
 
         <div class="tab-pane" id="agencies">
           <div class="panel-group" id="accordion">
-            <template v-for="agency in globals.agencies" >
+            <template v-for="agency in agencies" >
               <Agency
                 :key="agency.id"
                 :agency="agency"
@@ -42,7 +42,7 @@ export default {
 
 	}),
 
-  props: ['globals'],
+  props: ['globals', 'agencies'],
 
   components: {
     GlobalConfig,

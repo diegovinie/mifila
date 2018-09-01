@@ -19,7 +19,7 @@ class GlobalsController extends Controller
 
     public function all()
     {
-        return $this->infoAll();
+        return $this->infoAll(true);
     }
 
     public function queue()
@@ -42,7 +42,7 @@ class GlobalsController extends Controller
         return $this->infoAvg();
     }
 
-    public function agencies($qm)
+    public function agencies(QueueManager $qm)
     {
         return $this->infoAgencies($qm);
     }

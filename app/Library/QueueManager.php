@@ -9,8 +9,7 @@ use App\Agency;
 use App\Ticket;
 use App\Config;
 use App\TicketService as Service;
-use App\Events\NewTicket;
-use App\Events\NewService;
+use App\Events\UpdateAgency;
 use App\Events\UpdateGlobals;
 
 class QueueManager
@@ -31,8 +30,11 @@ class QueueManager
         $service->agency()->associate($cashier->agency);
         $service->save();
 
-        $info = $this->infoAll();
-        event(new UpdateGlobals($info));
+        $infoAgency = $this->infoAgency($cashier->agency);
+        $infoGlobal = $this->infoAll();
+
+        event(new UpdateAgency($infoAgency));
+        event(new UpdateGlobals($infoGlobal));
 
         return $service->fresh()->load('ticket');
     }
@@ -45,8 +47,11 @@ class QueueManager
         $ticket->agency()->associate($agency);
         $ticket->save();
 
-        $info = $this->infoAll();
-        event(new UpdateGlobals($info));
+        $infoAgency = $this->infoAgency($agency);
+        $infoGlobal = $this->infoAll();
+
+        event(new UpdateAgency($infoAgency));
+        event(new UpdateGlobals($infoGlobal));
 
         return $ticket;
     }
@@ -85,7 +90,7 @@ class QueueManager
         if (!$ticket) {
             return;
         }
-        
+
         return $ticket;
     }
 }
