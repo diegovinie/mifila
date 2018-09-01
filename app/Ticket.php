@@ -27,7 +27,14 @@ class Ticket extends Model
         return $query->wherePending(true);
     }
 
-    public function scopeAvgWait($query, $minutes=10)
+    public function scopeAvgWait($query)
+    {
+        return (int)$query->latest()->wherePending(false)
+            ->limit(10)->avg('waited');
+
+    }
+
+    public function scopeAvgWaitbk($query, $minutes=20)
     {
         $now = new \DateTime;
         $interval = new \DateInterval("PT{$minutes}M");

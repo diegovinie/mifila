@@ -31172,6 +31172,8 @@ window.axios.defaults.baseURL = window.APP_URL + '/api/v1/';
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
+var pusherKey = document.head.querySelector('meta[name="pusher-key"]');
+
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
@@ -31190,7 +31192,7 @@ window.Pusher = __webpack_require__(176);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
     broadcaster: 'pusher',
-    key: '46a827fa581eabc51e69',
+    key: pusherKey.content,
     cluster: 'us2',
     encrypted: true
 });
