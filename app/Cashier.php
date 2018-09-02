@@ -19,16 +19,19 @@ class Cashier extends Model
 
     public function nextTicket()
     {
-        $ticket = $this->agency->tickets()->isPending()->first();
+        if ($this->active) {
+            $ticket = $this->agency->tickets()->isPending()->first();
 
-        if (!$ticket) {
-            return null;
+            if (!$ticket) {
+                return null;
+            }
+
+            $ticket->pending = false;
+            $ticket->save();
+
+            return $ticket;
         }
-
-        $ticket->pending = false;
-        $ticket->save();
-
-        return $ticket;
+        return null;
     }
 
     public function getIdleAttribute()
