@@ -19,6 +19,7 @@ class CreateClientsTable extends Migration
             $table->unsignedInteger('cc');
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->boolean('priority')->default(false);
             $table->timestamps();
 
