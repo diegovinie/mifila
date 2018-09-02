@@ -89127,7 +89127,7 @@ window.Echo.channel('ticket').listen('UpdateGlobals', function (e) {
     // console.log(e.globals)
     __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_GLOBALS', e.globals);
 }).listen('UpdateAgency', function (e) {
-    __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_AGENCY', e.data.agency);
+    __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('UPDATE_AGENCY', e.agency);
 });
 
 /***/ }),

@@ -6,5 +6,5 @@ window.Echo.channel('ticket')
         store.commit('UPDATE_GLOBALS', e.globals)
     })
     .listen('UpdateAgency', (e) => {
-        store.commit('UPDATE_AGENCY', e.data.agency)
+        store.commit('UPDATE_AGENCY', e.agency)
     })

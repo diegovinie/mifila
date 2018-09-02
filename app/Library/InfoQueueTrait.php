@@ -2,6 +2,8 @@
 
 namespace App\Library;
 
+use App\Http\Resources\QueuedTicketResource;
+use App\Http\Resources\LightAgencyResource;
 use App\Config;
 use App\Ticket;
 use App\Cashier;
@@ -92,10 +94,9 @@ trait InfoQueueTrait
     public function infoAgency(Agency $agency)
     {
         $agency->load('cashiers');
-        // $agency->fresh();
         $agency->info = $this->infoAgencyAll($agency);
 
-        return compact('agency');
+        return new LightAgencyResource($agency);
     }
 
     public function infoAgencyAll(Agency $agency)
@@ -156,6 +157,7 @@ trait InfoQueueTrait
 
     public function queuedClientsList(Agency $agency)
     {
-        return $agency->tickets()->with('client')->isPending()->get();
+        $tickets = $agency->tickets()->with('client')->isPending()->get();
+        return QueuedTicketResource::collection($tickets);
     }
 }
