@@ -89157,7 +89157,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('timefrmt', function (sec) {
     if (sec < 3600) {
         m = Math.floor(sec / 60);
         s = sec % 60;
-        return m + ':' + s;
+        var _seconds = s.toString().replace(/^\d$/, function (num) {
+            return '0' + num;
+        });
+        return m + ':' + _seconds;
     }
 
     h = Math.floor(sec / 3600);
