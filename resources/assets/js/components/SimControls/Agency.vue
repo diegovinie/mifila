@@ -61,6 +61,7 @@
               </ul>
               <button
                 type="button"
+                @click="genCashier()"
                 class="btn btn-primary"
                 name="button"
                 >
@@ -95,6 +96,18 @@ export default {
   components: {
     PickTicket,
     Cashier
+  },
+
+  methods: {
+    genCashier () {
+      axios.get(`agencies/${this.agency.id}/cashiers/generate`)
+        .then(({data}) => {
+          console.log(data)
+        })
+        .catch(err => {
+          console.log('Error genCashier ', err)
+        })
+    }
   }
 }
 </script>

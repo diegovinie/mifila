@@ -6491,14 +6491,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
                     state.agencies[pos] = data;
                 }
             });
-
-            // let agency = state.agencies
-            //     .find(a => a.id === data.id)
-            // agency = data
-            //
-            // console.log('data: ',data.id)
-            // console.log('agency: ', state.agencies[data.id])
-            // state.agencies[data.id] = data
         },
         SET_AGENCIES: function SET_AGENCIES(state, data) {
             state.agencies = data;
@@ -73969,7 +73961,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74071,6 +74063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -74081,6 +74074,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     PickTicket: __WEBPACK_IMPORTED_MODULE_1__PickTicket___default.a,
     Cashier: __WEBPACK_IMPORTED_MODULE_0__Cashier___default.a
+  },
+
+  methods: {
+    genCashier: function genCashier() {
+      axios.get('agencies/' + this.agency.id + '/cashiers/generate').then(function (_ref) {
+        var data = _ref.data;
+
+        console.log(data);
+      }).catch(function (err) {
+        console.log('Error genCashier ', err);
+      });
+    }
   }
 });
 
@@ -75268,7 +75273,12 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary",
-                  attrs: { type: "button", name: "button" }
+                  attrs: { type: "button", name: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.genCashier()
+                    }
+                  }
                 },
                 [_vm._v("\n              Nuevo\n            ")]
               )

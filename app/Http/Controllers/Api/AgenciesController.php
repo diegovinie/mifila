@@ -63,4 +63,15 @@ class AgenciesController extends Controller
             return 0;
         }
     }
+
+    public function generateCashier(QueueManager $qm, Agency $agency)
+    {
+        $cashier = factory(\App\Cashier::class)->make();
+        $agency->cashiers()->save($cashier);
+
+        $infoAgency = $qm->infoAgency($agency);
+        event(new \App\Events\UpdateAgency($infoAgency));
+
+        return $cashier;
+    }
 }

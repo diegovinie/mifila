@@ -45,6 +45,9 @@ Route::group([
     Route::name('globals.agencies')->get('globals/agencies', 'Api\GlobalsController@agencies');
 
     Route::name('agencies.info')->get('agencies/{id}/info', 'Api\AgenciesController@all');
+    Route::name('agencies.generateCashier')
+        ->get('agencies/{agency}/cashiers/generate', 'Api\AgenciesController@generateCashier');
+
 
     Route::name('ping')->get('ping', function() { return response()->json(1, 200); });
 
