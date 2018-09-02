@@ -11,7 +11,8 @@ Vue.filter('timefrmt', (sec) => {
     if (sec < 3600) {
         m = Math.floor(sec / 60)
         s = sec % 60
-        return `${m}:${s}`
+        let seconds = s.toString().replace(/^\d$/, num => `0${num}`)
+        return `${m}:${seconds}`
     }
 
     h = Math.floor(sec / 3600)
