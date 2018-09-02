@@ -15,7 +15,7 @@
                   <span>Atendidos hoy: <strong>{{ globals.finished }}</strong></span>
               </li>
               <li class="list-group-item">
-                  <span>Promedio de espera: <strong>{{ globals.avg }} seg.</strong></span>
+                  <span>Promedio de espera: <strong>{{ globals.avg | timefrmt }}</strong></span>
               </li>
               <li class="list-group-item">
                   <span>Aceleración: <strong>{{ globals.acc.name }}</strong> </span>

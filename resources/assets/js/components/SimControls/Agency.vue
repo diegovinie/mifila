@@ -43,7 +43,7 @@
                         <span>Total atendidos: {{ agency.info.finished }}</span>
                     </li>
                     <li class="list-group-item">
-                        <span>Tiempo de espera: {{ agency.info.avg }} seg.</span>
+                        <span>Tiempo de espera: {{ agency.info.avg | timefrmt }}</span>
                     </li>
                     <li class="list-group-item">
                         <span>Atendiendo a: {{ agency.info.lastCalled }}</span>

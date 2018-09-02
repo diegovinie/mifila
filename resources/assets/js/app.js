@@ -22,6 +22,8 @@ Vue.component('Charts', require('./components/Charts'));
 
 require('./ws')
 
+require('./filters')
+
 const app = new Vue({
     store,
     el: '#app'
