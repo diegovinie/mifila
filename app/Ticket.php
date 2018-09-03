@@ -27,6 +27,11 @@ class Ticket extends Model
         return $query->wherePending(true);
     }
 
+    public function scopeToNotify($query)
+    {
+        return $query->isPending()->whereNotificable(true)->whereNotified(false);
+    }
+
     public function scopeAvgWait($query)
     {
         return (int)$query->latest()->wherePending(false)
@@ -44,6 +49,11 @@ class Ticket extends Model
     }
 
     public function getNotificableAttribute($value)
+    {
+        return (int)$value;
+    }
+
+    public function getNotifiedAttribute($value)
     {
         return (int)$value;
     }

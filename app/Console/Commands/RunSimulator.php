@@ -97,6 +97,10 @@ class RunSimulator extends Command
                 $ticket = $queue->newTicket($client, $agency, $noti);
             }
 
+            $prevised = $queue->getPrevisedTickets();
+            // var_dump($prevised);die;
+            $queue->notifyPrevisedTickets($prevised);
+
             sleep(1);
         }
     }

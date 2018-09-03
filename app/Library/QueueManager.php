@@ -11,6 +11,7 @@ use App\Config;
 use App\TicketService as Service;
 use App\Events\UpdateAgency;
 use App\Events\UpdateGlobals;
+use App\Events\NotifyTicket;
 
 class QueueManager
 {
@@ -99,17 +100,17 @@ class QueueManager
     {
         $res = [];
         // $tickets = Ticket::isPending()->whereNotificable(true)->get();
-        $tickets = Ticket::isPending()->get();
         $agencies = Agency::all();
 
         foreach ($agencies as $agency) {
             // El promedio de los tickets de la agencia
-            $avg = $agency->tickets->avgWait();
+            $avg = $agency->tickets()->avgWait();
+            $tickets = $agency->tickets()->toNotify()->get();
 
-            foreach ($agency->tickets as $ticket) {
+            foreach ($tickets as $ticket) {
                 // El tiempo del cliente a ser avisado
                 $previse = $ticket->client->previse;
-                if ($previse < $avg) {
+                if ($previse > $avg) {
                     $res[] = $ticket;
                 } else {
                     break;
@@ -122,17 +123,10 @@ class QueueManager
     public function notifyPrevisedTickets($tickets)
     {
         foreach ($tickets as $ticket) {
-            // code...
-            $client = $ticket->client;
 
-            if ($client->phone) {
-
-            }
-
-            if ($client->email) {
-
-            }
-
+            event(new NotifyTicket($ticket));
+            $ticket->notified = true;
+            $ticket->save();
         }
     }
 }
