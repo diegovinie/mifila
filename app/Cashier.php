@@ -50,4 +50,13 @@ class Cashier extends Model
     {
         return (int)$value;
     }
+
+    public function getCurrentAttribute()
+    {
+        if (!$service = $this->services()->latest()->notFinished()->first()) {
+            return null;
+        }
+
+        return $service->ticket->num;
+    }
 }
