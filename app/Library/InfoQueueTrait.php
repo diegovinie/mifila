@@ -81,14 +81,17 @@ trait InfoQueueTrait
 
     public function infoAgencies()
     {
+        $res = [];
         $agencies = Agency::with('cashiers')->get();
 
         foreach ($agencies as $agency) {
             // code...
             $agency->info = $this->infoAgencyAll($agency);
+            $res[] = new LightAgencyResource($agency);
         }
 
-        return $agencies;
+        return $res;
+        // return LightAgencyResource::collection($agencies);
     }
 
     public function infoAgency(Agency $agency)

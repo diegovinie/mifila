@@ -18,7 +18,8 @@ class LightCashierResource extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'rate' => $this->rate,
-            'active' => $this->active
+            'active' => $this->active,
+            'current' =>$this->current
         ];
     }
 }
