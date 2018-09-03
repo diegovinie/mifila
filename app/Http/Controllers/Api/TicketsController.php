@@ -9,6 +9,7 @@ use App\Client;
 use App\Agency;
 use App\Http\Resources\ClientResourse;
 use App\Library\QueueManager;
+use App\Http\Requests\NewTicket as TicketRequest;
 
 class TicketsController extends Controller
 {

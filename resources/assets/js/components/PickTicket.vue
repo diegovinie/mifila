@@ -29,6 +29,7 @@
             class=""
             @submit.prevent="createTicket()"
             method="post">
+              <input type="hidden" name="notificable" value="1" />
               Documento:
               <input
                 type="text"
@@ -45,16 +46,27 @@
                 v-model="form.data.name"
                 :readonly="!form.editable"/>
               <br />
-              Género
-              <select
-                class="form-control"
-                name="gender"
-                v-model="form.data.gender"
-                :readonly="!form.editable">
-                  <option value="male">Masculino</option>
-                  <option value="female">Femenino</option>
-              </select>
-              <br />
+              <div class="form-inline row">
+                <label>Género:
+                  <select
+                    class="form-control"
+                    name="gender"
+                    v-model="form.data.gender"
+                    :readonly="!form.editable">
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                  </select>
+                </label>
+                <div class="checkbox col-xs-6">
+                  <label><input
+                    type="checkbox"
+                    name="priority"
+                    v-model="form.data.priority"
+                    :readonly="!form.editable"/>
+                    Atención Preferencial
+                  </label>
+                </div>
+              </div>
               Celular:
               <input
                 type="text"
@@ -63,13 +75,17 @@
                 v-model="form.data.phone"
                 :readonly="!form.editable"/>
               <br />
-              Atención Preferencial
+              Correo:
               <input
-                type="checkbox"
+                type="text"
                 class="form-control"
-                name="priority"
-                v-model="form.data.priority"
+                name="email"
+                v-model="form.data.email"
                 :readonly="!form.editable"/>
+              <br />
+
+
+
               <br />
               <button
                 type="submit"
@@ -180,15 +196,18 @@ export default {
 
         createTicket () {
             axios.post(`agencies/${this.agency.id}/tickets/create`, this.form.data)
-            .then(({data}) => {
+            .then(({data, status}) => {
+                if (status === 422) {
+                    console.log(data)
+                }
                 console.log(data)
                 this.setTicketValues(data)
                 this.ticket.active = true
 
                 this.resetForm()
             })
-            .catch(err => {
-                console.log('Error createTicket ', err)
+            .catch(({message}) => {
+                console.log( message)
             })
         },
 
