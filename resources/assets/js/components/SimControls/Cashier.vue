@@ -1,11 +1,15 @@
 <template lang="html">
   <div class="">
-    Caja {{ cashier.id }}
+    Caja {{ num }}
     <br />
     Nombre: {{ cashier.name }}
     <br />
     Promedio: {{ cashier.rate}} s
     <br />
+    <span v-if="cashier.active">
+        Atendiendo a: {{ cashier.current || 'en espera' }}
+        <br />
+    </span>
     <div class="checkbox">
       <label>
         <input
@@ -21,7 +25,7 @@
 
 <script>
 export default {
-  props: ['cashier'],
+  props: ['cashier', 'num'],
 
   methods: {
       swapActive (cashier) {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Agency;
 use App\Library\QueueManager;
+use App\Events\UpdateAgency;
 
 class AgenciesController extends Controller
 {
@@ -70,7 +71,7 @@ class AgenciesController extends Controller
         $agency->cashiers()->save($cashier);
 
         $infoAgency = $qm->infoAgency($agency);
-        event(new \App\Events\UpdateAgency($infoAgency));
+        event(new UpdateAgency($infoAgency));
 
         return $cashier;
     }

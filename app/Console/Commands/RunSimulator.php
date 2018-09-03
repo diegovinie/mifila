@@ -31,24 +31,10 @@ class RunSimulator extends Command
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     $this->dailyVel = array_fill(0, 24, 0);
-    //     $this->constVel = array_fill(0, 24, 30);
-    //
-    //     $this->dailyVel[7] =  15;
-    //     $this->dailyVel[8] =  80;
-    //     $this->dailyVel[9] =  55;
-    //     $this->dailyVel[10] = 30;
-    //     $this->dailyVel[11] = 25;
-    //     $this->dailyVel[12] = 70;
-    //     $this->dailyVel[13] = 85;
-    //     $this->dailyVel[14] = 60;
-    //     $this->dailyVel[15] = 20;
-    //     $this->dailyVel[16] = 30;
-    //     $this->dailyVel[17] = 5;
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
@@ -57,8 +43,6 @@ class RunSimulator extends Command
      */
     public function handle(QueueManager $queue, Simulator $sim)
     {
-        // $this->checkConnection();
-
         $titleSwitch = true;
         // $sim->acc = $this->argument('acc');
 
@@ -108,21 +92,10 @@ class RunSimulator extends Command
                     return;
                 }
 
-                $ticket = $queue->newTicket($client, $agency);
-            }
+                $noti = mt_rand(0, 9) < 2 ? true : false;
 
-            // $probNewTicket = $sim->probability(true);
-            // $prob = number_format($probNewTicket / $sim->top, 4);
-            //
-            // if ($titleSwitch) {
-            //     echo "[{$this->timeFormated()}] Vel: $sim->vel p/h, acc: $sim->acc veces, prob: $prob\n\n";
-            //     $titleSwitch = false;
-            // }
-            //
-            // if(mt_rand(0, $sim->top) < $probNewTicket) {
-            //     $this->call('simulator:ticket');
-            // }
-            // $this->call('simulator:check');
+                $ticket = $queue->newTicket($client, $agency, $noti);
+            }
 
             sleep(1);
         }

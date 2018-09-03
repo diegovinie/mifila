@@ -39,12 +39,13 @@ class QueueManager
         return $service->fresh()->load('ticket');
     }
 
-    public function newTicket(Client $client, Agency $agency)
+    public function newTicket(Client $client, Agency $agency, $notificable=false)
     {
         $ticket = new Ticket;
 
         $ticket->client()->associate($client);
         $ticket->agency()->associate($agency);
+        $ticket->notificable = $notificable;
         $ticket->save();
 
         $infoAgency = $this->infoAgency($agency);
@@ -92,5 +93,46 @@ class QueueManager
         }
 
         return $ticket;
+    }
+
+    public function getPrevisedTickets()
+    {
+        $res = [];
+        // $tickets = Ticket::isPending()->whereNotificable(true)->get();
+        $tickets = Ticket::isPending()->get();
+        $agencies = Agency::all();
+
+        foreach ($agencies as $agency) {
+            // El promedio de los tickets de la agencia
+            $avg = $agency->tickets->avgWait();
+
+            foreach ($agency->tickets as $ticket) {
+                // El tiempo del cliente a ser avisado
+                $previse = $ticket->client->previse;
+                if ($previse < $avg) {
+                    $res[] = $ticket;
+                } else {
+                    break;
+                }
+            }
+        }
+        return $res;
+    }
+
+    public function notifyPrevisedTickets($tickets)
+    {
+        foreach ($tickets as $ticket) {
+            // code...
+            $client = $ticket->client;
+
+            if ($client->phone) {
+
+            }
+
+            if ($client->email) {
+
+            }
+
+        }
     }
 }

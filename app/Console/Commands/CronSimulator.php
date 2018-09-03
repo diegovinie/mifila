@@ -43,7 +43,7 @@ class CronSimulator extends Command
         if (!$active) {
             return;
         }
-        
+
         for ($i=0; $i < 59; $i++) {
 
             $agencies = \App\Agency::all();
@@ -90,7 +90,9 @@ class CronSimulator extends Command
                     return;
                 }
 
-                $ticket = $queue->newTicket($client, $agency);
+                $noti = mt_rand(0, 9) < 1 ? true : false;
+
+                $ticket = $queue->newTicket($client, $agency, $noti);
             }
 
             sleep(1);

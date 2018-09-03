@@ -42,4 +42,9 @@ class Ticket extends Model
         return $query->where('created_at', '>', $now->sub($interval))
                      ->avg('waited');
     }
+
+    public function getNotificableAttribute($value)
+    {
+        return (int)$value;
+    }
 }

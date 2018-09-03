@@ -18,6 +18,7 @@ import store from './store'
  */
 
 Vue.component('AdminPanel', require('./components/AdminPanel.vue'));
+Vue.component('UserApp', require('./components/UserApp'));
 Vue.component('Charts', require('./components/Charts'));
 
 require('./ws')

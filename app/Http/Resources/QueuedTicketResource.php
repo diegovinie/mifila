@@ -18,6 +18,7 @@ class QueuedTicketResource extends Resource
             'id' => $this->id,
             'num'=> $this->num,
             'client' => new LightClientResource($this->client),
+            'noti' => $this->notificable,
         ];
     }
 }

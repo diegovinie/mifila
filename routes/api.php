@@ -23,7 +23,7 @@ Route::group([
         'middleware' => 'throttle:1000,1'], function () {
 
     Route::name('tickets.list')->get('tickets', 'Api\TicketsController@list');
-    Route::name('tickets.store')->post('agencies/{id}/tickets/create', 'Api\TicketsController@store');
+    Route::name('tickets.store')->post('agencies/{agency}/tickets/create', 'Api\TicketsController@store');
 
     Route::name('clients.list')->get('clients', 'Api\ClientsController@list');
     Route::name('clients.show')->get('clients/{cc}', 'Api\ClientsController@show');
