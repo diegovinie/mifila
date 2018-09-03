@@ -30,21 +30,38 @@
             @submit.prevent="createTicket()"
             method="post">
               <input type="hidden" name="notificable" value="1" />
-              Documento:
-              <input
-                type="text"
-                class="form-control"
-                name="cc"
-                v-model="form.data.cc"
-                :readonly="!form.editable"/>
+              <div :class="['form-group', errors.cc ? 'has-error' : '']">
+                <label for="cc" class="control-label">Documento:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cc"
+                  id="cc"
+                  v-model="form.data.cc"
+                  :readonly="!form.editable"/>
+                <span v-if="errors.cc" :class="['label label-danger']">
+                  {{ errors.cc[0] }}
+                </span>
+              </div>
+
               <br />
-              Nombre:
-              <input
-                type="text"
-                class="form-control"
-                name="name"
-                v-model="form.data.name"
-                :readonly="!form.editable"/>
+
+              <div :class="['form-group', errors.name ? 'has-error' : '']">
+                <label for="name" class="control-label">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  id="name"
+                  v-model="form.data.name"
+                  :readonly="!form.editable"/>
+                  <span v-if="errors.name" :class="['label label-danger']">
+                    {{ errors.name[0] }}
+                  </span>
+
+              </div>
+
+
               <br />
               <div class="form-inline row">
                 <label>Género:
@@ -67,25 +84,34 @@
                   </label>
                 </div>
               </div>
-              Celular:
-              <input
-                type="text"
-                class="form-control"
-                name="phone"
-                v-model="form.data.phone"
-                :readonly="!form.editable"/>
+              <div :class="['form-group', errors.phone ? 'has-error' : '']">
+                <label for="phone">Celular:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  id="name"
+                  v-model="form.data.phone"
+                  :readonly="!form.editable"/>
+                  <span v-if="errors.phone" :class="['label label-danger']">
+                    {{ errors.phone[0] }}
+                  </span>
+              </div>
+
               <br />
-              Correo:
-              <input
-                type="text"
-                class="form-control"
-                name="email"
-                v-model="form.data.email"
-                :readonly="!form.editable"/>
-              <br />
-
-
-
+              <div :class="['form-group', errors.phone ? 'has-error' : '']">
+                <label for="email">Correo:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  v-model="form.data.email"
+                  :readonly="!form.editable"/>
+                <span v-if="errors.email" :class="['label label-danger']">
+                  {{ errors.email[0] }}
+                </span>
+              </div>
               <br />
               <button
                 type="submit"
@@ -142,7 +168,8 @@ export default {
             num: null,
             agency: null,
             name: null
-        }
+        },
+        errors: {}
     }),
 
     props: [
@@ -195,6 +222,8 @@ export default {
         },
 
         createTicket () {
+            this.errors = {}
+
             axios.post(`agencies/${this.agency.id}/tickets/create`, this.form.data)
             .then(({data, status}) => {
                 if (status === 422) {
@@ -206,8 +235,12 @@ export default {
 
                 this.resetForm()
             })
-            .catch(({message}) => {
-                console.log( message)
+            .catch(err => {
+              if (err.response.status === 422) {
+                this.errors = err.response.data.errors
+              } else {
+                console.log('Error createTicket ', err)                
+              }
             })
         },
 
@@ -224,11 +257,13 @@ export default {
                 }
             }
             this.doc = null
+            this.errors = {}
         },
 
         shutDown () {
             this.ticket.active = false
             this.active = false
+            this.resetForm()
         }
     }
 }

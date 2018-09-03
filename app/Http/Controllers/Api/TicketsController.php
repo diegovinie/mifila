@@ -20,7 +20,7 @@ class TicketsController extends Controller
         return Ticket::all();
     }
 
-    public function store(Request $request, $id)
+    public function store(TicketRequest $request, $id)
     {
         $agency = Agency::findOrFail($id);
         $client = $this->queue->clientFromRequest($request);

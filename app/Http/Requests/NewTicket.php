@@ -25,11 +25,11 @@ class NewTicket extends FormRequest
     {
         return [
             //
-            'cc' => 'required|numeric|max:10',
+            'cc' => 'required|numeric|max:9999999999',
             'name' => 'required:min:3',
-            'phone' => 'numeric|max:10',
+            'phone' => 'nullable|numeric|max:9999999999',
             'email' => 'email|max:64',
-            'priority' => 'boolean',
+            'priority' => 'nullable|boolean',
             'notificable' => 'boolean'
         ];
     }
