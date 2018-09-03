@@ -1,6 +1,6 @@
 import store from '../store'
 
-window.Echo.channel('ticket')
+window.Echo.channel('admin')
     .listen('UpdateGlobals', (e) => {
         // console.log(e.globals)
         store.commit('UPDATE_GLOBALS', e.globals)

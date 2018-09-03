@@ -34,6 +34,6 @@ class UpdateAgency implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('ticket');
+        return new Channel('admin');
     }
 }
