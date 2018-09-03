@@ -4,6 +4,7 @@ namespace App\Library;
 
 use App\Client;
 use App\Config;
+use App\Agency;
 
 class Simulator
 {
@@ -47,7 +48,7 @@ class Simulator
         return $fixed + $variable;
     }
 
-    public function probability($constRate=false)
+    public function probability()
     {
         // $rates = !$constRate ? $this->dailyVel : $this->constVel;
         $rates = $this->clients_rate;
@@ -56,5 +57,26 @@ class Simulator
         $this->vel = $rates[(int)$this->now->format('H')];
 
         return $this->vel * $this->acc * $this->top / 3600;
+    }
+
+    public function probNotificable($prob)
+    {
+        return mt_rand(0, 99) < $prob ? true : false;
+    }
+
+    public function pickAgency($agencies)
+    {
+        $agency = $agencies[mt_rand(0, count($agencies) - 1)];
+
+        if (!($agency instanceof Agency)) {
+            echo "Problemas con la agencia.\n";
+            return;
+        }
+        return $agency;
+    }
+
+    public function newTicket()
+    {
+        return mt_rand(0, $this->top) < $this->probability();
     }
 }

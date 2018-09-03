@@ -65,9 +65,7 @@ class CronSimulator extends Command
                 }
             }
 
-            $probNewTicket = $sim->probability(true);
-
-            if(mt_rand(0, $sim->top) < $probNewTicket) {
+            if($sim->newTicket()) {
 
                 $cc = Simulator::genCC();
 
@@ -83,14 +81,9 @@ class CronSimulator extends Command
                     }
                 }
 
-                $agency = $agencies[mt_rand(0, count($agencies) - 1)];
+                $agency = $sim->pickAgency($agencies);
 
-                if (!($agency instanceof \App\Agency)) {
-                    echo "Problemas con la agencia.\n";
-                    return;
-                }
-
-                $noti = mt_rand(0, 9) < 1 ? true : false;
+                $noti = $this->probNotificable(15);
 
                 $ticket = $queue->newTicket($client, $agency, $noti);
             }
