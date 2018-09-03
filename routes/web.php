@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
+Route::name('home')->get('/', function () {
+    return view('home');
+});
+
+Route::name('admin')->get('admin', function () {
+    return view('admin');
 });
 
 Route::get('welcome', function () {
