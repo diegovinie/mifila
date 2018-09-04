@@ -29,7 +29,6 @@
             class=""
             @submit.prevent="createTicket()"
             method="post">
-              <input type="hidden" name="notificable" value="1" />
               <div :class="['form-group', errors.cc ? 'has-error' : '']">
                 <label for="cc" class="control-label">Documento:</label>
                 <input
@@ -43,9 +42,6 @@
                   {{ errors.cc[0] }}
                 </span>
               </div>
-
-              <br />
-
               <div :class="['form-group', errors.name ? 'has-error' : '']">
                 <label for="name" class="control-label">Nombre:</label>
                 <input
@@ -55,14 +51,10 @@
                   id="name"
                   v-model="form.data.name"
                   :readonly="!form.editable"/>
-                  <span v-if="errors.name" :class="['label label-danger']">
-                    {{ errors.name[0] }}
-                  </span>
-
+                <span v-if="errors.name" :class="['label label-danger']">
+                  {{ errors.name[0] }}
+                </span>
               </div>
-
-
-              <br />
               <div class="form-inline row">
                 <label>Género:
                   <select
@@ -83,22 +75,24 @@
                     Atención Preferencial
                   </label>
                 </div>
+                <div class="checkbox col-xs-6">
+                  <label><input
+                    type="checkbox"
+                    name="notifiable"
+                    v-model="form.data.notifiable"
+                    />
+                    Notificar:
+                  </label>
+                </div>
               </div>
-              <div :class="['form-group', errors.phone ? 'has-error' : '']">
-                <label for="phone">Celular:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="phone"
-                  id="name"
-                  v-model="form.data.phone"
-                  :readonly="!form.editable"/>
-                  <span v-if="errors.phone" :class="['label label-danger']">
-                    {{ errors.phone[0] }}
-                  </span>
-              </div>
-
-              <br />
+              <InputTicket
+                @typing="changeInput"
+                name="phone"
+                type="text"
+                :value="form.data.phone"
+                label="Celular:"
+                :editable="form.editable"
+                :errors="errors" />
               <div :class="['form-group', errors.phone ? 'has-error' : '']">
                 <label for="email">Correo:</label>
                 <input
@@ -147,6 +141,7 @@
 
 <script>
 import Ticket from './Ticket'
+import InputTicket from './InputTicket'
 
 export default {
     data: () => ({
@@ -160,7 +155,8 @@ export default {
                 name: null,
                 gender: null,
                 phone: null,
-                priority: null
+                priority: null,
+                notifiable: true
             }
         },
         ticket: {
@@ -177,7 +173,8 @@ export default {
     ],
 
     components: {
-        Ticket
+        Ticket,
+        InputTicket
     },
 
     methods: {
@@ -190,6 +187,7 @@ export default {
                         this.form.active = true
                     } else {
                         this.form.data = data
+                        this.form.data.notifiable = true
                         this.form.editable = false
                         this.checkTicket()
                     }
@@ -239,7 +237,7 @@ export default {
               if (err.response.status === 422) {
                 this.errors = err.response.data.errors
               } else {
-                console.log('Error createTicket ', err)                
+                console.log('Error createTicket ', err)
               }
             })
         },
@@ -253,7 +251,8 @@ export default {
                     name: null,
                     gender: null,
                     phone: null,
-                    priority: null
+                    priority: null,
+                    notifiable: true
                 }
             }
             this.doc = null
@@ -264,6 +263,10 @@ export default {
             this.ticket.active = false
             this.active = false
             this.resetForm()
+        },
+
+        changeInput (name, value) {
+          this.form.data[name] = value
         }
     }
 }
