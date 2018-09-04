@@ -7,11 +7,13 @@ class TicketObserver
 {
    public function creating(Ticket $ticket)
    {
+       $now = new \DateTime();
+
        try {
            $lastTicket = $ticket->agency->tickets()->latest()->first();
            $day = new \DateTime($lastTicket->created_at);
 
-           if ((new \DateTime)->format('Ymd') == $day->format('Ymd')) {
+           if ($now->format('Ymd') == $day->format('Ymd')) {
                $group = preg_replace('/^([A-Z]).+/', '$1', $lastTicket->num);
                $numeral = (integer)preg_replace('/[A-Z]+(\d+)$/', '$1', $lastTicket->num);
                ++$numeral;

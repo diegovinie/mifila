@@ -40,13 +40,13 @@ class QueueManager
         return $service->fresh()->load('ticket');
     }
 
-    public function newTicket(Client $client, Agency $agency, $notificable=false)
+    public function newTicket(Client $client, Agency $agency, $notifiable=false)
     {
         $ticket = new Ticket;
 
         $ticket->client()->associate($client);
         $ticket->agency()->associate($agency);
-        $ticket->notificable = $notificable;
+        $ticket->notifiable = $notifiable;
         $ticket->save();
 
         $infoAgency = $this->infoAgency($agency);

@@ -17,6 +17,8 @@ class ClientsTableSeeder extends Seeder
             'name' => 'Diego Viniegra',
             'gender' => 'male',
             'phone' => '3507896384',
+            'email' => 'diego.viniegra@gmail.com',
+            'previse' => 180,
         ]);
     }
 }

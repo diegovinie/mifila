@@ -30,7 +30,7 @@ class NewTicket extends FormRequest
             'phone' => 'nullable|numeric|max:9999999999',
             'email' => 'email|max:64',
             'priority' => 'nullable|boolean',
-            'notificable' => 'boolean'
+            'notifiable' => 'boolean'
         ];
     }
 }

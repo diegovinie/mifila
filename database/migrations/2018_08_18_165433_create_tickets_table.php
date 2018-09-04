@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedInteger('agency_id')->default(1);
             $table->boolean('pending')->default(true);
             $table->boolean('delayed')->default(false);
-            $table->boolean('notificable')->default(false);
+            $table->boolean('notifiable')->default(false);
             $table->boolean('notified')->default(false);
             $table->unsignedInteger('waited')->nullable();  // segundos totales de espera
             $table->timestamps();
