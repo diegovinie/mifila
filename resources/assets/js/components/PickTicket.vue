@@ -29,32 +29,24 @@
             class=""
             @submit.prevent="createTicket()"
             method="post">
-              <div :class="['form-group', errors.cc ? 'has-error' : '']">
-                <label for="cc" class="control-label">Documento:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="cc"
-                  id="cc"
-                  v-model="form.data.cc"
-                  :readonly="!form.editable"/>
-                <span v-if="errors.cc" :class="['label label-danger']">
-                  {{ errors.cc[0] }}
-                </span>
-              </div>
-              <div :class="['form-group', errors.name ? 'has-error' : '']">
-                <label for="name" class="control-label">Nombre:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="name"
-                  id="name"
-                  v-model="form.data.name"
-                  :readonly="!form.editable"/>
-                <span v-if="errors.name" :class="['label label-danger']">
-                  {{ errors.name[0] }}
-                </span>
-              </div>
+              <InputTicket
+                @typing="changeInput"
+                name="cc"
+                type="text"
+                :value="form.data.cc"
+                label="Documento:"
+                :editable="form.editable"
+                :errors="errors" />
+
+              <InputTicket
+                @typing="changeInput"
+                name="name"
+                type="text"
+                :value="form.data.name"
+                label="Nombre:"
+                :editable="form.editable"
+                :errors="errors" />
+
               <div class="form-inline row">
                 <label>Género:
                   <select
@@ -93,19 +85,16 @@
                 label="Celular:"
                 :editable="form.editable"
                 :errors="errors" />
-              <div :class="['form-group', errors.phone ? 'has-error' : '']">
-                <label for="email">Correo:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="email"
-                  id="email"
-                  v-model="form.data.email"
-                  :readonly="!form.editable"/>
-                <span v-if="errors.email" :class="['label label-danger']">
-                  {{ errors.email[0] }}
-                </span>
-              </div>
+
+              <InputTicket
+                @typing="changeInput"
+                name="email"
+                type="text"
+                :value="form.data.email"
+                label="Correo:"
+                :editable="form.editable"
+                :errors="errors" />
+
               <br />
               <button
                 type="submit"
