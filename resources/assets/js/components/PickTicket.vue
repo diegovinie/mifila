@@ -48,35 +48,39 @@
                 :errors="errors" />
 
               <div class="form-inline row">
-                <label>Género:
-                  <select
-                    class="form-control"
-                    name="gender"
-                    v-model="form.data.gender"
-                    :readonly="!form.editable">
-                    <option value="male">Masculino</option>
-                    <option value="female">Femenino</option>
-                  </select>
-                </label>
-                <div class="checkbox col-xs-6">
-                  <label><input
-                    type="checkbox"
-                    name="priority"
-                    v-model="form.data.priority"
-                    :readonly="!form.editable"/>
-                    Atención Preferencial
+                <div class="col-xs-6">
+                  <label>Género:
+                    <select
+                      class="form-control"
+                      name="gender"
+                      v-model="form.data.gender"
+                      :readonly="!form.editable">
+                      <option value="male">Masculino</option>
+                      <option value="female">Femenino</option>
+                    </select>
                   </label>
                 </div>
-                <div class="checkbox col-xs-6">
-                  <label><input
-                    type="checkbox"
-                    name="notifiable"
-                    v-model="form.data.notifiable"
-                    />
-                    Notificar:
-                  </label>
-                </div>
+                <InputTicket
+                  @typing="changeInput"
+                  name="priority"
+                  type="checkbox"
+                  :value="form.data.priority"
+                  label="Atención Preferencial"
+                  :editable="form.editable"
+                  :errors="errors" />
               </div>
+
+              <InputTicket
+                @typing="changeInput"
+                name="notifiable"
+                type="checkbox"
+                :value="form.data.notifiable"
+                label="Notificar"
+                :editable="true"
+                :errors="errors" />
+
+            <hr />
+
               <InputTicket
                 @typing="changeInput"
                 name="phone"
@@ -109,7 +113,6 @@
                 name="button">
                   Regresar
               </button>
-
           </form>
           <Ticket
             :ticket="ticket"
