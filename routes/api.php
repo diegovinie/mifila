@@ -24,6 +24,7 @@ Route::group([
 
     Route::name('tickets.list')->get('tickets', 'Api\TicketsController@list');
     Route::name('tickets.store')->post('agencies/{agency}/tickets/create', 'Api\TicketsController@store');
+    Route::name('tickets.delete')->delete('tickets/{ticket}', 'Api\TicketsController@delete');
 
     Route::name('clients.list')->get('clients', 'Api\ClientsController@list');
     Route::name('clients.show')->get('clients/{cc}', 'Api\ClientsController@show');
@@ -54,7 +55,5 @@ Route::group([
     Route::apiResource('configs', 'Api\ConfigController')
         ->only('index', 'show', 'update', 'next');
     Route::name('configs.items')->get('configs/{config}/items', 'Api\ConfigController@items');
-    // Route::get('configs', 'Api\ConfigController@index');
-    // Route::get('configs/{config}', 'Api\ConfigController@show');
-    // Route::put('configs/{config}', 'Api\ConfigController@update');
+
 });

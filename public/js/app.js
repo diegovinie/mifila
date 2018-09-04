@@ -74408,7 +74408,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74423,6 +74423,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Ticket___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Ticket__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InputTicket__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InputTicket___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InputTicket__);
+//
 //
 //
 //
@@ -74578,6 +74579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             },
             ticket: {
+                id: null,
                 active: false,
                 num: null,
                 agency: null,
@@ -74638,6 +74640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.ticket.name = data.client.name;
             this.ticket.num = data.num;
             this.ticket.agency = data.agency.name;
+            this.ticket.id = data.id;
         },
         createTicket: function createTicket() {
             var _this3 = this;
@@ -74687,6 +74690,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         changeInput: function changeInput(name, value) {
             this.form.data[name] = value;
+        },
+        cancelTicket: function cancelTicket() {
+            var _this4 = this;
+
+            axios.delete('tickets/' + this.ticket.id).then(function (_ref4) {
+                var status = _ref4.status;
+
+                if (status === 200) {
+                    _this4.shutDown();
+                }
+
+                if (status === 422) {
+                    console.log('No se puede eliminar ' + _this4.ticket.num);
+                }
+            }).catch(function (err) {
+                console.log('Error en cancelTicket ', err);
+            });
         }
     }
 });
@@ -74763,6 +74783,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['ticket']
@@ -74793,19 +74819,35 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-default",
-        attrs: { type: "button", name: "button" },
-        on: {
-          click: function($event) {
-            _vm.$emit("closeTicket")
+    _c("div", { staticClass: "btn-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              _vm.$emit("closeTicket")
+            }
           }
-        }
-      },
-      [_vm._v("Aceptar\n    ")]
-    )
+        },
+        [_vm._v("Aceptar\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              _vm.$emit("cancelTicket")
+            }
+          }
+        },
+        [_vm._v("Cancelar\n        ")]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -75418,6 +75460,9 @@ var render = function() {
                   on: {
                     closeTicket: function($event) {
                       _vm.shutDown()
+                    },
+                    cancelTicket: function($event) {
+                      _vm.cancelTicket()
                     }
                   }
                 })

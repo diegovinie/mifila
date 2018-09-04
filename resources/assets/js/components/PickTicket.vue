@@ -117,6 +117,7 @@
           <Ticket
             :ticket="ticket"
             @closeTicket="shutDown()"
+            @cancelTicket="cancelTicket()"
             v-if="ticket.active" />
       </div>
       <div v-else>
@@ -152,6 +153,7 @@ export default {
             }
         },
         ticket: {
+            id: null,
             active: false,
             num: null,
             agency: null,
@@ -209,6 +211,7 @@ export default {
             this.ticket.name = data.client.name
             this.ticket.num = data.num
             this.ticket.agency = data.agency.name
+            this.ticket.id = data.id
         },
 
         createTicket () {
@@ -259,6 +262,22 @@ export default {
 
         changeInput (name, value) {
           this.form.data[name] = value
+        },
+
+        cancelTicket () {
+          axios.delete(`tickets/${this.ticket.id}`)
+            .then(({status}) => {
+              if (status === 200) {
+                this.shutDown()
+              }
+
+              if (status === 422) {
+                console.log(`No se puede eliminar ${this.ticket.num}`)
+              }
+            })
+            .catch(err => {
+              console.log('Error en cancelTicket ', err)
+            })
         }
     }
 }

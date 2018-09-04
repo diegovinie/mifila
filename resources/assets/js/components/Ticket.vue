@@ -8,12 +8,18 @@
         <br />
         <span>En la agencia: {{ ticket.agency }}</span>
         <br />
-        <button
-            type="button"
-            class="btn btn-default"
-            name="button"
-            @click="$emit('closeTicket')">Aceptar
-        </button>
+        <div class="btn-group">
+            <button
+                type="button"
+                class="btn btn-default"
+                @click="$emit('closeTicket')">Aceptar
+            </button>
+            <button
+                type="button"
+                class="btn btn-danger"
+                @click="$emit('cancelTicket')">Cancelar
+            </button>
+        </div>
     </div>
 </template>
 

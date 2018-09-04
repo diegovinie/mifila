@@ -134,7 +134,12 @@ trait InfoQueueTrait
 
     public function infoAgencyFinished(Agency $agency)
     {
-        return $agency->services()->finishedToday()->count();
+        try {
+            return $agency->services()->finishedToday()->count();
+
+        } catch (\Exception $e) {
+            return 0;
+        }
     }
 
     public function infoAgencyAvg(Agency $agency)
