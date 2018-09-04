@@ -11,10 +11,10 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('home') }}">Inicio</a></li>
+        <li><a href="{{ route('home') }}">Usuario</a></li>
         <li><a href="#about">Acerca de</a></li>
         <li><a href="#contact">Contacto</a></li>
-        <li><a href="{{ route('admin') }}">Ingresa</a></li>
+        <li><a href="{{ route('admin') }}">Aministrador</a></li>
         </ul>
     </div><!--/.nav-collapse -->
     </div>
