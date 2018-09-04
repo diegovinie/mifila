@@ -15,6 +15,7 @@ class ConfigsTableSeeder extends Seeder
         $types = [
             'clients_rate' => 'Promedio de Clientes - array(24)',
             'acc' =>'Multiplicador de velocidad de clientes',
+            'noti_prob' => 'Probabilidad de querer ser notificado',
         ];
 
         foreach ($types as $name => $desc) {

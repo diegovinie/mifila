@@ -67,6 +67,22 @@ class ConfigItemsTableSeeder extends Seeder
             $acc = null;
         }
 
+        /* Probabilidad de querer ser notificado */
+
+        $probs = [0, 1, 2, 3, 5, 7, 10, 12, 15, 20];
+        $notiType = Config::whereName('noti_prob')->first();
+
+        foreach ($probs as $prob) {
+            $noti = Item::make([
+                'name' => "{$prob} %",
+                'data' => $prob
+            ]);
+
+            $noti->config()->associate($notiType);
+            $noti->save();
+            $noti = null;
+        }
+
         /* FIJANDO LAS CONFIGURACIONES POR DEFECTO */
 
         $cliRateConf = Config::whereName('clients_rate')->first();
@@ -76,5 +92,8 @@ class ConfigItemsTableSeeder extends Seeder
         $accConf = Config::whereName('acc')->first();
         $accConf->current_id = 6;
         $accConf->save();
+
+        $notiType->current_id = 10;
+        $notiType->save();
     }
 }

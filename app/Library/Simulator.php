@@ -16,6 +16,8 @@ class Simulator
 
     public $clients_rate;
 
+    public $noti_prob;
+
     public function __construct()
     {
         $this->loadConfig();
@@ -59,9 +61,9 @@ class Simulator
         return $this->vel * $this->acc * $this->top / 3600;
     }
 
-    public function probNotifiable($prob)
+    public function probNotifiable()
     {
-        return mt_rand(0, 99) < $prob ? true : false;
+        return mt_rand(0, 99) < $this->noti_prob ? true : false;
     }
 
     public function pickAgency($agencies)

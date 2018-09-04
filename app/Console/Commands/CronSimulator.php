@@ -84,7 +84,7 @@ class CronSimulator extends Command
 
                 $agency = $sim->pickAgency($agencies);
 
-                $noti = $sim->probNotifiable(15);
+                $noti = $sim->probNotifiable();
 
                 $ticket = $queue->newTicket($client, $agency, $noti);
             }
