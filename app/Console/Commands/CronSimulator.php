@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Library\QueueManager;
 use App\Library\Simulator;
+use App\Agency;
 
 class CronSimulator extends Command
 {
@@ -46,7 +47,7 @@ class CronSimulator extends Command
 
         for ($i=0; $i < 59; $i++) {
 
-            $agencies = \App\Agency::all();
+            $agencies = Agency::all();
 
             foreach ($agencies as $agency) {
 
@@ -83,7 +84,7 @@ class CronSimulator extends Command
 
                 $agency = $sim->pickAgency($agencies);
 
-                $noti = $this->probNotificable(15);
+                $noti = $sim->probNotifiable(15);
 
                 $ticket = $queue->newTicket($client, $agency, $noti);
             }

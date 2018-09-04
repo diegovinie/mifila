@@ -59,7 +59,7 @@ class Simulator
         return $this->vel * $this->acc * $this->top / 3600;
     }
 
-    public function probNotificable($prob)
+    public function probNotifiable($prob)
     {
         return mt_rand(0, 99) < $prob ? true : false;
     }

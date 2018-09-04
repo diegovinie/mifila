@@ -85,7 +85,7 @@ class RunSimulator extends Command
 
                 $agency = $sim->pickAgency($agencies);
 
-                $noti = $sim->probNotificable(15);
+                $noti = $sim->probNotifiable(15);
 
                 $ticket = $queue->newTicket($client, $agency, $noti);
             }

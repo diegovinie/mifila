@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="pusher-key" content="{{ env('PUSHER_APP_KEY') }}">
 
-        <title>Laravel</title>
+        <title>Mi Fila</title>
 
         <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> --}}
