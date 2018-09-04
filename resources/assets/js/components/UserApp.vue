@@ -5,19 +5,41 @@
 
       </div>
 
-      <div class="col-xs-12 block-two">
-        <h2>Elige una agencia:</h2>
+      <div class="col-md-offset-3 col-md-6 col-xs-12">
+        <h3>Seguimiento a tickes activos:</h3>
+        <div v-if="!activateTicket">
+          <ul class="list-group">
+            <template v-for="ticket in tickets" >
+              <a href @click.prevent="showTicket(ticket)" >
+                <li class="list-group-item" :key="ticket.id">
+                  <span>{{ ticket.agency.name }}</span>
+                  <span>{{ ticket.num }}</span>
+                </li>
+              </a>
+            </template>
+          </ul>
+        </div>
+        <div v-if="activateTicket">
+          <Ticket
+            @closeTicket="activateTicket = false"
+            :ticket="theTicket" />
+        </div>
       </div>
     </div>
-    <div class="row block-three">
-      <div v-if="!selectActive" class="col-md-offset-1 col-md-6 col-xs-12">
+    <div class="row">
+      <div 
+        v-if="!selectActive" 
+        class="col-md-offset-3 col-md-6 col-xs-12">
         <button 
           class="btn btn-primary btn-block"
           @click="getAgencies()" >
           Pedir un turno
         </button>
       </div>
-      <div clas="col-xs-12" v-if="selectActive" >
+      <div 
+        class="col-xs-12 col-md-6 col-md-offset-3" 
+        v-if="selectActive" >
+          <h2>Elige una agencia:</h2>
           <div class="panel-group" id="accordion">
             <template v-for="agency in agencies" >
               <Agency
@@ -26,6 +48,11 @@
                 class="panel panel-primary"/>
             </template>
           </div>
+          <button 
+            class="btn btn-default"
+            @click="selectActive = false" >
+            Regresar
+          </button>
       </div>
     </div>
   </div>
@@ -33,15 +60,23 @@
 
 <script>
 import Agency from './SimControls/Agency'
+import Ticket from './Ticket'
 
 export default {
   data: () => ({
+    clientid: 1127606049,
     selectActive: false,
-    agencies: []
+    agencies: [],
+    tickets: [],
+    theTicket: {},
+    activateTicket: false
   }),
 
+  computed: {},
+
   components: {
-    Agency
+    Agency,
+    Ticket
   },
 
   methods: {
@@ -54,7 +89,26 @@ export default {
         .catch(err => {
           console.log('Error getAgencies', err)
         })
+    },
+
+    getTickets () {
+      axios.get(`clients/${this.clientid}/tickets`)
+        .then(({data}) => {
+          this.tickets = data
+        })
+        .catch(err => {
+          console.log('Error getTicket ', err)
+        })
+    },
+
+    showTicket (ticket) {
+      this.theTicket = ticket
+      this.activateTicket = true
     }
+  },
+
+  created () {
+    this.getTickets()
   }
 }
 </script>

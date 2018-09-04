@@ -69,16 +69,9 @@
               </button>
           </div>
           <div class="tab-pane" :id="`clients_${agency.id}`">
-            <ul class="list-group">
-              <template v-for="ticket in agency.info.queuedClientsList" >
-                <li :key="ticket.id" class="list-group-item">
-                  {{ ticket.client.name }}
-                  <span :class="['label', ticket.noti ? 'label-danger' : 'label-info']">
-                    {{ ticket.num }}
-                  </span>
-                </li>
-              </template>
-            </ul>
+            <QueuedClientsList
+              v-if="admin"
+              :tickets="agency.info.queuedClientsList" />
             <PickTicket :agency="agency" />
           </div>
       </div>
@@ -89,13 +82,15 @@
 <script>
 import Cashier from './Cashier'
 import PickTicket from '../PickTicket'
+import QueuedClientsList from './QueuedClientsList'
 
 export default {
-  props: ['agency'],
+  props: ['agency', 'admin'],
 
   components: {
     PickTicket,
-    Cashier
+    Cashier,
+    QueuedClientsList
   },
 
   methods: {

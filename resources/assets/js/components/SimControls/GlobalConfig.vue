@@ -25,6 +25,20 @@
       </select>
     </div>
     <div class="form-group">
+      <label for="noti">Probabilidad de notificar:</label>
+      <select
+        class="form-control"
+        id="noti"
+        name="noti"
+        v-model="newNoti"
+        @change="updateNoti()"
+        >
+        <template v-for="noti in notis" >
+          <option :value="noti.id" :key="noti.id" >{{ noti.name }} </option>
+        </template>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="clients_rate">Promedio de Clientes:</label>
       <select
         class="form-control"
@@ -46,7 +60,9 @@ export default {
   data: () => ({
     newAcc: null,
     newClientsRate: null,
+    newNoti: null,
     accs: [],
+    notis: [],
     clientsRates: []
   }),
 
@@ -57,12 +73,15 @@ export default {
       axios.get('configs')
         .then(({data}) => {
           data.forEach(config => {
-            console.log(config.name)
+            // console.log(config.name)
             if (config.name === 'acc') {
               this.newAcc = config.current.id
             }
             if (config.name === 'clients_rate') {
               this.newClientsRate = config.current.id
+            }
+            if (config.name === 'noti_prob') {
+              this.newNoti = config.current.id
             }
           })
           this.configs = data
@@ -92,6 +111,16 @@ export default {
         })
     },
 
+    fetchNotis () {
+      axios.get('configs/3/items')
+        .then(({data}) => {
+          this.notis = data
+        })
+        .catch(err => {
+          console.log('Error fetchNotis ', err)
+        })
+    },
+
     updateAcc () {
       axios.put('configs/2', {item: this.newAcc})
       .then(({data}) => {
@@ -110,6 +139,16 @@ export default {
         .catch(err => {
           console.log('Error updateClientsRate ', err)
         })
+    },
+
+    updateNoti () {
+      axios.put('configs/3', {item: this.newNoti})
+        .then(({data}) => {
+          console.log(data)
+        })
+        .catch(err => {
+          console.log('Error updateNotis ', err)
+        })
     }
   },
 
@@ -117,6 +156,7 @@ export default {
     this.fetchConfigs()
     this.fetchAccs()
     this.fetchClientsRates()
+    this.fetchNotis()
   }
 }
 </script>

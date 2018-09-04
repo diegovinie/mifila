@@ -42,4 +42,9 @@ class ClientsController extends Controller
 
         return $ticket->load('client', 'agency');
     }
+
+    public function tickets(Client $client)
+    {
+        return $client->tickets()->with('agency')->isPending()->get();
+    }
 }

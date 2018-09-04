@@ -23,6 +23,7 @@
             <template v-for="agency in agencies" >
               <Agency
                 :key="agency.id"
+                admin="true"
                 :agency="agency"
                 class="panel panel-primary"/>
             </template>

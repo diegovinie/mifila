@@ -30,7 +30,8 @@ Route::group([
     Route::name('clients.show')->get('clients/{cc}', 'Api\ClientsController@show');
     Route::name('clients.checkTicket')->get('clients/{cc}/check', 'Api\ClientsController@check');
     Route::name('sim.gen.client')->get('clients/{cc}/generate', 'Api\ClientsController@generateIdentity');
-
+    Route::name('clients.tickets')->get('clients/{client}/tickets', 'Api\ClientsController@tickets');
+    
     Route::apiResource('cashiers', 'Api\CashiersController')
         ->only('index', 'show', 'update');
     Route::name('cashiers.next')->get('cashiers/{cashier}/next', 'Api\CashiersController@next');

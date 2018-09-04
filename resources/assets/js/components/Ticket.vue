@@ -17,7 +17,7 @@
             <button
                 type="button"
                 class="btn btn-danger"
-                @click="$emit('cancelTicket')">Cancelar
+                @click="$emit('cancelTicket')">Desistir
             </button>
         </div>
     </div>
