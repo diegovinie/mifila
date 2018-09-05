@@ -12,6 +12,7 @@ use App\TicketService as Service;
 use App\Events\UpdateAgency;
 use App\Events\UpdateGlobals;
 use App\Events\NotifyTicket;
+use App\Http\Resources\NewTicketResource as TicketResource;
 
 class QueueManager
 {
@@ -55,7 +56,7 @@ class QueueManager
         event(new UpdateAgency($infoAgency));
         event(new UpdateGlobals($infoGlobal));
 
-        return $ticket;
+        return new TicketResource($ticket);
     }
 
     public function getClient(array $metadata)
@@ -93,7 +94,7 @@ class QueueManager
             return;
         }
 
-        return $ticket;
+        return new TicketResource($ticket);
     }
 
     public function getPrevisedTickets()

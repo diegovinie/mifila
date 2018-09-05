@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Client;
 use App\Library\Simulator;
+use App\Http\Resources\NewTicketResource as TicketResource;
 
 class ClientsController extends Controller
 {
@@ -40,7 +41,7 @@ class ClientsController extends Controller
             return response()->json(null, 204);
         }
 
-        return $ticket->load('client', 'agency');
+        return response($ticket);
     }
 
     public function tickets(Client $client)

@@ -27,7 +27,7 @@ class TicketsController extends Controller
         $client = $this->queue->clientFromRequest($request);
         $ticket = $this->queue->newTicket($client, $agency, $notifiable);
 
-        return $ticket;
+        return response($ticket);
     }
 
     public function delete(Ticket $ticket)
