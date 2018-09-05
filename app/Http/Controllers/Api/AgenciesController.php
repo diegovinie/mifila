@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Agency;
+use App\Ticket;
 use App\Library\QueueManager;
 use App\Events\UpdateAgency;
 
@@ -74,5 +75,36 @@ class AgenciesController extends Controller
         event(new UpdateAgency($infoAgency));
 
         return $cashier;
+    }
+
+    public function deletePending(QueueManager $qm, Agency $agency)
+    {
+        $pending = $agency->tickets()->isPending()->get();
+
+        foreach ($pending as $ticket) {
+            // code...
+            $ticket->delete();
+        }
+
+        $infoAgency = $qm->infoAgency($agency);
+        event(new UpdateAgency($infoAgency));
+
+        return response()->json(null, 200);
+    }
+
+    public function deleteTickets(QueueManager $qm, Agency $agency)
+    {
+        $tickets = $agency->tickets;
+
+        foreach ($tickets as $ticket) {
+            // code...
+            $ticket->services()->delete();
+            $ticket->delete();
+        }
+
+        $infoAgency = $qm->infoAgency($agency);
+        event(new UpdateAgency($infoAgency));
+
+        return response()->json(null, 200);
     }
 }

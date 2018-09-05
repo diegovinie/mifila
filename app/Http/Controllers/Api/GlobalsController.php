@@ -46,4 +46,27 @@ class GlobalsController extends Controller
     {
         return $this->infoAgencies($qm);
     }
+
+    public function deletePending()
+    {
+        $pending = Ticket::isPending()->get();
+
+        foreach ($pending as $ticket) {
+            // code...
+            $ticket->delete();
+        }
+
+        return response()->json(null, 200);
+    }
+
+    public function deleteTickets()
+    {
+        $tickets = Ticket::all();
+
+        foreach ($tickets as $ticket) {
+            // code...
+            $ticket->services()->delete();
+            $ticket->delete();
+        }
+    }
 }

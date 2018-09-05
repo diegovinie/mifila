@@ -31,7 +31,7 @@ Route::group([
     Route::name('clients.checkTicket')->get('clients/{cc}/check', 'Api\ClientsController@check');
     Route::name('sim.gen.client')->get('clients/{cc}/generate', 'Api\ClientsController@generateIdentity');
     Route::name('clients.tickets')->get('clients/{client}/tickets', 'Api\ClientsController@tickets');
-    
+
     Route::apiResource('cashiers', 'Api\CashiersController')
         ->only('index', 'show', 'update');
     Route::name('cashiers.next')->get('cashiers/{cashier}/next', 'Api\CashiersController@next');
@@ -45,11 +45,16 @@ Route::group([
         ->get('globals/cashiers/active', 'Api\GlobalsController@cashiers');
     Route::name('globals.avg')->get('globals/avg', 'Api\GlobalsController@avg');
     Route::name('globals.agencies')->get('globals/agencies', 'Api\GlobalsController@agencies');
+    Route::name('globals.delete.pending')->delete('globals/pending', 'Api\GlobalsController@deletePending');
+    Route::name('globals.delete.tickets')->delete('globals/tickets', 'Api\GlobalsController@deleteTickets');
 
     Route::name('agencies.info')->get('agencies/{id}/info', 'Api\AgenciesController@all');
     Route::name('agencies.generateCashier')
         ->get('agencies/{agency}/cashiers/generate', 'Api\AgenciesController@generateCashier');
-
+    Route::name('agencies.delete.pending')
+        ->delete('agencies/{agency}/pending', 'Api\AgenciesController@deletePending');
+    Route::name('agencies.delete.tickets')
+        ->delete('agencies/{agency}/tickets', 'Api\AgenciesController@deleteTickets');
 
     Route::name('ping')->get('ping', function() { return response()->json(1, 200); });
 
