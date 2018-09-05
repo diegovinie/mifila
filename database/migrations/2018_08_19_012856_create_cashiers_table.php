@@ -20,6 +20,7 @@ class CreateCashiersTable extends Migration
             $table->unsignedInteger('rate')->default(90);    // tiempo: seg/cliente
             $table->boolean('active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

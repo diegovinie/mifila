@@ -22,6 +22,7 @@ class CreateTicketServicesTable extends Migration
             $table->unsignedInteger('agency_id');
             $table->unsignedInteger('quality')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('ticket_id')
                 ->references('id')->on('tickets')

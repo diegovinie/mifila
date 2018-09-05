@@ -24,6 +24,7 @@ class CreateTicketsTable extends Migration
             $table->boolean('notified')->default(false);
             $table->unsignedInteger('waited')->nullable();  // segundos totales de espera
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

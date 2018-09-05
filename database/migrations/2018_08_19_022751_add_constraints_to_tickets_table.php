@@ -17,10 +17,10 @@ class AddConstraintsToTicketsTable extends Migration
             //
             $table->foreign('client_id')
                 ->references('id')->on('clients')
-                ->onDelete('no action');
+                ->onDelete('cascade');
             $table->foreign('agency_id')
                 ->references('id')->on('agencies')
-                ->onDelete('no action');
+                ->onDelete('cascade');
         });
     }
 
