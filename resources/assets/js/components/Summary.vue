@@ -9,7 +9,7 @@
                   <span>Total fila: <strong>{{ globals.queue }}</strong></span>
               </li>
               <li class="list-group-item">
-                  <span>Total Cajeros: <strong>{{ globals.cashiers }}</strong></span>
+                  <span>Total cajeros activos: <strong>{{ globals.cashiers }}</strong></span>
               </li>
               <li class="list-group-item">
                   <span>Atendidos hoy: <strong>{{ globals.finished }}</strong></span>

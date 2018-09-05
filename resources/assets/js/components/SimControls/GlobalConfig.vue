@@ -52,10 +52,13 @@
         </template>
       </select>
     </div>
+    <SimActions />
   </div>
 </template>
 
 <script>
+import SimActions from './SimActions'
+
 export default {
   data: () => ({
     newAcc: null,
@@ -65,6 +68,10 @@ export default {
     notis: [],
     clientsRates: []
   }),
+
+  components: {
+    SimActions  
+  },
 
   props: ['simActive'],
 

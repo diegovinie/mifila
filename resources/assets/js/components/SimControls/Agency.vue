@@ -34,7 +34,7 @@
             <div v-if="agency.info">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <span>Cajeros: {{ agency.info.cashiers }}</span>
+                        <span>Cajeros activos: {{ agency.info.cashiers }}</span>
                     </li>
                     <li class="list-group-item">
                         <span>Clientes en espera: {{ agency.info.queue }}</span>
@@ -49,6 +49,7 @@
                         <span>Atendiendo a: {{ agency.info.lastCalled }}</span>
                     </li>
                 </ul>
+                <SimActions :agency="agency" />
             </div>
           </div>
           <div class="tab-pane" :id="`cashiers_${agency.id}`">
@@ -83,6 +84,7 @@
 import Cashier from './Cashier'
 import PickTicket from '../PickTicket'
 import QueuedClientsList from './QueuedClientsList'
+import SimActions from './SimActions'
 
 export default {
   props: ['agency', 'admin'],
@@ -90,7 +92,8 @@ export default {
   components: {
     PickTicket,
     Cashier,
-    QueuedClientsList
+    QueuedClientsList,
+    SimActions
   },
 
   methods: {
