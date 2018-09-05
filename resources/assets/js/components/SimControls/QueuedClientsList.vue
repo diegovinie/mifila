@@ -1,5 +1,5 @@
 <template>
-	<ul class="list-group">
+	<ul class="list-group list">
     <template v-for="ticket in tickets" >
 			<li :key="ticket.id" class="list-group-item">
 				{{ ticket.client.name }}
@@ -16,3 +16,10 @@ export default {
 	props: ['tickets']
 }
 </script>
+
+<style media="screen" scoped>
+	.list {
+		max-height: 300px;
+		overflow-y: auto;
+	}
+</style>
