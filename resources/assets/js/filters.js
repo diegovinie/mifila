@@ -4,6 +4,10 @@ Vue.filter('timefrmt', (sec) => {
     let h, m, s, sr
     sec = parseInt(sec)
 
+    if (isNaN(sec)) {
+        return null
+    }
+
     if (sec < 60) {
         return `${sec} sec`
     }
