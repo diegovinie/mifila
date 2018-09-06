@@ -7,8 +7,8 @@ class TicketObserver
 {
    public function creating(Ticket $ticket)
    {
-       // $condition = 'Ymd';
-       $condition = 'H';
+       $condition = 'Ymd';
+       // $condition = 'H';
        $now = new \DateTime();
 
        try {
