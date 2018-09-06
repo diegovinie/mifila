@@ -14,9 +14,6 @@
 
         <link rel="stylesheet" href="/css/app.css">
 
-        <script type="text/javascript">
-          window.APP_URL = '{{ env('APP_URL') }}';
-        </script>
     </head>
     <body id="page-top">
         @include('partials.menu')
@@ -26,7 +23,9 @@
                 @yield('content')
             </div>
         </div>
-        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-        <script src="/js/app.js" charset="utf-8" defer async></script>
+        <script src="/js/manifest.js" charset="utf-8"></script>
+        <script src="/js/vendor.js" charset="utf-8"></script>
+        <script src="/js/app.js" charset="utf-8"></script>
+        <!-- <script src="/js/app.js" charset="utf-8" defer async></script> -->
     </body>
 </html>
