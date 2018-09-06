@@ -70,8 +70,12 @@ class GlobalsController extends Controller
         }
     }
 
-    public function listServices()
+    public function listServices(Request $request)
     {
+        if ($day = $request->query('day')) {
+            $day = (new \DateTime($day))->format('Y-m-d');
+            return Service::whereDate('created_at', '=', $day)->get();
+        }
         return Service::all();
     }
 }

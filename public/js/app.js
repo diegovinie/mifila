@@ -26429,7 +26429,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -26468,6 +26468,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -26476,6 +26480,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   data: function data() {
     return {
       active: false,
+      daysoffset: 0,
       agencies: [],
       config: {
         type: 'line',
@@ -26533,6 +26538,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     ChartPattern: __WEBPACK_IMPORTED_MODULE_1__ChartPattern__["a" /* default */]
   },
 
+  computed: {
+    day: function day() {
+      var today = new Date();
+      var dayms = 1000 * 60 * 60 * 24;
+      today.setTime(today.getTime() - dayms * this.daysoffset);
+
+      return today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    }
+  },
+
   methods: {
     fetch: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -26545,7 +26560,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.config.data.labels = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].xdata();
 
                 _context.next = 3;
-                return axios.get('tickets').then(function (_ref2) {
+                return axios.get('tickets?day=' + this.day).then(function (_ref2) {
                   var data = _ref2.data;
 
                   _this.config.data.datasets[0].data = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].ydata(data);
@@ -26555,13 +26570,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 3:
                 _context.next = 5;
-                return axios.get('globals/services').then(function (_ref3) {
+                return axios.get('globals/services?day=' + this.day).then(function (_ref3) {
                   var data = _ref3.data;
 
                   _this.config.data.datasets[1].data = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].ydata(data);
                 }).catch(function (err) {});
 
               case 5:
+                if (window.chart) window.chart.update();
+
+              case 6:
               case 'end':
                 return _context.stop();
             }
@@ -40079,7 +40097,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "select",
-        { staticClass: "form-control", attrs: { name: "" } },
+        { staticClass: "form-control" },
         [
           _c("option", { attrs: { value: "0" } }, [_vm._v("Global")]),
           _vm._v(" "),
@@ -40092,6 +40110,46 @@ var render = function() {
           })
         ],
         2
+      ),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.daysoffset,
+              expression: "daysoffset"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.daysoffset = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                _vm.fetch()
+              }
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { value: "0" } }, [_vm._v("Hoy")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1" } }, [_vm._v("Ayer")])
+        ]
       ),
       _vm._v(" "),
       _vm.active

@@ -16,8 +16,14 @@ class TicketsController extends Controller
 {
 
     //
-    public function list()
+    public function list(Request $request)
     {
+        if ($day = $request->query('day')) {
+            $day = (new \DateTime($day))->format('Y-m-d');
+            return Ticket::whereDate('created_at', '=', $day)
+                ->get();
+        }
+
         return Ticket::all();
     }
 
