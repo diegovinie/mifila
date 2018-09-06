@@ -62,4 +62,7 @@ Route::group([
         ->only('index', 'show', 'update', 'next');
     Route::name('configs.items')->get('configs/{config}/items', 'Api\ConfigController@items');
 
+    Route::name('globals.services')
+        ->get('globals/services', 'Api\GlobalsController@listServices');
+
 });

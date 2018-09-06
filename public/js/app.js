@@ -1902,7 +1902,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(272)("./" + name);
+                __webpack_require__(273)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4584,9 +4584,9 @@
 
 
 module.exports = __webpack_require__(12);
-module.exports.easing = __webpack_require__(246);
-module.exports.canvas = __webpack_require__(247);
-module.exports.options = __webpack_require__(248);
+module.exports.easing = __webpack_require__(247);
+module.exports.canvas = __webpack_require__(248);
+module.exports.options = __webpack_require__(249);
 
 
 /***/ }),
@@ -5467,10 +5467,10 @@ module.exports = Element;
 
 
 module.exports = {};
-module.exports.Arc = __webpack_require__(254);
-module.exports.Line = __webpack_require__(255);
-module.exports.Point = __webpack_require__(256);
-module.exports.Rectangle = __webpack_require__(257);
+module.exports.Arc = __webpack_require__(255);
+module.exports.Line = __webpack_require__(256);
+module.exports.Point = __webpack_require__(257);
+module.exports.Rectangle = __webpack_require__(258);
 
 
 /***/ }),
@@ -18104,8 +18104,8 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(250);
-var string = __webpack_require__(252);
+var convert = __webpack_require__(251);
+var string = __webpack_require__(253);
 
 var Color = function (obj) {
 	if (obj instanceof Color) {
@@ -18935,8 +18935,8 @@ module.exports = {
 
 
 var helpers = __webpack_require__(1);
-var basic = __webpack_require__(258);
-var dom = __webpack_require__(259);
+var basic = __webpack_require__(259);
+var dom = __webpack_require__(260);
 
 // @TODO Make possible to select another platform at build time.
 var implementation = dom._enabled ? dom : basic;
@@ -31247,7 +31247,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(154);
-module.exports = __webpack_require__(294);
+module.exports = __webpack_require__(296);
 
 
 /***/ }),
@@ -31280,9 +31280,9 @@ Vue.component('AdminPanel', __webpack_require__(183));
 Vue.component('UserApp', __webpack_require__(232));
 Vue.component('Charts', __webpack_require__(237));
 
-__webpack_require__(292);
+__webpack_require__(294);
 
-__webpack_require__(293);
+__webpack_require__(295);
 
 var app = new Vue({
   store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */],
@@ -73979,28 +73979,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['agency'],
+    props: ['agency'],
 
-  computed: {
-    url: function url() {
-      return this.agency ? 'agencies/' + this.agency.id : 'globals';
-    }
-  },
-
-  methods: {
-    deletePendingTickets: function deletePendingTickets() {
-      axios.delete(this.url + '/pending').then(function (_ref) {
-        var data = _ref.data,
-            status = _ref.status;
-      }).catch(function (err) {});
+    computed: {
+        url: function url() {
+            return this.agency ? 'agencies/' + this.agency.id : 'globals';
+        }
     },
-    deleteAllTickets: function deleteAllTickets() {
-      axios.delete(this.url + '/tickets').then(function (_ref2) {
-        var data = _ref2.data,
-            status = _ref2.status;
-      }).catch(function (err) {});
+
+    methods: {
+        deletePendingTickets: function deletePendingTickets() {
+            var _this = this;
+
+            axios.delete(this.url + '/pending').then(function (_ref) {
+                var data = _ref.data,
+                    status = _ref.status;
+
+                _this.$emit('reload');
+            }).catch(function (err) {
+                console.log('Error deletePendingTickets ', err);
+            });
+        },
+        deleteAllTickets: function deleteAllTickets() {
+            var _this2 = this;
+
+            axios.delete(this.url + '/tickets').then(function (_ref2) {
+                var data = _ref2.data,
+                    status = _ref2.status;
+
+                _this2.$emit('reload');
+            }).catch(function (err) {
+                console.log('Error deleteAllTickets ', err);
+            });
+        }
     }
-  }
 });
 
 /***/ }),
@@ -76683,7 +76695,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(240)
 /* template */
-var __vue_template__ = __webpack_require__(291)
+var __vue_template__ = __webpack_require__(293)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -76756,7 +76768,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -76769,8 +76781,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chart_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ChartPattern__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__functions__ = __webpack_require__(292);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -76781,108 +76793,159 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      sum: []
+      active: false,
+      agencies: [],
+      config: {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Tickets pedidos',
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data: [],
+            fill: false
+          }, {
+            label: 'Tickets atendidos',
+            fill: false,
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data: []
+          }]
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: 'Turnos por hora'
+          },
+          tooltips: {
+            mode: 'index',
+            intersect: false
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: true
+          },
+          scales: {
+            xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Hora (24h)'
+              }
+            }],
+            yAxes: [{
+              display: true,
+              scaleLabel: {
+                display: false,
+                labelString: 'tickets'
+              }
+            }]
+          }
+        }
+      }
     };
+  },
+  components: {
+    ChartPattern: __WEBPACK_IMPORTED_MODULE_1__ChartPattern__["a" /* default */]
   },
 
   methods: {
-    fetch: function fetch() {
-      var _this = this;
+    fetch: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var _this = this;
 
-      axios.get('tickets').then(function (_ref) {
-        var data = _ref.data;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.config.data.labels = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].xdata();
 
-        console.log(data);
+                _context.next = 3;
+                return axios.get('tickets').then(function (_ref2) {
+                  var data = _ref2.data;
 
-        var res = data.map(function (ticket) {
-          ticket.time = new Date(ticket.created_at).getHours();
-          return ticket;
-        });
+                  _this.config.data.datasets[0].data = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].ydata(data);
+                }).catch(function (err) {
+                  console.log('Error en fetch: ', err);
+                });
 
-        var b = _(res).groupBy('time').map(function (obj, key) {
-          return {
-            'time': key,
-            'value': _.sumBy(obj, 'time')
-          };
-        }).value();
+              case 3:
+                _context.next = 5;
+                return axios.get('globals/services').then(function (_ref3) {
+                  var data = _ref3.data;
 
-        var arr = [];
-        arr.length = 24;
-        arr.fill(0);
-        b.forEach(function (item) {
-          return arr[item.time] = item.value;
-        });
+                  _this.config.data.datasets[1].data = __WEBPACK_IMPORTED_MODULE_2__functions__["a" /* byhours */].ydata(data);
+                }).catch(function (err) {});
 
-        console.log(arr);
-        console.log(b);
+              case 5:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
 
-        var canvas = document.getElementById('canvas');
+      function fetch() {
+        return _ref.apply(this, arguments);
+      }
 
-        window.chart2 = new __WEBPACK_IMPORTED_MODULE_1_chart_js___default.a(canvas, {
-          // The type of chart we want to create
-          type: 'line',
-
-          // The data for our dataset
-          data: {
-            labels: arr,
-            datasets: [{
-              label: "My First dataset",
-              backgroundColor: 'rgb(255, 99, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: arr
-            }]
-          },
-
-          // Configuration options go here
-          options: {}
-        });
-        _this.sum = arr;
-      }).catch(function (err) {
-        console.log('Error en fetch: ', err);
-      });
-    }
+      return fetch;
+    }()
   },
 
-  mounted: function mounted() {
-    var canvas = document.getElementById('canvas');
-
-    // window.firstChart = new Chart(canvas, {
-    //     type: 'line',
-    //     datasets: [
-    //       {
-    //         data: this.sum
-    //
-    //       }
-    //     ]
-    //
-    // })
-
-  },
   created: function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      var _this2 = this;
+
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context.next = 2;
+              _context2.next = 2;
               return this.fetch();
 
             case 2:
+              this.active = true;
+
+              setInterval(function () {
+                _this2.fetch();
+              }, 60 * 1000);
+
+            case 4:
             case 'end':
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee, this);
+      }, _callee2, this);
     }));
 
     function created() {
-      return _ref2.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     }
 
     return created;
@@ -77672,17 +77735,37 @@ if (hadRuntime) {
 
 /***/ }),
 /* 244 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_chart_js__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: ['config', 'id'],
+
+  template: '<canvas\n              :id="id"\n              max-width="300" max-height="300"></canvas>',
+
+  mounted: function mounted() {
+    var canvas = document.getElementById(this.id);
+    window.chart = new __WEBPACK_IMPORTED_MODULE_0_chart_js___default.a(canvas, this.config);
+  }
+});
+
+/***/ }),
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace Chart
  */
-var Chart = __webpack_require__(245)();
+var Chart = __webpack_require__(246)();
 
 Chart.helpers = __webpack_require__(1);
 
 // @todo dispatch these helpers into appropriated helpers/helpers.* file and write unit tests!
-__webpack_require__(249)(Chart);
+__webpack_require__(250)(Chart);
 
 Chart.defaults = __webpack_require__(2);
 Chart.Element = __webpack_require__(7);
@@ -77693,40 +77776,40 @@ Chart.platform = __webpack_require__(28);
 Chart.plugins = __webpack_require__(29);
 Chart.Ticks = __webpack_require__(10);
 
-__webpack_require__(260)(Chart);
 __webpack_require__(261)(Chart);
 __webpack_require__(262)(Chart);
 __webpack_require__(263)(Chart);
 __webpack_require__(264)(Chart);
 __webpack_require__(265)(Chart);
-
 __webpack_require__(266)(Chart);
+
 __webpack_require__(267)(Chart);
 __webpack_require__(268)(Chart);
 __webpack_require__(269)(Chart);
 __webpack_require__(270)(Chart);
 __webpack_require__(271)(Chart);
+__webpack_require__(272)(Chart);
 
 // Controllers must be loaded after elements
 // See Chart.core.datasetController.dataElementType
-__webpack_require__(273)(Chart);
 __webpack_require__(274)(Chart);
 __webpack_require__(275)(Chart);
 __webpack_require__(276)(Chart);
 __webpack_require__(277)(Chart);
 __webpack_require__(278)(Chart);
 __webpack_require__(279)(Chart);
-
 __webpack_require__(280)(Chart);
+
 __webpack_require__(281)(Chart);
 __webpack_require__(282)(Chart);
 __webpack_require__(283)(Chart);
 __webpack_require__(284)(Chart);
 __webpack_require__(285)(Chart);
 __webpack_require__(286)(Chart);
+__webpack_require__(287)(Chart);
 
 // Loading built-it plugins
-var plugins = __webpack_require__(287);
+var plugins = __webpack_require__(288);
 for (var k in plugins) {
 	if (plugins.hasOwnProperty(k)) {
 		Chart.plugins.register(plugins[k]);
@@ -77799,7 +77882,7 @@ Chart.layoutService = Chart.layouts;
 
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77855,7 +77938,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78112,7 +78195,7 @@ helpers.easingEffects = effects;
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78333,7 +78416,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78436,7 +78519,7 @@ module.exports = {
 
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79054,10 +79137,10 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(251);
+var conversions = __webpack_require__(252);
 
 var convert = function() {
    return new Converter();
@@ -79151,7 +79234,7 @@ Converter.prototype.getValues = function(space) {
 module.exports = convert;
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports) {
 
 /* MIT license */
@@ -79855,11 +79938,11 @@ for (var key in cssKeywords) {
 
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(253);
+var colorNames = __webpack_require__(254);
 
 module.exports = {
    getRgba: getRgba,
@@ -80082,7 +80165,7 @@ for (var name in colorNames) {
 
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80241,7 +80324,7 @@ module.exports = {
 
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80355,7 +80438,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80453,7 +80536,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80566,7 +80649,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80790,7 +80873,7 @@ module.exports = Element.extend({
 
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, exports) {
 
 /**
@@ -80811,7 +80894,7 @@ module.exports = {
 
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81275,7 +81358,7 @@ helpers.removeEvent = removeEventListener;
 
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81454,7 +81537,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82408,7 +82491,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82745,7 +82828,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82798,7 +82881,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83741,7 +83824,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84696,7 +84779,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84889,7 +84972,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85029,7 +85112,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85227,7 +85310,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85581,7 +85664,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86117,7 +86200,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86907,7 +86990,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -87172,10 +87255,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 272;
+webpackContext.id = 273;
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87686,7 +87769,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87873,7 +87956,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88179,7 +88262,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88519,7 +88602,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88748,7 +88831,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88923,7 +89006,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88972,7 +89055,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88990,7 +89073,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89007,7 +89090,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89025,7 +89108,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89043,7 +89126,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89061,7 +89144,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89079,7 +89162,7 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89094,20 +89177,20 @@ module.exports = function(Chart) {
 
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {};
-module.exports.filler = __webpack_require__(288);
-module.exports.legend = __webpack_require__(289);
-module.exports.title = __webpack_require__(290);
+module.exports.filler = __webpack_require__(289);
+module.exports.legend = __webpack_require__(290);
+module.exports.title = __webpack_require__(291);
 
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89432,7 +89515,7 @@ module.exports = {
 
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90015,7 +90098,7 @@ module.exports = {
 
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90274,27 +90357,94 @@ module.exports = {
 
 
 /***/ }),
-/* 291 */
+/* 292 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return byhours; });
+window.chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(201, 203, 207)'
+};
+
+var byhours = {
+  xdata: function xdata() {
+    var res = [];
+    res.length = 24;
+    res.fill(0);
+
+    return res.map(function (obj, key) {
+      return key;
+    });
+  },
+
+  ydata: function ydata(data) {
+
+    var tickets = data.map(function (ticket) {
+      ticket.time = new Date(ticket.created_at).getHours();
+      return ticket;
+    });
+
+    var response = [];
+    response.length = 24;
+    response.fill(0);
+    var values = _.groupBy(tickets, 'time');
+    console.log(values);
+
+    for (var i in values) {
+      response[i] = values[i].length;
+    }
+
+    return response;
+  }
+};
+
+/***/ }),
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {},
+    [
+      _c("div", { staticStyle: { height: "60px" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-control" }, [
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { name: "" } },
+          [
+            _c("option", { attrs: { value: "0" } }, [_vm._v("Global")]),
+            _vm._v(" "),
+            _vm._l(_vm.agencies, function(agency) {
+              return [
+                _c("option", { domProps: { value: agency.id } }, [
+                  _vm._v(_vm._s(agency.name))
+                ])
+              ]
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _vm.active
+        ? _c("ChartPattern", { attrs: { id: "11", config: _vm.config } })
+        : _vm._e()
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c("canvas", {
-        attrs: { id: "canvas", "max-width": "300", "max-height": "300" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -90305,7 +90455,7 @@ if (false) {
 }
 
 /***/ }),
-/* 292 */
+/* 294 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90321,7 +90471,7 @@ window.Echo.channel('admin').listen('UpdateGlobals', function (e) {
 });
 
 /***/ }),
-/* 293 */
+/* 295 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90372,7 +90522,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('timefrmt', function (sec) {
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0_vue___default.a);
 
 /***/ }),
-/* 294 */
+/* 296 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

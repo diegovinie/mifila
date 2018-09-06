@@ -1,92 +1,118 @@
 <template lang="html">
   <div class="">
-      <canvas id="canvas" max-width="300" max-height="300"></canvas>
+    <div style="height:60px;">
+
+    </div>
+    <select class="form-control" name="">
+      <option value="0">Global</option>
+      <template v-for="agency in agencies" >
+        <option :value="agency.id">{{ agency.name }}</option>
+      </template>
+    </select>
+    <ChartPattern
+      v-if="active"
+      id="11"
+      :config="config"
+    />
+
   </div>
 </template>
 
 <script>
-import Chart from 'chart.js'
+import ChartPattern from './ChartPattern'
+import {byhours} from './functions'
 
 export default {
   data: () => ({
-      sum: []
+      active: false,
+      agencies: [],
+      config: {
+  			type: 'line',
+  			data: {
+  				labels: [],
+  				datasets: [
+  				{
+  					label: 'Tickets pedidos',
+  					backgroundColor: window.chartColors.red,
+  					borderColor: window.chartColors.red,
+  					data: [],
+  					fill: false,
+  				},
+  				{
+  					label: 'Tickets atendidos',
+  					fill: false,
+  					backgroundColor: window.chartColors.blue,
+  					borderColor: window.chartColors.blue,
+  					data: [],
+  				}
+  			]
+  			},
+  			options: {
+  				responsive: true,
+  				title: {
+  					display: true,
+  					text: 'Turnos por hora'
+  				},
+  				tooltips: {
+  					mode: 'index',
+  					intersect: false,
+  				},
+  				hover: {
+  					mode: 'nearest',
+  					intersect: true
+  				},
+  				scales: {
+  					xAxes: [{
+  						display: true,
+  						scaleLabel: {
+  							display: true,
+  							labelString: 'Hora (24h)'
+  						}
+  					}],
+  					yAxes: [{
+  						display: true,
+  						scaleLabel: {
+  							display: false,
+  							labelString: 'tickets'
+  						}
+  					}]
+  				}
+  			}
+  		}
   }),
-
-  methods: {
-    fetch () {
-      axios.get('tickets')
-      .then(({data}) => {
-        console.log(data)
-
-        var res = data.map((ticket) => {
-            ticket.time = (new Date(ticket.created_at)).getHours()
-            return ticket
-        })
-
-        var b = _(res).groupBy('time').map((obj, key) => {
-          return {
-            'time': key,
-            'value': _.sumBy(obj, 'time')
-          }
-        }).value()
-
-        var arr = []
-        arr.length = 24
-        arr.fill(0)
-        b.forEach(item => arr[item.time] = item. value)
-
-
-
-        console.log(arr)
-        console.log(b)
-
-        const canvas = document.getElementById('canvas')
-
-        window.chart2 = new Chart(canvas, {
-            // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-                labels: arr,
-                datasets: [{
-                    label: "My First dataset",
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: arr
-                }]
-            },
-
-            // Configuration options go here
-            options: {}
-        });
-        this.sum = arr
-      })
-      .catch(err => {
-        console.log('Error en fetch: ', err)
-      })
-    }
+  components: {
+    ChartPattern
   },
 
-  mounted () {
-      const canvas = document.getElementById('canvas')
+  methods: {
+    async fetch () {
+      this.config.data.labels = byhours.xdata()
 
-      // window.firstChart = new Chart(canvas, {
-      //     type: 'line',
-      //     datasets: [
-      //       {
-      //         data: this.sum
-      //
-      //       }
-      //     ]
-      //
-      // })
+      await axios.get('tickets')
+        .then(({data}) => {
+          this.config.data.datasets[0].data = byhours.ydata(data)
+        })
+        .catch(err => {
+          console.log('Error en fetch: ', err)
+        })
 
+      await axios.get('globals/services')
+        .then(({data}) => {
+          this.config.data.datasets[1].data = byhours.ydata(data)
+        })
+        .catch(err => {
 
+        })
+    }
   },
 
   async created () {
     await this.fetch()
+    this.active = true
+
+    setInterval(() => {
+      this.fetch()
+    }, 60*1000)
   }
 }
 </script>

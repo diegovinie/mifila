@@ -69,4 +69,9 @@ class GlobalsController extends Controller
             $ticket->delete();
         }
     }
+
+    public function listServices()
+    {
+        return Service::all();
+    }
 }

@@ -23,7 +23,7 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
-Route::get('charts', function () {
+Route::name('charts')->get('charts', function () {
     return view('charts');
 });
 

@@ -12,9 +12,10 @@
     <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
         <li><a href="{{ route('home') }}">Usuario</a></li>
+        <li><a href="{{ route('charts') }}">Gráficos</a></li>
         <li><a href="#about">Acerca de</a></li>
         <li><a href="#contact">Contacto</a></li>
-        <li><a href="{{ route('admin') }}">Aministrador</a></li>
+        <li><a href="{{ route('admin') }}">Simulator</a></li>
         </ul>
     </div><!--/.nav-collapse -->
     </div>
