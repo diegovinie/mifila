@@ -55,6 +55,11 @@ Route::group([
         ->delete('agencies/{agency}/pending', 'Api\AgenciesController@deletePending');
     Route::name('agencies.delete.tickets')
         ->delete('agencies/{agency}/tickets', 'Api\AgenciesController@deleteTickets');
+    Route::name('agencies.list')->get('agencies', 'Api\AgenciesController@list');
+    Route::name('agencies.services')
+        ->get('agencies/{agency}/services', 'Api\AgenciesController@services');
+    Route::name('agencies.tickets')
+        ->get('agencies/{agency}/tickets', 'Api\AgenciesController@tickets');
 
     Route::name('ping')->get('ping', function() { return response()->json(1, 200); });
 

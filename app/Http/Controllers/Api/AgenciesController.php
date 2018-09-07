@@ -107,4 +107,35 @@ class AgenciesController extends Controller
 
         return response()->json(null, 200);
     }
+
+    public function list()
+    {
+        return Agency::all();
+    }
+
+    public function tickets(Request $request, Agency $agency)
+    {
+        $tickets = $agency->tickets();
+
+        if ($day = $request->query('day')) {
+            $day = (new \DateTime($day))->format('Y-m-d');
+            return $tickets->whereDate('created_at', '=', $day)
+                ->get();
+        }
+
+        return $tickets->get();
+    }
+
+    public function services(Request $request, Agency $agency)
+    {
+        $services = $agency->services();
+
+        if ($day = $request->query('day')) {
+            $day = (new \DateTime($day))->format('Y-m-d');
+            return $services->whereDate('created_at', '=', $day)
+                ->get();
+        }
+
+        return $services->get();
+    }
 }
