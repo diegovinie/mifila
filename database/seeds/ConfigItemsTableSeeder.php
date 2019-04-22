@@ -59,7 +59,7 @@ class ConfigItemsTableSeeder extends Seeder
         foreach ($accs as $value) {
             $acc = Item::make([
                 'name' => "x{$value}",
-                'data' => $value
+                'data' => json_encode($value)
             ]);
 
             $acc->config()->associate($accType);
@@ -75,7 +75,7 @@ class ConfigItemsTableSeeder extends Seeder
         foreach ($probs as $prob) {
             $noti = Item::make([
                 'name' => "{$prob} %",
-                'data' => $prob
+                'data' => json_encode($prob)
             ]);
 
             $noti->config()->associate($notiType);
